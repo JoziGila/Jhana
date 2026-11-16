@@ -1,27 +1,122 @@
 [
-  {"id": "restless", "group": "body", "text": "Restless or fidgety; I wanted to get up"},
-  {"id": "pain", "group": "body", "text": "Pain or discomfort kept pulling me away"},
-  {"id": "sleepy", "group": "body", "text": "Sleepy, foggy or nodding off"},
-  {"id": "tension", "group": "body", "text": "Tightness or pressure in my head, face or jaw"},
-  {"id": "overwhelm", "group": "body", "text": "The energy got intense or jittery in an unpleasant way"},
-  {"id": "heart", "group": "body", "text": "Heart pounding, or a jolt of alarm, when it got strong"},
-
-  {"id": "wander", "group": "attention", "text": "Lost in thought most of the time"},
-  {"id": "forcing", "group": "attention", "text": "I was pushing or forcing my attention"},
-  {"id": "checking", "group": "attention", "text": "I kept checking whether it was working"},
-  {"id": "breathctl", "group": "attention", "text": "I could not stop controlling my breath"},
-
-  {"id": "noseed", "group": "feeling", "text": "I could not find any pleasant feeling"},
-  {"id": "numb", "group": "feeling", "text": "Flat or numb; hard to feel much at all"},
-  {"id": "faint", "group": "feeling", "text": "A pleasant feeling was there but stayed faint"},
-  {"id": "plateau", "group": "feeling", "text": "Pleasant and steady, but it would not grow"},
-  {"id": "vanish", "group": "feeling", "text": "It grew, then vanished when I noticed it or got excited"},
-  {"id": "grabbed", "group": "feeling", "text": "I tried to make it bigger or hold on to it"},
-
-  {"id": "fearlose", "group": "mind", "text": "Afraid of losing control, or of what might happen"},
-  {"id": "pressure", "group": "mind", "text": "I felt pressure to make something happen"},
-  {"id": "doubt", "group": "mind", "text": "I doubted that this works, or that I can do it"},
-  {"id": "bored", "group": "mind", "text": "Bored; nothing felt interesting"},
-  {"id": "sad", "group": "mind", "text": "Sadness, grief or anger came up"},
-  {"id": "dismiss", "group": "mind", "text": "Something nice happened, but I assumed it was not the real thing"}
+  {
+    "id": "restless",
+    "group": "body",
+    "text": "Restless or fidgety; I wanted to get up"
+  },
+  {
+    "id": "pain",
+    "group": "body",
+    "text": "Pain or discomfort kept pulling me away"
+  },
+  {
+    "id": "sleepy",
+    "group": "body",
+    "text": "Sleepy, foggy or nodding off"
+  },
+  {
+    "id": "tension",
+    "group": "body",
+    "text": "Tightness or pressure in my head, face or jaw"
+  },
+  {
+    "id": "overwhelm",
+    "group": "body",
+    "text": "The energy got intense or jittery in an unpleasant way"
+  },
+  {
+    "id": "heart",
+    "group": "body",
+    "text": "Heart pounding, or a jolt of alarm, when it got strong"
+  },
+  {
+    "id": "breathfaint",
+    "group": "body",
+    "text": "My breathing got so faint, or seemed to stop, that it worried me"
+  },
+  {
+    "id": "wander",
+    "group": "attention",
+    "text": "Lost in thought most of the time"
+  },
+  {
+    "id": "forcing",
+    "group": "attention",
+    "text": "I was pushing or forcing my attention"
+  },
+  {
+    "id": "checking",
+    "group": "attention",
+    "text": "I kept checking whether it was working"
+  },
+  {
+    "id": "breathctl",
+    "group": "attention",
+    "text": "I could not stop controlling my breath"
+  },
+  {
+    "id": "noseed",
+    "group": "feeling",
+    "text": "I could not find any pleasant feeling"
+  },
+  {
+    "id": "numb",
+    "group": "feeling",
+    "text": "Flat or numb; hard to feel much at all"
+  },
+  {
+    "id": "faint",
+    "group": "feeling",
+    "text": "A pleasant feeling was there but stayed faint"
+  },
+  {
+    "id": "plateau",
+    "group": "feeling",
+    "text": "Pleasant and steady, but it would not grow"
+  },
+  {
+    "id": "vanish",
+    "group": "feeling",
+    "text": "It grew, then vanished when I noticed it or got excited"
+  },
+  {
+    "id": "grabbed",
+    "group": "feeling",
+    "text": "I tried to make it bigger or hold on to it"
+  },
+  {
+    "id": "fearlose",
+    "group": "mind",
+    "text": "Afraid of losing control, or of what might happen"
+  },
+  {
+    "id": "pressure",
+    "group": "mind",
+    "text": "I felt pressure to make something happen"
+  },
+  {
+    "id": "doubt",
+    "group": "mind",
+    "text": "I doubted that this works, or that I can do it"
+  },
+  {
+    "id": "critic",
+    "group": "mind",
+    "text": "A voice said I was doing it wrong, or do not deserve this"
+  },
+  {
+    "id": "bored",
+    "group": "mind",
+    "text": "Bored; nothing felt interesting"
+  },
+  {
+    "id": "sad",
+    "group": "mind",
+    "text": "Sadness, grief or anger came up"
+  },
+  {
+    "id": "dismiss",
+    "group": "mind",
+    "text": "Something nice happened, but I assumed it was not the real thing"
+  }
 ]

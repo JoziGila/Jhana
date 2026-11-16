@@ -108,6 +108,10 @@ export function buildScript(plan) {
   }
   gather.push({ text: 'When you notice you have wandered, that noticing is the skill. Come back kindly.', id: 'return' });
   gather.push({ text: anchor[1], id: 'anchor2', optional: true });
+  if (plan.anchor === 'breath') {
+    // Brasington: a very shallow breath is a sign of settling; a deep breath undoes it.
+    gather.push({ text: 'If the breath becomes very faint, that is a good sign. Let it be faint.', id: 'faint', optional: true });
+  }
   if (plan.relaxCues >= 1) gather.push({ text: 'Check the face and shoulders. Soften anything that has tightened.', id: 'soften3', optional: true });
   gather.push({ text: 'A quieter mind is the sign that this is working. No hurry.', id: 'quiet', optional: true });
   spread(tGather, tKindle, gather, 'gather');

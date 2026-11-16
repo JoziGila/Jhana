@@ -63,7 +63,7 @@ export function completeSit(state, report, rng, now = Date.now()) {
     sensor: report.sensor ?? null,
     score: { label: score.label, labelText: score.labelText, score: score.score, confidence: score.confidence, flags: score.flags, reasons: score.reasons, criteria: score.criteria },
     jhana,
-    diagnosis: { primary: diagnosis.primary, secondary: diagnosis.secondary, confidence: diagnosis.confidence, evidence: diagnosis.evidence },
+    diagnosis: { primary: diagnosis.primary, secondary: diagnosis.secondary, alsoApply: diagnosis.alsoApply, confidence: diagnosis.confidence, evidence: diagnosis.evidence },
   };
 
   const { plan, changes } = nextPlan({ lastPlan: state.plan, diagnosis, profile: state.profile, bandit, rng });

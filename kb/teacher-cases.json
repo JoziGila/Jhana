@@ -1,0 +1,263 @@
+[
+ {
+  "id": "rb2-varying-piti",
+  "source": "RB2",
+  "problem": "Strong piti in two sits, then only gentle piti; is it blocked?",
+  "teacher": "Intensity varies; it only matters that it is definitely pleasant. Ask whether you can enjoy it more, not whether you can make it stronger.",
+  "rung": 3,
+  "symptoms": [
+   "faint",
+   "doubt",
+   "dismiss"
+  ],
+  "accept": [
+   "dismissing",
+   "plateau"
+  ]
+ },
+ {
+  "id": "rb2-overshoot",
+  "source": "RB2",
+  "problem": "Pushing with too much effort; headaches.",
+  "teacher": "Overshooting effort. Treat effort as a dimmer.",
+  "rung": 2,
+  "symptoms": [
+   "tension",
+   "forcing"
+  ],
+  "accept": [
+   "striving"
+  ]
+ },
+ {
+  "id": "rb2-undershoot",
+  "source": "RB2",
+  "problem": "Falling asleep during practice.",
+  "teacher": "Undershooting effort; try a bit more.",
+  "rung": 1,
+  "symptoms": [
+   "sleepy"
+  ],
+  "accept": [
+   "dull"
+  ]
+ },
+ {
+  "id": "rb2-scared",
+  "source": "RB2",
+  "problem": "A strong bodily movement as energy opened; 'this was scary'.",
+  "teacher": "A normal energetic effect; nothing to worry about; it fades as samadhi deepens.",
+  "rung": 4,
+  "symptoms": [
+   "fearlose",
+   "heart"
+  ],
+  "accept": [
+   "fear"
+  ]
+ },
+ {
+  "id": "rb2-guilt",
+  "source": "RB2",
+  "problem": "Guilt and sadness about feeling joy while others suffer pulled attention from piti.",
+  "teacher": "A habit from conditioning; meet it with compassionate inquiry; if not helping after some minutes, do something else.",
+  "rung": 3,
+  "symptoms": [
+   "sad",
+   "critic"
+  ],
+  "accept": [
+   "emotion",
+   "inner-critic"
+  ]
+ },
+ {
+  "id": "b1-help-it",
+  "source": "B1",
+  "problem": "The pleasant sensation rises a little and stops; tempted to help it along.",
+  "teacher": "Do nothing. Do not try to make it grow. It grows unevenly and then takes off.",
+  "rung": 3,
+  "symptoms": [
+   "plateau",
+   "grabbed"
+  ],
+  "accept": [
+   "grasping",
+   "plateau"
+  ]
+ },
+ {
+  "id": "b1-deep-breath",
+  "source": "B1",
+  "problem": "Breath became very shallow or seemed to stop; took a deep breath.",
+  "teacher": "Shallow breath is a sign of access concentration. Do not take a deep breath; it weakens concentration.",
+  "rung": 2,
+  "symptoms": [
+   "breathfaint"
+  ],
+  "accept": [
+   "fear"
+  ]
+ },
+ {
+  "id": "b1-pain",
+  "source": "B1",
+  "problem": "Uncomfortable posture; pain.",
+  "teacher": "Pain produces aversion; be comfortable.",
+  "rung": 0,
+  "symptoms": [
+   "pain"
+  ],
+  "accept": [
+   "pain"
+  ]
+ },
+ {
+  "id": "b1-too-comfortable",
+  "source": "B1",
+  "problem": "Very comfortable; sinking.",
+  "teacher": "Too comfortable produces sloth and torpor.",
+  "rung": 1,
+  "symptoms": [
+   "sleepy"
+  ],
+  "accept": [
+   "dull"
+  ]
+ },
+ {
+  "id": "fp7-grasp",
+  "source": "FP7",
+  "problem": "A lot of frustration from trying to grasp jhana; could reach some piti but not jhana.",
+  "teacher": "Relax the effort and reduce the craving; treat it like falling asleep; if frustrated, stop for the day.",
+  "rung": 4,
+  "symptoms": [
+   "grabbed",
+   "pressure"
+  ],
+  "accept": [
+   "grasping"
+  ]
+ },
+ {
+  "id": "fp7-contracted",
+  "source": "FP7",
+  "problem": "Attention overly contracted.",
+  "teacher": "Loosen it, or try an uncomplicated pleasant memory.",
+  "rung": 2,
+  "symptoms": [
+   "forcing",
+   "tension"
+  ],
+  "accept": [
+   "striving"
+  ]
+ },
+ {
+  "id": "fp3-pushed-away",
+  "source": "FP3",
+  "problem": "Early attempts: grasping pushed the pleasure away.",
+  "teacher": "(Own diagnosis) grasping.",
+  "rung": 4,
+  "symptoms": [
+   "vanish",
+   "grabbed"
+  ],
+  "accept": [
+   "grasping"
+  ]
+ },
+ {
+  "id": "fp3-too-much",
+  "source": "FP3",
+  "problem": "First jhana is too much pleasure; agitating.",
+  "teacher": "(Own diagnosis) normalises with practice. Brasington: second jhana is much more soothing; shift from the physical pleasure to the joy.",
+  "rung": 6,
+  "symptoms": [
+   "overwhelm"
+  ],
+  "accept": [
+   "overwhelm"
+  ]
+ },
+ {
+  "id": "fp5-critic",
+  "source": "FP5",
+  "problem": "An inner critic saying he was doing it wrong, would never get there, did not deserve pleasure.",
+  "teacher": "(Own diagnosis) access came from getting over self-hatred, not concentration training.",
+  "rung": 2,
+  "symptoms": [
+   "critic",
+   "doubt"
+  ],
+  "accept": [
+   "inner-critic"
+  ]
+ },
+ {
+  "id": "j2-overeffort",
+  "source": "J2",
+  "problem": "Learning alone and over-efforting.",
+  "teacher": "One of the most common mistakes.",
+  "rung": 3,
+  "symptoms": [
+   "forcing"
+  ],
+  "accept": [
+   "striving"
+  ]
+ },
+ {
+  "id": "fp8-breath-vanish",
+  "source": "FP8",
+  "problem": "Anxiety when the breath sensation vanished.",
+  "teacher": "(Own account) a threshold obstacle met again in later practice.",
+  "rung": 4,
+  "symptoms": [
+   "breathfaint",
+   "fearlose"
+  ],
+  "accept": [
+   "fear"
+  ]
+ },
+ {
+  "id": "fp1-overthinking",
+  "source": "FP1",
+  "problem": "Did not trust the experience at first; overthinking.",
+  "teacher": "(Own advice) relax, have fun, do not overthink it.",
+  "rung": 4,
+  "symptoms": [
+   "checking",
+   "dismiss",
+   "doubt"
+  ],
+  "accept": [
+   "checking",
+   "dismissing"
+  ]
+ },
+ {
+  "id": "fp6-dread",
+  "source": "FP6",
+  "problem": "Sadness, anxiety and dread after a couple of days of meditating.",
+  "teacher": "(Repliers) go gently; get support; not a failure.",
+  "rung": 0,
+  "symptoms": [
+   "sad"
+  ],
+  "accept": [
+   "emotion"
+  ]
+ },
+ {
+  "id": "rb2-nada",
+  "source": "RB2",
+  "problem": "Ringing in the ears became irritating.",
+  "teacher": "The aversion, not the sound, is the problem; do not get into an aversive relationship with it.",
+  "rung": 1,
+  "symptoms": [],
+  "accept": [],
+  "uncovered": "The coach has no category for aversion to a specific distraction."
+ }
+]

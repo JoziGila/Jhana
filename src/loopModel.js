@@ -246,6 +246,7 @@ export function runSit(traits, policy, opts = {}) {
 
 export const DEFAULT_HABITS = Object.freeze({
   settleSeconds: 240, // time spent relaxing and gathering before looking for pleasure
+  gatherSeconds: 0, // further time kept on the anchor whatever happens
   effortAnchor: 0.6, // effort while on the anchor
   effortPleasure: 0.5, // effort while resting on pleasure, before it grows
   easeOff: 0, // 0..1 how much effort is dropped as pleasure rises ("do less as it grows")
@@ -263,7 +264,7 @@ export function habitPolicy(habits = DEFAULT_HABITS) {
       // Arrive: soften and gather on the anchor.
       return { effort: hb.effortAnchor, target: 'anchor', seed: 0, relax: Math.max(hb.relaxDrive, 0.3) };
     }
-    if (state.a < hb.switchAt && state.p < 0.2) {
+    if (t < hb.settleSeconds + hb.gatherSeconds || (state.a < hb.switchAt && state.p < 0.2)) {
       // Not steady enough yet: stay with the anchor.
       return { effort: hb.effortAnchor, target: 'anchor', seed: 0.2, relax: hb.relaxDrive };
     }

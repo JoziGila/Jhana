@@ -90,11 +90,13 @@ class TestPipeline(unittest.TestCase):
         r = subprocess.run([sys.executable, os.path.join(HERE, "stats.py"), "--simulated"], capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, r.stderr)
         self.assertIn("SIMULATED", r.stdout)
-        report = open(os.path.join(HERE, "results", "REPORT_simulated.md")).read()
+        with open(os.path.join(HERE, "results", "REPORT_simulated.md")) as f:
+            report = f.read()
         self.assertIn("SIMULATED", report)
         self.assertIn("Nothing below is a finding", report)
         import json
-        s = json.load(open(os.path.join(HERE, "results", "summary_simulated.json")))
+        with open(os.path.join(HERE, "results", "summary_simulated.json")) as f:
+            s = json.load(f)
         self.assertFalse(s["real"])
         self.assertGreater(s["signatures"]["full:jhana_vs_baseline:lz"]["dz"], 0.8)
 

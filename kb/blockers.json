@@ -5,13 +5,29 @@
     "loopTerm": "hindrances",
     "oneLine": "The body and mind had not calmed down enough for anything else to work.",
     "why": "Restlessness and leftover momentum from the day pull attention away faster than it can gather. Nothing downstream can start until this quietens, and it quietens mostly by time and kindness, not by force.",
-    "symptoms": {"restless": 3, "wander": 1, "bored": 1, "pressure": 1},
-    "rungPrior": {"0": 3, "1": 1},
+    "symptoms": {
+      "restless": 3,
+      "wander": 1,
+      "bored": 1,
+      "pressure": 1
+    },
+    "rungPrior": {
+      "0": 3,
+      "1": 1
+    },
     "fix": {
-      "planPatch": {"settleMin": "+3", "pacer": true, "prep": "move"},
+      "planPatch": {
+        "settleMin": "+3",
+        "pacer": true,
+        "prep": "move"
+      },
       "instruction": "Before the next sit, walk or stretch for five minutes and write down anything nagging at you. Then give the first part of the sit entirely to long, slow out-breaths. Nothing else is asked of you until the body feels heavy and at ease.",
       "cue": "There is nothing to get done in this sit. Let the out-breath be long, and let the body be heavy."
-    }
+    },
+    "sources": [
+      "B1",
+      "J4"
+    ]
   },
   {
     "id": "scattered",
@@ -19,27 +35,59 @@
     "loopTerm": "attention",
     "oneLine": "Attention did not stay put long enough for a pleasant feeling to build.",
     "why": "The loop only amplifies a feeling that attention rests on continuously. Wandering is normal; what matters is a light, friendly return and an anchor that is easy to feel.",
-    "symptoms": {"wander": 3, "bored": 1, "restless": 1},
-    "rungPrior": {"0": 1, "1": 3},
+    "symptoms": {
+      "wander": 3,
+      "bored": 1,
+      "restless": 1
+    },
+    "rungPrior": {
+      "0": 1,
+      "1": 3
+    },
     "fix": {
-      "planPatch": {"gatherMin": "+4", "anchorHelp": "count", "totalMin": "+5"},
+      "planPatch": {
+        "gatherMin": "+4",
+        "anchorHelp": "count",
+        "totalMin": "+5"
+      },
       "instruction": "Spend longer on the anchor before looking for pleasure, and make it easier to stay: count out-breaths from one to ten and start again. Each time you notice you were away, that noticing is the skill. Come back without scolding.",
       "cue": "Count each out-breath, one to ten. Wandering is fine. Come back gently, as often as it takes."
-    }
+    },
+    "sources": [
+      "B1",
+      "S13"
+    ]
   },
   {
     "id": "dull",
     "name": "Sinking into drowsiness",
     "loopTerm": "energy",
     "oneLine": "The mind got pleasant but dim. Jhana is bright and awake.",
-    "why": "Relaxation without interest slides toward sleep. It can feel nice, which is why it is mistaken for progress. The loop needs alert attention to feed on.",
-    "symptoms": {"sleepy": 3, "bored": 1, "numb": 1},
-    "rungPrior": {"1": 1, "2": 1},
+    "why": "Relaxation without interest slides toward sleep, and being too comfortable invites it. It can feel nice, which is why it is mistaken for progress. The loop needs alert attention to feed on.",
+    "symptoms": {
+      "sleepy": 3,
+      "bored": 1,
+      "numb": 1
+    },
+    "rungPrior": {
+      "1": 1,
+      "2": 1
+    },
     "fix": {
-      "planPatch": {"eyes": "soft-open", "posture": "upright", "prep": "wake", "pacer": false},
+      "planPatch": {
+        "eyes": "soft-open",
+        "posture": "upright",
+        "prep": "wake",
+        "pacer": false
+      },
       "instruction": "Sit upright rather than reclined, keep your eyes slightly open and lowered, and sit at a time of day when you are awake. Take three deep energising breaths at the start. Bring curiosity: what exactly does the feeling feel like right now?",
       "cue": "Sit tall. Let the eyes be a little open. Be curious about exactly how this feels, moment by moment."
-    }
+    },
+    "sources": [
+      "B1",
+      "RB2",
+      "S13"
+    ]
   },
   {
     "id": "striving",
@@ -47,13 +95,32 @@
     "loopTerm": "tension",
     "oneLine": "Effort was creating tension faster than the pleasant feeling could grow.",
     "why": "Pleasure amplifies only in a relaxed body. Forceful concentration produces pressure in the head and face and a dry, tight kind of focus. This is the most common reason experienced meditators stall.",
-    "symptoms": {"tension": 3, "forcing": 3, "pressure": 1, "faint": 1, "plateau": 1},
-    "rungPrior": {"2": 1, "3": 2, "4": 1},
+    "symptoms": {
+      "tension": 3,
+      "forcing": 3,
+      "pressure": 1,
+      "faint": 1,
+      "plateau": 1
+    },
+    "rungPrior": {
+      "2": 1,
+      "3": 2,
+      "4": 1
+    },
     "fix": {
-      "planPatch": {"effort": "feather", "relaxCues": "+1", "attention": "wide"},
-      "instruction": "Use about half the effort. Let attention rest on the feeling the way a hand rests on a table, instead of gripping it. Soften the forehead, eyes and jaw whenever you remember. If the head feels tight, widen attention to the whole body.",
+      "planPatch": {
+        "effort": "feather",
+        "relaxCues": "+1",
+        "attention": "wide"
+      },
+      "instruction": "Use about half the effort. Treat effort like a dimmer you are learning to set: for a minute, deliberately do too little and notice what that is like, then find the middle. Let attention rest on the feeling the way a hand rests on a table. Soften the forehead, eyes and jaw whenever you remember. If the head feels tight, widen attention to the whole body.",
       "cue": "Half the effort. Soften the forehead, the eyes, the jaw. Let attention rest; it does not need to grip."
-    }
+    },
+    "sources": [
+      "J2",
+      "RB2",
+      "FP7"
+    ]
   },
   {
     "id": "no-seed",
@@ -61,13 +128,28 @@
     "loopTerm": "seed",
     "oneLine": "There was nothing pleasant to rest attention on, so the loop had nothing to amplify.",
     "why": "The loop needs a starting spark. People differ a lot in what produces one: a smile, warmth toward someone, a memory, tingling in the hands, the ease of breathing out. The bar is low; faintly nice is enough.",
-    "symptoms": {"noseed": 3, "numb": 2, "bored": 1, "doubt": 1},
-    "rungPrior": {"2": 3},
+    "symptoms": {
+      "noseed": 3,
+      "numb": 2,
+      "bored": 1,
+      "doubt": 1
+    },
+    "rungPrior": {
+      "2": 3
+    },
     "fix": {
-      "planPatch": {"seed": "switch", "kindleMin": "+2", "prep": "prime"},
+      "planPatch": {
+        "seed": "switch",
+        "kindleMin": "+2",
+        "prep": "prime"
+      },
       "instruction": "Try a different way of sparking the feeling next time, and lower the bar: anything faintly nice counts, even the absence of discomfort in your hands. Before sitting, do something that reliably warms you for a minute, such as a favourite piece of music or thinking of someone who makes you smile.",
       "cue": "Anything faintly pleasant will do. A little warmth, a little ease. Small is fine."
-    }
+    },
+    "sources": [
+      "B1",
+      "RB1"
+    ]
   },
   {
     "id": "plateau",
@@ -75,13 +157,28 @@
     "loopTerm": "loop-gain",
     "oneLine": "The feeling was there and steady but the loop was not quite amplifying it.",
     "why": "The loop is running just below the level where it feeds itself. Small changes tip it over: enjoying the feeling more fully, staying with it longer without stirring, and dropping the last bit of effort.",
-    "symptoms": {"plateau": 3, "faint": 2, "bored": 1},
-    "rungPrior": {"3": 3, "4": 1},
+    "symptoms": {
+      "plateau": 3,
+      "faint": 2,
+      "bored": 1
+    },
+    "rungPrior": {
+      "3": 3,
+      "4": 1
+    },
     "fix": {
-      "planPatch": {"totalMin": "+10", "effort": "light", "savor": true},
-      "instruction": "Stay with it for longer, and enjoy it on purpose. Ask what is nice about it and let yourself like it, the way you would savour warmth from a fire. Do not keep re-sparking the feeling; let attention sink into the middle of it and wait.",
-      "cue": "Let yourself enjoy this. What is nice about it? Sink into the middle of it and stay."
-    }
+      "planPatch": {
+        "totalMin": "+10",
+        "effort": "light",
+        "savor": true
+      },
+      "instruction": "Stay with it for longer, and ask 'can I enjoy this more?' instead of 'can I make it stronger?'. Try two ways of attending and move loosely between them: sinking attention into the middle of the feeling, and opening to receive it like standing in a warm shower. Do not keep re-sparking it.",
+      "cue": "Can you enjoy this a little more? Sink into the middle of it, or open and receive it. No need to make it stronger."
+    },
+    "sources": [
+      "B1",
+      "RB2"
+    ]
   },
   {
     "id": "grasping",
@@ -89,41 +186,91 @@
     "loopTerm": "grasping",
     "oneLine": "The feeling grew, excitement or wanting kicked in, and that collapsed it.",
     "why": "When the feeling first surges, the natural reaction is 'this is it!' followed by trying to hold or increase it. That reaction pulls attention off the feeling and tightens the body, which cuts the loop. Almost everyone does this at first.",
-    "symptoms": {"vanish": 3, "grabbed": 3, "pressure": 1, "checking": 1},
-    "rungPrior": {"4": 2, "5": 3},
+    "symptoms": {
+      "vanish": 3,
+      "grabbed": 3,
+      "pressure": 2,
+      "checking": 1
+    },
+    "rungPrior": {
+      "4": 2,
+      "5": 3
+    },
     "fix": {
-      "planPatch": {"inoculate": true, "effort": "feather", "relaxCues": "+1"},
+      "planPatch": {
+        "inoculate": true,
+        "effort": "feather",
+        "relaxCues": "+1"
+      },
       "instruction": "Expect the surge, and decide now what you will do when it comes: nothing. Breathe out, keep attention on the physical feeling itself rather than on thoughts about it, and let it do whatever it does. Treat it like a shy animal that comes closer only if you stay still.",
       "cue": "If it grows, do nothing. Breathe out. Stay with the feeling itself and let it come to you."
-    }
+    },
+    "sources": [
+      "B1",
+      "FP3",
+      "FP7",
+      "S13"
+    ]
   },
   {
     "id": "checking",
-    "name": "Watching for results",
+    "name": "Wanting results",
     "loopTerm": "grasping",
-    "oneLine": "Part of the mind was monitoring progress instead of feeling the feeling.",
-    "why": "Checking 'is it working?' splits attention and carries a quiet demand. Doubt and pressure work the same way. The loop gets only the attention that is left over.",
-    "symptoms": {"checking": 3, "pressure": 2, "doubt": 2, "dismiss": 1},
-    "rungPrior": {"2": 1, "3": 1},
+    "oneLine": "Part of the mind was pressing for a result, or monitoring progress, instead of feeling the feeling.",
+    "why": "Pressure to make something happen, and checking 'is it working?', both split attention and carry a quiet demand. Doubt works the same way. The loop gets only the attention that is left over, and the feeling stays faint.",
+    "symptoms": {
+      "checking": 3,
+      "pressure": 3,
+      "doubt": 2,
+      "dismiss": 1
+    },
+    "rungPrior": {
+      "2": 1,
+      "3": 1
+    },
     "fix": {
-      "planPatch": {"framing": "no-goal", "guidance": "sparse"},
+      "planPatch": {
+        "framing": "no-goal",
+        "guidance": "sparse"
+      },
       "instruction": "Make the next sit a no-goal sit. The only task is to enjoy twenty minutes of resting. When you catch yourself checking, label it 'checking' with a smile and return to what the body feels like. Avoid reading descriptions of jhana beforehand.",
       "cue": "No goal this time. Just rest and enjoy. If you notice checking, smile and come back to the body."
-    }
+    },
+    "sources": [
+      "B1",
+      "FP1"
+    ]
   },
   {
     "id": "fear",
     "name": "Alarm at the threshold",
     "loopTerm": "safety",
     "oneLine": "As it intensified, the body read it as a threat and pulled back.",
-    "why": "A surge of energy with the sense of control slipping can trigger alarm: heart pounding, a jolt, backing away. This is common and harmless, but the loop cannot complete while part of you is braced.",
-    "symptoms": {"heart": 3, "fearlose": 3, "overwhelm": 1},
-    "rungPrior": {"4": 1, "5": 2},
+    "why": "A surge of energy, the breath going very quiet, or the sense of control slipping can each trigger alarm: heart pounding, a jolt, backing away. These are common signs that the mind is settling and they are harmless, but the loop cannot complete while part of you is braced.",
+    "symptoms": {
+      "heart": 3,
+      "fearlose": 3,
+      "overwhelm": 1,
+      "breathfaint": 3
+    },
+    "rungPrior": {
+      "4": 1,
+      "5": 2
+    },
     "fix": {
-      "planPatch": {"eyes": "soft-open", "titrate": true, "relaxCues": "+1"},
-      "instruction": "Go to the edge and stop there. When it starts to build, remind yourself that you can open your eyes and end it at any moment, breathe out slowly, and let it rise only as far as feels safe. A few visits to the edge usually dissolve the alarm.",
+      "planPatch": {
+        "eyes": "soft-open",
+        "titrate": true,
+        "relaxCues": "+1"
+      },
+      "instruction": "Go to the edge and stop there. If the breath becomes very faint or seems to pause, that is a normal sign of settling: let it be faint and do not take a deep breath to bring it back. When energy builds, remind yourself that you can open your eyes and end it at any moment, breathe out slowly, and let it rise only as far as feels safe. A few visits to the edge usually dissolve the alarm.",
       "cue": "You can stop whenever you like. Let it build only as far as feels safe, and breathe out slowly."
-    }
+    },
+    "sources": [
+      "RB2",
+      "FP8",
+      "B1"
+    ]
   },
   {
     "id": "overwhelm",
@@ -131,13 +278,60 @@
     "loopTerm": "refinement",
     "oneLine": "The loop ignited, but the energy was coarse and agitating rather than enjoyable.",
     "why": "The energetic side of the experience can run hot: buzzing, shaking, heat. That is a sign the loop works. The fix is to shift attention from the buzz to the calmer happiness underneath, which is also the move into second jhana.",
-    "symptoms": {"overwhelm": 3, "heart": 1, "tension": 1},
-    "rungPrior": {"5": 2, "6": 2},
+    "symptoms": {
+      "overwhelm": 3,
+      "heart": 1,
+      "tension": 1
+    },
+    "rungPrior": {
+      "5": 2,
+      "6": 2
+    },
     "fix": {
-      "planPatch": {"attention": "wide", "soothe": true, "effort": "feather"},
+      "planPatch": {
+        "attention": "wide",
+        "soothe": true,
+        "effort": "feather"
+      },
       "instruction": "When the energy gets strong, widen attention to the whole body and look for the quieter happiness or contentment in the background. Let the buzzing be in the foreground of the body but the background of your attention. A long out-breath turns it down.",
       "cue": "Widen out to the whole body. Find the quieter happiness underneath the buzz, and rest there."
-    }
+    },
+    "sources": [
+      "B2",
+      "FP3",
+      "RB2"
+    ]
+  },
+  {
+    "id": "inner-critic",
+    "name": "The inner critic",
+    "loopTerm": "safety",
+    "oneLine": "Part of the mind was judging you, or the pleasure, instead of letting it be felt.",
+    "why": "A running verdict that you are doing it wrong, will never get it, or should not be feeling good makes pleasant feeling hard to notice and harder to rest in. Guilt about enjoying yourself works the same way. Some people find that access to jhana comes from easing this, and not from more concentration.",
+    "symptoms": {
+      "critic": 3,
+      "doubt": 1,
+      "numb": 1,
+      "sad": 1,
+      "pressure": 1
+    },
+    "rungPrior": {
+      "2": 1,
+      "3": 1
+    },
+    "fix": {
+      "planPatch": {
+        "seed": "kindness-self",
+        "framing": "no-goal"
+      },
+      "instruction": "Next sit, be on your own side first. Spend the opening minutes wishing yourself well, the way you would a friend who is trying something new. When the critic speaks, let it be one more sound in the room; it does not need an answer. Feeling good here is allowed, and harms no one.",
+      "cue": "You are allowed to enjoy this. If the critic speaks, let it be one more sound in the room."
+    },
+    "sources": [
+      "FP5",
+      "RB2",
+      "J4"
+    ]
   },
   {
     "id": "emotion",
@@ -145,13 +339,27 @@
     "loopTerm": "safety",
     "oneLine": "Sadness, grief or anger surfaced once things got quiet.",
     "why": "When the usual busyness drops, unfelt feelings often come forward. This is not a failure. Pushing past them for a pleasant state does not work; meeting them kindly usually does, and often the pleasant feeling follows.",
-    "symptoms": {"sad": 3, "numb": 1, "doubt": 1},
+    "symptoms": {
+      "sad": 3,
+      "numb": 1,
+      "doubt": 1
+    },
     "rungPrior": {},
     "fix": {
-      "planPatch": {"seed": "kindness-self", "framing": "no-goal", "totalMin": "-5"},
-      "instruction": "Make the next sit about kindness rather than jhana. Let whatever is there be there, with a hand on your chest if that helps, and wish yourself well. If heavy feelings persist across sits or feel like too much, stop and talk to someone you trust or a professional.",
+      "planPatch": {
+        "seed": "kindness-self",
+        "framing": "no-goal",
+        "totalMin": "-5"
+      },
+      "instruction": "Make the next sit about kindness and not about jhana. Let whatever is there be there, with a hand on your chest if that helps, and wish yourself well. If the practice is not helping after a few minutes, stop and do something else. If heavy feelings persist across sits or feel like too much, pause the practice and talk to someone you trust or a professional.",
       "cue": "Whatever is here is welcome. A hand on the chest if you like. May I be at ease."
-    }
+    },
+    "sources": [
+      "RB2",
+      "J4",
+      "J3",
+      "FP6"
+    ]
   },
   {
     "id": "pain",
@@ -159,13 +367,23 @@
     "loopTerm": "hindrances",
     "oneLine": "Physical discomfort kept winning the competition for attention.",
     "why": "Comfort is a precondition, not a luxury. There is no merit in a hard posture for this practice.",
-    "symptoms": {"pain": 3, "restless": 1},
-    "rungPrior": {"0": 1},
+    "symptoms": {
+      "pain": 3,
+      "restless": 1
+    },
+    "rungPrior": {
+      "0": 1
+    },
     "fix": {
-      "planPatch": {"posture": "supported"},
-      "instruction": "Change the posture until it is properly comfortable: a chair with back support, a recliner, or cushions under the knees. Moving slowly to relieve pain during the sit is fine.",
+      "planPatch": {
+        "posture": "supported"
+      },
+      "instruction": "Change the posture until it is comfortable enough to forget: a chair with back support, or cushions under the knees. Comfortable, but still upright enough to stay awake. Moving slowly to relieve pain during the sit is fine.",
       "cue": "Make yourself completely comfortable. Adjust whenever you need to."
-    }
+    },
+    "sources": [
+      "B1"
+    ]
   },
   {
     "id": "breath-control",
@@ -173,13 +391,23 @@
     "loopTerm": "tension",
     "oneLine": "Watching the breath turned into controlling it, which created strain.",
     "why": "Some people cannot observe their breathing without steering it. That is a form of effort, and it produces the same tension as forcing attention. A different anchor avoids the problem entirely.",
-    "symptoms": {"breathctl": 3, "tension": 1, "forcing": 1},
+    "symptoms": {
+      "breathctl": 3,
+      "tension": 1,
+      "forcing": 1
+    },
     "rungPrior": {},
     "fix": {
-      "planPatch": {"anchor": "hands", "pacer": false},
+      "planPatch": {
+        "anchor": "hands",
+        "pacer": false
+      },
       "instruction": "Drop the breath as an anchor. Rest attention on the feeling in your hands instead, or on the whole body sitting. Let the breath do what it likes in the background.",
       "cue": "Leave the breath alone. Feel your hands resting, the warmth and tingling in them."
-    }
+    },
+    "sources": [
+      "B1"
+    ]
   },
   {
     "id": "dismissing",
@@ -187,13 +415,27 @@
     "loopTerm": "loop-gain",
     "oneLine": "Something real started, and it was waved away for not matching expectations.",
     "why": "Early jhana is often gentle: a warm, steady gladness rather than fireworks. Judging it as 'not it' ends the loop just as it begins. The way it deepens is by being stayed with.",
-    "symptoms": {"dismiss": 3, "doubt": 1, "checking": 1},
-    "rungPrior": {"3": 1, "4": 1},
+    "symptoms": {
+      "dismiss": 3,
+      "doubt": 1,
+      "checking": 1
+    },
+    "rungPrior": {
+      "3": 1,
+      "4": 1
+    },
     "fix": {
-      "planPatch": {"savor": true, "totalMin": "+5"},
+      "planPatch": {
+        "savor": true,
+        "totalMin": "+5"
+      },
       "instruction": "Whatever pleasant thing shows up next time, treat it as the real thing and stay with it for at least five minutes before forming an opinion. Mild counts. Depth comes from staying, not from a stronger start.",
       "cue": "Whatever pleasantness is here is the real thing. Stay with it. Mild is fine."
-    }
+    },
+    "sources": [
+      "RB2",
+      "FP3"
+    ]
   },
   {
     "id": "dose",
@@ -202,12 +444,22 @@
     "oneLine": "Nothing specific went wrong; the loop needs more minutes than it got.",
     "why": "Settling commonly takes ten to twenty minutes before the feeling has anything to grow in. Short sits end just as conditions become workable.",
     "symptoms": {},
-    "rungPrior": {"1": 1, "2": 1, "3": 1},
+    "rungPrior": {
+      "1": 1,
+      "2": 1,
+      "3": 1
+    },
     "fix": {
-      "planPatch": {"totalMin": "+10"},
+      "planPatch": {
+        "totalMin": "+10"
+      },
       "instruction": "Give it more room. Add ten minutes, or sit twice in a day. On a free morning, try three sits with a short walk between them.",
       "cue": "There is plenty of time. Nothing needs to happen quickly."
-    }
+    },
+    "sources": [
+      "FP9",
+      "J2"
+    ]
   },
   {
     "id": "stabilise",
@@ -216,12 +468,21 @@
     "oneLine": "It took off. The work now is letting it last.",
     "why": "The first take-offs are short because surprise and delight interrupt them. Each visit makes the state more familiar and the reaction smaller.",
     "symptoms": {},
-    "rungPrior": {"5": 1, "6": 1},
+    "rungPrior": {
+      "5": 1,
+      "6": 1
+    },
     "fix": {
-      "planPatch": {"inoculate": true, "totalMin": "+5"},
+      "planPatch": {
+        "inoculate": true,
+        "totalMin": "+5"
+      },
       "instruction": "Do the same thing again. When it takes off, let it carry you and keep doing nothing. Aim to hang out in it rather than to make it stronger.",
       "cue": "When it comes, let it carry you. Nothing to add. Just stay and enjoy."
-    }
+    },
+    "sources": [
+      "S13"
+    ]
   },
   {
     "id": "deepen",
@@ -230,11 +491,18 @@
     "oneLine": "First jhana is holding. The next states come from letting the coarser parts go.",
     "why": "Each further jhana is reached by releasing something: first the effort of placing attention, then the excited energy, then pleasure itself.",
     "symptoms": {},
-    "rungPrior": {"7": 3},
+    "rungPrior": {
+      "7": 3
+    },
     "fix": {
-      "planPatch": {"deepen": true},
+      "planPatch": {
+        "deepen": true
+      },
       "instruction": "Once it has been steady for a few minutes, take one long out-breath and let the excited energy settle into the background. Rest on the happiness that remains. Later, let even that calm into contentment, then into stillness.",
       "cue": "Let the excitement settle into the background. Rest on the quieter happiness that remains."
-    }
+    },
+    "sources": [
+      "B2"
+    ]
   }
 ]

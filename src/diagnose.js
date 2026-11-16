@@ -89,8 +89,16 @@ export function diagnose(report, history = []) {
   const runnerUp = ranked.find(([id]) => id !== primary)?.[1] ?? 0;
   const confidence = top <= 0 ? 0.3 : Math.max(0.2, Math.min(1, (top - runnerUp) / top + 0.25));
 
+  // Two problems at once are common (a feeling that will not grow AND pressure to make it grow).
+  // When the runner-up has real symptom evidence and scores close to the winner, its plan
+  // changes are applied too; the headline instruction stays the winner's.
+  const sec = secondary === primary ? null : secondary;
+  const alsoApply = sec && evidenceBy[sec]?.length > 0 && scores[sec] >= 0.6 * top && !['dose', 'stabilise', 'deepen'].includes(sec) ? sec : null;
+
   return {
     primary,
+    alsoApply,
+    alsoBlocker: alsoApply ? blockerById(alsoApply) : null,
     secondary: secondary === primary ? null : secondary,
     scores,
     confidence,

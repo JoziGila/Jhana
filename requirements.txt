@@ -1,0 +1,5 @@
+numpy
+scipy
+# only for 'make data' (downloading and reading the raw EEG):
+# gdown
+# mne

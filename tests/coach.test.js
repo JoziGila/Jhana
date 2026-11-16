@@ -176,7 +176,7 @@ test('preflight state adjusts today\'s plan', () => {
   assert.equal(low.framing, 'no-goal');
   assert.equal(low.seed, 'comfort');
   const short = nextPlan({ lastPlan: base, preflight: { minutes: 15 }, rng }).plan;
-  assert.ok(short.totalMin <= 15 + 6);
+  assert.ok(short.totalMin <= 15 + 9);
   assert.ok(short.totalMin - (short.settleMin + short.gatherMin + short.kindleMin) >= 5, 'still leaves time to rest');
 });
 

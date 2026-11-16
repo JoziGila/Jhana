@@ -89,7 +89,7 @@ export function firstPlan(profile = {}, bandit = newBandit(profile)) {
   if ((profile.striver ?? 0) >= 2) plan = applyPatch(plan, { effort: 'feather', relaxCues: '+1' });
   if ((profile.sleepy ?? 0) >= 2) plan = applyPatch(plan, { eyes: 'soft-open', posture: 'upright', pacer: false });
   if ((profile.breathctl ?? 0) >= 2) plan = applyPatch(plan, { anchor: 'hands' });
-  if ((profile.experience ?? 0) === 0) plan = applyPatch(plan, { totalMin: 20, gatherMin: 6 });
+  if ((profile.experience ?? 0) === 0) plan = applyPatch(plan, { gatherMin: 6 }); // novices: a little less anchor time, same room to rest
   plan.seed = ranking(bandit)[0].id;
   return plan;
 }
@@ -116,10 +116,16 @@ export function nextPlan({ lastPlan = null, diagnosis = null, profile = {}, band
 
   if (diagnosis?.blocker) {
     const before = plan;
+    // a strong runner-up contributes its changes first; the primary diagnosis wins any conflict
+    if (diagnosis.alsoBlocker) {
+      const { seed: _ignored, ...rest } = diagnosis.alsoBlocker.fix.planPatch;
+      plan = applyPatch(plan, rest);
+    }
     plan = applyPatch(plan, diagnosis.blocker.fix.planPatch);
     plan.coachCue = diagnosis.blocker.fix.cue;
     plan.focus = diagnosis.primary;
-    for (const key of Object.keys(diagnosis.blocker.fix.planPatch)) {
+    const touched = new Set([...Object.keys(diagnosis.blocker.fix.planPatch), ...Object.keys(diagnosis.alsoBlocker?.fix.planPatch ?? {})]);
+    for (const key of touched) {
       if (key !== 'seed' && before[key] !== plan[key]) changes.push(describeChange(key, before[key], plan[key]));
     }
   }
@@ -162,7 +168,7 @@ export function nextPlan({ lastPlan = null, diagnosis = null, profile = {}, band
 export function fitToMinutes(plan, minutes) {
   const total = clampTo('totalMin', minutes);
   const opening = plan.settleMin + plan.gatherMin + plan.kindleMin;
-  const maxOpening = Math.max(7, total * 0.6);
+  const maxOpening = Math.max(7, total * 0.5);
   if (opening <= maxOpening) return { ...plan, totalMin: total };
   const k = maxOpening / opening;
   return {
@@ -179,7 +185,8 @@ export function normalise(plan) {
   const p = { ...plan };
   if (!EFFORT_LEVELS.includes(p.effort)) p.effort = 'light';
   const opening = p.settleMin + p.gatherMin + p.kindleMin;
-  if (p.totalMin < opening + 6) p.totalMin = clampTo('totalMin', opening + 6);
+  // the resting phase is where the loop builds: never leave it less than about eight minutes
+  if (p.totalMin < opening + 9) p.totalMin = clampTo('totalMin', opening + 9);
   return p;
 }
 
