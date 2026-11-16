@@ -1,0 +1,57 @@
+[
+ {
+  "id": "jhourney-rate-faq",
+  "source": "J2",
+  "claim": "Well over half of online participants experience jhana",
+  "definition": "not stated",
+  "n": "not stated",
+  "verification": "fetched"
+ },
+ {
+  "id": "jhourney-rate-brief",
+  "source": "project brief",
+  "claim": "About two-thirds of retreat participants reach jhana within a week",
+  "definition": "Jhourney's own figure",
+  "n": "not stated",
+  "verification": "given, not found on the pages read"
+ },
+ {
+  "id": "jhourney-rate-participant",
+  "source": "FP6",
+  "claim": "About 75% of those on one retreat reached jhana",
+  "definition": "one participant's informal count; some attendees could already access jhana",
+  "n": "one retreat",
+  "verification": "fetched"
+ },
+ {
+  "id": "jhourney-volume",
+  "source": "J3, J6",
+  "claim": "About 1,200-1,300 retreat participants in a little over two years",
+  "verification": "fetched"
+ },
+ {
+  "id": "jhourney-difficulty",
+  "source": "J3",
+  "claim": "About 3% had transient difficulty (sleep disruption, emotional intensity, disorientation, dissociation); one case of acute mania needing psychiatric care, in a person with no psychiatric history",
+  "verification": "fetched"
+ },
+ {
+  "id": "jhourney-survey",
+  "source": "J5",
+  "claim": "Alumni survey n=61 plus 10 interviews: 77% of first-time accessors called it transformative; 6.5% reported negative changes, nearly all among those who did not access jhana; prior experience did not appear to affect benefit",
+  "definition": "self-selected sample, no control group",
+  "verification": "fetched (summary page)"
+ },
+ {
+  "id": "acx-tally",
+  "source": "FP3",
+  "claim": "Among blog commenters, 21 said they had experienced jhana and 7 were fairly sure it is not real as described",
+  "verification": "fetched"
+ },
+ {
+  "id": "michaelson-dose",
+  "source": "FP9",
+  "claim": "A diligent student needs roughly 40-50 hours; experienced students 3-4 days and new students 5-7 days at 8-10 hours a day",
+  "verification": "fetched"
+ }
+]
