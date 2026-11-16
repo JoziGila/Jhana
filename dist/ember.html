@@ -1,0 +1,3567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#15141d">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px system-ui,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<title>Ember Jhana Trainer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: one quiet column and a bottom tab bar; the sit itself is a dark room with a single ember. */
+:root {
+  color-scheme: dark;
+  --bg: #15141d;
+  --surface: #1d1c28;
+  --raised: #272635;
+  --line: #36354a;
+  --fg: #eeebf4;
+  --muted: #a5a2ba;
+  --ember: #ff8f52;
+  --ember-deep: #e2553d;
+  --ember-ink: #23110a;
+  --glow: #ffc670;
+  --good: #7fd4a8;
+  --warn: #f2c14e;
+  --s-attn: #3987e5;
+  --s-pleasure: #d95926;
+  --s-tension: #199e70;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --r: 14px;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: #f0eff5;
+    --surface: #ffffff;
+    --raised: #e8e6f0;
+    --line: #d3d0e0;
+    --fg: #1b1a26;
+    --muted: #5d5a73;
+    --ember: #c2461f;
+    --ember-deep: #9f3417;
+    --ember-ink: #ffffff;
+    --glow: #d9822b;
+    --good: #1c7c54;
+    --warn: #8a6100;
+    --s-attn: #2a78d6;
+    --s-pleasure: #eb6834;
+    --s-tension: #1baf7a;
+  }
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f0eff5;
+  --surface: #ffffff;
+  --raised: #e8e6f0;
+  --line: #d3d0e0;
+  --fg: #1b1a26;
+  --muted: #5d5a73;
+  --ember: #c2461f;
+  --ember-deep: #9f3417;
+  --ember-ink: #ffffff;
+  --glow: #d9822b;
+  --good: #1c7c54;
+  --warn: #8a6100;
+  --s-attn: #2a78d6;
+  --s-pleasure: #eb6834;
+  --s-tension: #1baf7a;
+}
+
+html, body { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+
+#app { min-height: 100%; display: flex; flex-direction: column; }
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 104px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ---- type ---- */
+h1, h2, h3 { font-family: var(--display); font-weight: 600; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h1 { font-size: 1.9rem; line-height: 1.1; }
+h2 { font-size: 1.3rem; line-height: 1.2; }
+h3 { font-size: 1.02rem; line-height: 1.3; }
+p { margin: 0; }
+.lede { font-size: 1.06rem; color: var(--fg); max-width: 36em; }
+.muted { color: var(--muted); }
+.small { font-size: 0.875rem; }
+.eyebrow { font-size: 0.75rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.stack { display: flex; flex-direction: column; gap: 12px; }
+.stack-lg { display: flex; flex-direction: column; gap: 20px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.between { justify-content: space-between; }
+
+.brand { display: flex; align-items: baseline; gap: 10px; }
+.brand .mark { font-family: var(--display); font-weight: 700; font-size: 1.5rem; letter-spacing: -0.02em; }
+.brand .mark i { font-style: normal; color: var(--ember); }
+
+/* ---- surfaces ---- */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.card.plan { border-color: color-mix(in srgb, var(--ember) 45%, var(--line)); }
+.note { border-left: 3px solid var(--line); padding: 2px 0 2px 12px; color: var(--muted); font-size: 0.92rem; }
+.divider { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+/* ---- controls ---- */
+.btn { border: 1px solid var(--line); background: var(--raised); color: var(--fg); border-radius: 999px; padding: 11px 18px; font-weight: 600; min-height: 44px; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--ember); border-color: var(--ember); color: var(--ember-ink); }
+.btn.primary:hover { background: var(--ember-deep); border-color: var(--ember-deep); color: #fff; }
+.btn.big { padding: 15px 22px; font-size: 1.06rem; width: 100%; }
+.btn.ghost { background: transparent; }
+.btn.link { background: none; border: 0; padding: 4px 0; min-height: 0; color: var(--ember); border-radius: 4px; font-weight: 600; }
+.btn:disabled { opacity: 0.45; cursor: default; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 8px 13px; font-size: 0.93rem; min-height: 40px; text-align: left; }
+.chip[aria-pressed="true"], .chip[aria-checked="true"] { background: color-mix(in srgb, var(--ember) 20%, var(--surface)); border-color: var(--ember); }
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field > label, .field > .label { font-weight: 600; font-size: 0.95rem; }
+textarea, select, input[type="text"] { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; }
+textarea { min-height: 96px; resize: vertical; }
+input[type="range"] { width: 100%; accent-color: var(--ember); }
+
+.scale { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.scale button { border: 1px solid var(--line); background: transparent; border-radius: 10px; padding: 8px 2px; font-size: 0.8rem; min-height: 40px; }
+.scale button[aria-checked="true"] { background: color-mix(in srgb, var(--ember) 22%, var(--surface)); border-color: var(--ember); font-weight: 600; }
+.item { display: flex; flex-direction: column; gap: 8px; padding-block: 12px; border-top: 1px solid var(--line); }
+.item:first-child { border-top: 0; padding-top: 0; }
+
+.rungs { display: flex; flex-direction: column; gap: 6px; }
+.rung { display: grid; grid-template-columns: 2rem 1fr; gap: 10px; align-items: start; text-align: left; border: 1px solid var(--line); background: transparent; border-radius: 12px; padding: 10px 12px; }
+.rung .n { font-family: var(--mono); color: var(--muted); font-size: 0.85rem; padding-top: 2px; }
+.rung b { display: block; font-weight: 600; }
+.rung span { color: var(--muted); font-size: 0.9rem; }
+.rung[aria-checked="true"] { border-color: var(--ember); background: color-mix(in srgb, var(--ember) 14%, var(--surface)); }
+
+/* ---- plan card ---- */
+.phasebar { display: flex; gap: 2px; height: 10px; border-radius: 6px; overflow: hidden; }
+.phasebar i { display: block; background: color-mix(in srgb, var(--ember) calc(var(--k) * 1%), var(--raised)); min-width: 3px; }
+.phasekey { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.82rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 0.93rem; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; }
+ul.plain { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 4px; }
+
+/* ---- tab bar ---- */
+.tabs {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 5;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line);
+  padding: 8px max(16px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+.tabs nav { max-width: 34rem; margin-inline: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.tabs a { text-align: center; text-decoration: none; color: var(--muted); padding: 10px 6px; border-radius: 12px; font-weight: 600; font-size: 0.95rem; }
+.tabs a[aria-current="page"] { color: var(--fg); background: var(--raised); }
+
+/* ---- sit stage: one committed dark look ---- */
+.stage {
+  position: fixed; inset: 0; z-index: 20;
+  background: radial-gradient(120% 80% at 50% 45%, #1b1622 0%, #0d0c12 70%);
+  color: #efe9e4;
+  display: grid; grid-template-rows: auto 1fr auto;
+  padding: calc(16px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  user-select: none; -webkit-user-select: none; touch-action: manipulation;
+}
+.stage .top { display: flex; justify-content: space-between; align-items: baseline; color: #a59d9a; font-size: 0.9rem; }
+.stage .phase { font-family: var(--display); font-weight: 600; letter-spacing: 0.02em; color: #d9cfc8; }
+.stage .clock { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.stage .pad { border: 0; background: transparent; color: inherit; display: grid; grid-template-rows: 1fr auto; justify-items: center; align-items: center; width: 100%; padding: 0; min-height: 0; }
+.stage canvas { width: min(72vw, 46vh, 340px); aspect-ratio: 1; max-width: 100%; }
+.stage .cue { min-height: 5.6em; max-width: 30em; text-align: center; font-size: 1.12rem; line-height: 1.45; color: #efe9e4; opacity: 0; transition: opacity 1.2s ease; padding-inline: 4px; }
+.stage .cue.on { opacity: 0.92; }
+.stage .bottom { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.stage .hint { color: #8f8784; font-size: 0.85rem; text-align: center; max-width: 28em; }
+.stage .ctrl { display: flex; gap: 10px; }
+.stage .ctrl button { border: 1px solid #3a3338; background: #17141a; color: #cfc6c1; border-radius: 999px; padding: 9px 18px; min-height: 42px; font-weight: 600; }
+.stage .ctrl button:focus-visible, .stage .pad:focus-visible { outline: 2px solid #ff8f52; outline-offset: 2px; }
+.stage.dim .hint, .stage.dim .top { opacity: 0.35; transition: opacity 3s; }
+
+/* ---- sheets (debrief, onboarding, chat) ---- */
+.sheet { min-height: 100%; background: var(--bg); display: flex; flex-direction: column; }
+.sheet .page { padding-block: 20px 28px; }
+.steps { display: flex; gap: 5px; }
+.steps i { flex: 1; height: 3px; border-radius: 2px; background: var(--line); }
+.steps i.on { background: var(--ember); }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.actions .btn { flex: 1 1 8rem; }
+
+.verdict { display: flex; flex-direction: column; gap: 6px; }
+.verdict .label { font-family: var(--display); font-size: 1.55rem; font-weight: 600; line-height: 1.15; }
+.pill { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; font-size: 0.8rem; color: var(--muted); }
+.pill.good { color: var(--good); border-color: color-mix(in srgb, var(--good) 50%, var(--line)); }
+.pill.warn { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 50%, var(--line)); }
+.crit { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: 6px; font-size: 0.88rem; }
+.crit span { display: flex; gap: 6px; align-items: baseline; color: var(--muted); }
+.crit span.met { color: var(--fg); }
+.crit span::before { content: "○"; }
+.crit span.met::before { content: "●"; color: var(--good); }
+
+/* ---- progress ---- */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); gap: 10px; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; }
+.tile b { display: block; font-family: var(--display); font-size: 1.5rem; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.tile span { color: var(--muted); font-size: 0.82rem; }
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--body); font-size: 11px; fill: var(--muted); }
+.chart .axis { stroke: var(--line); stroke-width: 1; }
+.chart .grid { stroke: var(--line); stroke-width: 1; opacity: 0.5; }
+.tip { position: absolute; pointer-events: none; background: var(--raised); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; font-size: 0.82rem; max-width: 15rem; z-index: 2; box-shadow: 0 6px 20px rgb(0 0 0 / 0.25); }
+.tip b { display: block; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 0.85rem; color: var(--muted); }
+.legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+.bars { display: flex; flex-direction: column; gap: 8px; }
+.bar { display: grid; grid-template-columns: 9.5rem 1fr 3.2rem; gap: 10px; align-items: center; font-size: 0.9rem; }
+.bar .track { height: 10px; background: var(--raised); border-radius: 0 5px 5px 0; overflow: hidden; }
+.bar .fill { height: 100%; background: var(--s-pleasure); border-radius: 0 4px 4px 0; }
+.bar .val { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.hist { display: flex; flex-direction: column; }
+.hist > div { display: grid; grid-template-columns: 5.2rem 1fr; gap: 10px; padding-block: 10px; border-top: 1px solid var(--line); font-size: 0.92rem; }
+.hist > div:first-child { border-top: 0; }
+.hist time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+th, td { text-align: left; padding: 6px 10px 6px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { color: var(--muted); font-weight: 600; }
+
+/* ---- learn ---- */
+.sim-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 12px 18px; }
+.sim-controls label { display: flex; flex-direction: column; gap: 4px; font-size: 0.9rem; }
+.sim-controls output { color: var(--muted); font-variant-numeric: tabular-nums; }
+.simverdict { font-weight: 600; }
+details { border-top: 1px solid var(--line); padding-block: 12px; }
+details:first-of-type { border-top: 0; }
+summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--muted); font-family: var(--mono); }
+details[open] summary::after { content: "−"; }
+details > .stack { margin-top: 10px; }
+
+/* ---- chat ---- */
+.chat { display: flex; flex-direction: column; gap: 10px; }
+.bubble { border-radius: 14px; padding: 10px 14px; max-width: 92%; white-space: pre-wrap; overflow-wrap: anywhere; }
+.bubble.me { align-self: flex-end; background: color-mix(in srgb, var(--ember) 22%, var(--surface)); }
+.bubble.coach { align-self: flex-start; background: var(--surface); border: 1px solid var(--line); }
+.chatbox { display: flex; gap: 8px; align-items: flex-end; }
+.chatbox textarea { min-height: 48px; }
+
+.toast { position: fixed; left: 50%; bottom: calc(88px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--raised); border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; font-size: 0.9rem; z-index: 40; max-width: calc(100% - 32px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .stage .cue { transition: none; }
+}
+
+</style>
+<div id="app"></div>
+<script>
+(() => {
+  // app/dom.js
+  function h(tag, props = {}, ...children) {
+    const el = document.createElement(tag);
+    for (const [k, v] of Object.entries(props || {})) {
+      if (v === null || v === void 0 || v === false) continue;
+      if (k === "class") el.className = v;
+      else if (k === "html") el.innerHTML = v;
+      else if (k === "style" && typeof v === "object") {
+        for (const [prop, val] of Object.entries(v)) {
+          if (prop.startsWith("--")) el.style.setProperty(prop, val);
+          else el.style[prop] = val;
+        }
+      } else if (k.startsWith("on") && typeof v === "function") el.addEventListener(k.slice(2).toLowerCase(), v);
+      else if (k === "value") el.value = v;
+      else if (k === "checked" || k === "disabled" || k === "hidden" || k === "open") el[k] = !!v;
+      else el.setAttribute(k, v === true ? "" : String(v));
+    }
+    append(el, children);
+    return el;
+  }
+  function append(el, children) {
+    for (const c of children.flat(Infinity)) {
+      if (c === null || c === void 0 || c === false) continue;
+      el.append(c.nodeType ? c : document.createTextNode(String(c)));
+    }
+  }
+  var svg = (tag, attrs = {}, ...children) => {
+    const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (v === null || v === void 0 || v === false) continue;
+      if (k.startsWith("on") && typeof v === "function") el.addEventListener(k.slice(2).toLowerCase(), v);
+      else el.setAttribute(k, String(v));
+    }
+    for (const c of children.flat(Infinity)) {
+      if (c === null || c === void 0 || c === false) continue;
+      el.append(c.nodeType ? c : document.createTextNode(String(c)));
+    }
+    return el;
+  };
+  function add(el, ...children) {
+    append(el, children);
+    return el;
+  }
+  function openLayer(el) {
+    document.getElementById("app").hidden = true;
+    for (const other of document.querySelectorAll(".sheet")) other.hidden = true;
+    document.body.append(el);
+    window.scrollTo(0, 0);
+  }
+  function closeLayer(el) {
+    el.remove();
+    const sheets = document.querySelectorAll(".sheet");
+    if (sheets.length) sheets[sheets.length - 1].hidden = false;
+    else if (!document.querySelector(".stage")) document.getElementById("app").hidden = false;
+  }
+  function clear(el) {
+    while (el.firstChild) el.removeChild(el.firstChild);
+    return el;
+  }
+  function choice(options, value, onPick, { label } = {}) {
+    return h(
+      "div",
+      { class: "chips", role: "radiogroup", "aria-label": label },
+      options.map(
+        (o) => h("button", { class: "chip", type: "button", role: "radio", "aria-checked": String(o.value === value), onClick: () => onPick(o.value) }, o.label)
+      )
+    );
+  }
+  function scale(value, onPick, labels = ["Not at all", "Slightly", "Clearly", "Strongly"], name = "") {
+    return h(
+      "div",
+      { class: "scale", role: "radiogroup", "aria-label": name },
+      labels.map(
+        (text, i) => h("button", { type: "button", role: "radio", "aria-checked": String(value === i), onClick: () => onPick(i) }, text)
+      )
+    );
+  }
+  function fmtClock(seconds) {
+    const s = Math.max(0, Math.round(seconds));
+    return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+  }
+  function fmtDate(ms) {
+    const d = new Date(ms);
+    return d.toLocaleDateString(void 0, { month: "short", day: "numeric" });
+  }
+  var toastTimer = null;
+  function toast(text) {
+    document.querySelector(".toast")?.remove();
+    const el = h("div", { class: "toast", role: "status" }, text);
+    document.body.append(el);
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.remove(), 2800);
+  }
+
+  // app/platform.js
+  var KEY = "ember.v1";
+  var cap = (name) => {
+    try {
+      return window.claude?.use ? window.claude.use(name).catch(() => null) : Promise.resolve(null);
+    } catch {
+      return Promise.resolve(null);
+    }
+  };
+  var caps = {
+    tts: cap("tts"),
+    sample: cap("sample"),
+    db: cap("db"),
+    user: cap("user"),
+    downloads: cap("downloads")
+  };
+  function loadLocal() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
+  var remoteDoc = null;
+  var remoteBusy = false;
+  var remotePending = null;
+  function save(state) {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(state));
+    } catch {
+    }
+    if (remoteDoc) pushRemote(state);
+  }
+  async function pushRemote(state) {
+    remotePending = state;
+    if (remoteBusy) return;
+    remoteBusy = true;
+    while (remotePending) {
+      const next = remotePending;
+      remotePending = null;
+      try {
+        await remoteDoc.set({ json: JSON.stringify(next), savedAt: Date.now() });
+      } catch {
+        break;
+      }
+    }
+    remoteBusy = false;
+  }
+  async function connectRemote(localState) {
+    try {
+      const [db, user] = await Promise.all([caps.db, caps.user]);
+      if (!db || !user) return null;
+      const id = await user.id();
+      if (!id) return null;
+      remoteDoc = db.collection(`data/users/${id}`).doc("ember");
+      const snap = await remoteDoc.get();
+      if (!snap.exists) return null;
+      const remote = JSON.parse(snap.data().json);
+      const localSits = localState?.sits?.length ?? 0;
+      return (remote.sits?.length ?? 0) > localSits || !localState?.onboarded ? remote : null;
+    } catch {
+      return null;
+    }
+  }
+  async function exportData(filename, text) {
+    const downloads = await caps.downloads;
+    if (downloads) {
+      try {
+        await downloads.save({ filename, data: text });
+        return true;
+      } catch {
+        return false;
+      }
+    }
+    try {
+      const url = URL.createObjectURL(new Blob([text], { type: "application/json" }));
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.append(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2e3);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  var claudeTts = null;
+  caps.tts.then((t) => {
+    claudeTts = t;
+  });
+  function voiceOptions() {
+    const out = [];
+    if (claudeTts) out.push({ id: "claude", label: "Claude voice" });
+    if ("speechSynthesis" in window) out.push({ id: "device", label: "Device voice" });
+    out.push({ id: "text", label: "Text and chime only" });
+    return out;
+  }
+  function pickDeviceVoice() {
+    const voices = window.speechSynthesis?.getVoices?.() ?? [];
+    const en = voices.filter((v) => /^en/i.test(v.lang));
+    const prefer = ["Samantha", "Serena", "Karen", "Moira", "Google UK English Female", "Google US English", "Microsoft Aria", "Microsoft Jenny"];
+    for (const name of prefer) {
+      const v = en.find((x) => x.name.includes(name));
+      if (v) return v;
+    }
+    return en.find((v) => v.localService) ?? en[0] ?? null;
+  }
+  function unlockVoice() {
+    try {
+      if ("speechSynthesis" in window) {
+        const u = new SpeechSynthesisUtterance(" ");
+        u.volume = 0;
+        window.speechSynthesis.speak(u);
+      }
+    } catch {
+    }
+  }
+  function speakDevice(text, rate) {
+    try {
+      const synth = window.speechSynthesis;
+      if (!synth) return false;
+      synth.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      const v = pickDeviceVoice();
+      if (v) u.voice = v;
+      u.rate = rate;
+      u.pitch = 0.95;
+      u.volume = 0.9;
+      synth.speak(u);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  async function speak(text, mode = "auto", rate = 0.9) {
+    if (mode === "text") {
+      chime(528, 0.5, 0.05);
+      return "text";
+    }
+    const wantClaude = (mode === "claude" || mode === "auto") && claudeTts;
+    if (wantClaude) {
+      try {
+        claudeTts.speak(text, { voice: "rounded", rate: Math.max(0.7, Math.min(1.5, rate)) }).catch(() => {
+        });
+        return "claude";
+      } catch {
+      }
+    }
+    if (speakDevice(text, rate)) return "device";
+    chime(528, 0.5, 0.05);
+    return "text";
+  }
+  function stopSpeaking() {
+    try {
+      window.speechSynthesis?.cancel();
+    } catch {
+    }
+    try {
+      claudeTts?.stop().catch(() => {
+      });
+    } catch {
+    }
+  }
+  var ctx = null;
+  var noiseNode = null;
+  var noiseGain = null;
+  var pacer = null;
+  function audio() {
+    if (!ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return null;
+      ctx = new AC();
+    }
+    if (ctx.state === "suspended") ctx.resume().catch(() => {
+    });
+    return ctx;
+  }
+  function bell(volume = 0.18) {
+    const ac = audio();
+    if (!ac) return;
+    const now = ac.currentTime;
+    [[392, 1], [784, 0.5], [1176, 0.25], [1568, 0.12]].forEach(([f, g]) => {
+      const o = ac.createOscillator();
+      const gain = ac.createGain();
+      o.type = "sine";
+      o.frequency.value = f;
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(volume * g, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(1e-4, now + 5);
+      o.connect(gain).connect(ac.destination);
+      o.start(now);
+      o.stop(now + 5.2);
+    });
+  }
+  function chime(freq = 660, dur = 0.18, volume = 0.06) {
+    const ac = audio();
+    if (!ac) return;
+    const now = ac.currentTime;
+    const o = ac.createOscillator();
+    const g = ac.createGain();
+    o.type = "sine";
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(0, now);
+    g.gain.linearRampToValueAtTime(volume, now + 0.015);
+    g.gain.exponentialRampToValueAtTime(1e-4, now + dur);
+    o.connect(g).connect(ac.destination);
+    o.start(now);
+    o.stop(now + dur + 0.05);
+  }
+  function setSoundscape(on, volume = 0.05) {
+    const ac = audio();
+    if (!ac) return;
+    if (on && !noiseNode) {
+      const len = ac.sampleRate * 4;
+      const buf = ac.createBuffer(1, len, ac.sampleRate);
+      const d = buf.getChannelData(0);
+      let last = 0;
+      for (let i = 0; i < len; i++) {
+        const white = Math.random() * 2 - 1;
+        last = (last + 0.02 * white) / 1.02;
+        d[i] = last * 3.5;
+      }
+      noiseNode = ac.createBufferSource();
+      noiseNode.buffer = buf;
+      noiseNode.loop = true;
+      const lp = ac.createBiquadFilter();
+      lp.type = "lowpass";
+      lp.frequency.value = 500;
+      noiseGain = ac.createGain();
+      noiseGain.gain.setValueAtTime(0, ac.currentTime);
+      noiseGain.gain.linearRampToValueAtTime(volume, ac.currentTime + 4);
+      noiseNode.connect(lp).connect(noiseGain).connect(ac.destination);
+      noiseNode.start();
+    } else if (!on && noiseNode) {
+      const n = noiseNode;
+      noiseGain.gain.linearRampToValueAtTime(0, ac.currentTime + 1.5);
+      setTimeout(() => {
+        try {
+          n.stop();
+        } catch {
+        }
+      }, 1700);
+      noiseNode = null;
+    }
+  }
+  var PACER = { inSec: 4, outSec: 7 };
+  function setPacer(on, volume = 0.035) {
+    const ac = audio();
+    if (!ac) return;
+    if (on && !pacer) {
+      const o = ac.createOscillator();
+      const g = ac.createGain();
+      o.type = "sine";
+      o.frequency.value = 174;
+      g.gain.value = 0;
+      o.connect(g).connect(ac.destination);
+      o.start();
+      const cycle = PACER.inSec + PACER.outSec;
+      const schedule = () => {
+        const t0 = ac.currentTime + 0.05;
+        for (let i = 0; i < 6; i++) {
+          const t = t0 + i * cycle;
+          o.frequency.setValueAtTime(174, t);
+          o.frequency.linearRampToValueAtTime(232, t + PACER.inSec);
+          o.frequency.linearRampToValueAtTime(174, t + cycle);
+          g.gain.setValueAtTime(1e-4, t);
+          g.gain.linearRampToValueAtTime(volume, t + PACER.inSec * 0.8);
+          g.gain.linearRampToValueAtTime(1e-4, t + cycle - 0.3);
+        }
+      };
+      schedule();
+      pacer = { o, g, timer: setInterval(schedule, 6 * cycle * 1e3), started: performance.now() };
+    } else if (!on && pacer) {
+      const p = pacer;
+      pacer = null;
+      clearInterval(p.timer);
+      try {
+        p.g.gain.cancelScheduledValues(ac.currentTime);
+        p.g.gain.linearRampToValueAtTime(1e-4, ac.currentTime + 1);
+        p.o.stop(ac.currentTime + 1.2);
+      } catch {
+      }
+    }
+  }
+  function pacerPhase() {
+    if (!pacer) return null;
+    const cycle = (PACER.inSec + PACER.outSec) * 1e3;
+    return (performance.now() - pacer.started) % cycle / cycle;
+  }
+  var wake = null;
+  async function keepAwake(on) {
+    try {
+      if (on && navigator.wakeLock && !wake) {
+        wake = await navigator.wakeLock.request("screen");
+        wake.addEventListener?.("release", () => {
+          wake = null;
+        });
+      } else if (!on && wake) {
+        await wake.release();
+        wake = null;
+      }
+    } catch {
+      wake = null;
+    }
+  }
+  var motionHandler = null;
+  async function requestMotion() {
+    try {
+      if (typeof DeviceMotionEvent === "undefined") return false;
+      if (typeof DeviceMotionEvent.requestPermission === "function") {
+        const res = await DeviceMotionEvent.requestPermission();
+        if (res !== "granted") return false;
+      }
+      return await new Promise((resolve) => {
+        let got = false;
+        const probe = (e) => {
+          if (e.accelerationIncludingGravity && e.accelerationIncludingGravity.z !== null) got = true;
+        };
+        window.addEventListener("devicemotion", probe);
+        setTimeout(() => {
+          window.removeEventListener("devicemotion", probe);
+          resolve(got);
+        }, 900);
+      });
+    } catch {
+      return false;
+    }
+  }
+  function startMotion(onSample) {
+    stopMotion();
+    let last = 0;
+    motionHandler = (e) => {
+      const a = e.accelerationIncludingGravity;
+      if (!a || a.z === null) return;
+      const t = performance.now();
+      if (t - last < 45) return;
+      last = t;
+      onSample({ t, x: a.x || 0, y: a.y || 0, z: a.z || 0 });
+    };
+    window.addEventListener("devicemotion", motionHandler);
+  }
+  function stopMotion() {
+    if (motionHandler) window.removeEventListener("devicemotion", motionHandler);
+    motionHandler = null;
+  }
+
+  // src/jhanaScore.js
+  var ITEMS = Object.freeze([
+    { id: "shift", kind: "core", text: "There was a distinct moment when the state changed: a drop, a click, a take-off." },
+    { id: "pleasure", kind: "core", text: "Strong pleasant feeling in the body (warmth, glow, tingling, waves) or strong joy." },
+    { id: "pervade", kind: "core", text: "The pleasant feeling spread through most of my body or filled my awareness." },
+    { id: "selfsustain", kind: "core", text: "It kept going by itself. I did not have to work to keep my attention there." },
+    { id: "absorb", kind: "core", text: "Thoughts became sparse or far away, and sounds or sensations did not pull me out." },
+    { id: "clear", kind: "core", text: "My mind felt bright and awake." },
+    { id: "energy", kind: "piti", text: "Involuntary smile, tears, rushes of energy, shivers, or swaying." },
+    { id: "calmer", kind: "later", text: "The excitement settled into a quieter, more contented happiness." },
+    { id: "still", kind: "later", text: "Pleasure gave way to a deep, even stillness that was neither pleasant nor unpleasant." },
+    { id: "afterglow", kind: "support", text: "Afterwards I felt notably calm, content or clear for a while." },
+    { id: "drowsy", kind: "counter", text: "I felt sleepy or dreamy, or lost track of where I was." },
+    { id: "drift", kind: "counter", text: "I was mostly carried along in thoughts or daydreams." },
+    { id: "strain", kind: "counter", text: "I was holding the state in place with effort." },
+    // Foils: sound plausible, but are not part of the reported phenomenology of jhana. Endorsing
+    // several suggests the answers are tracking expectation or agreeableness rather than experience.
+    { id: "foil_taste", kind: "foil", text: "A distinct sweet or metallic taste appeared in my mouth." },
+    { id: "foil_hearing", kind: "foil", text: "My hearing became much sharper than normal, picking up tiny distant sounds." },
+    { id: "foil_cold", kind: "foil", text: "My hands and feet turned noticeably cold." }
+  ]);
+  var DURATIONS = Object.freeze([
+    { id: "none", label: "It did not happen", minutes: 0 },
+    { id: "seconds", label: "A few seconds", minutes: 0.1 },
+    { id: "underMinute", label: "Up to a minute", minutes: 0.6 },
+    { id: "minutes", label: "1 to 5 minutes", minutes: 3 },
+    { id: "long", label: "More than 5 minutes", minutes: 8 }
+  ]);
+  var LABELS = Object.freeze({
+    ordinary: "Ordinary sit",
+    relaxation: "Pleasant relaxation",
+    dull: "Pleasant dullness",
+    access: "Settled and steady (access)",
+    piti: "Pleasure without absorption",
+    glimpse: "Brief take-off",
+    j1: "First jhana (probable)",
+    j2: "Second or third jhana (probable)",
+    j4: "Fourth jhana (probable)"
+  });
+  var get = (answers, id) => Math.max(0, Math.min(3, Number(answers?.[id] ?? 0)));
+  function scoreReport(answers, durationId = "none") {
+    const a = (id) => get(answers, id);
+    const minutes = DURATIONS.find((d) => d.id === durationId)?.minutes ?? 0;
+    const criteria = {
+      pleasure: a("pleasure") >= 2,
+      selfSustaining: a("selfsustain") >= 2 && a("strain") <= 1,
+      absorbed: a("absorb") >= 2 && a("drift") <= 1,
+      bright: a("clear") >= 2 && a("drowsy") <= 1,
+      lasted: minutes >= 1
+    };
+    const met = Object.values(criteria).filter(Boolean).length;
+    const core = (a("pleasure") + a("selfsustain") + a("absorb") + a("clear")) / 12;
+    const support = (a("shift") + a("pervade") + a("afterglow")) / 9;
+    const counter = (a("drowsy") + a("drift") + a("strain")) / 9;
+    const durFactor = minutes >= 3 ? 1 : minutes >= 1 ? 0.9 : minutes >= 0.5 ? 0.6 : minutes > 0 ? 0.4 : 0.15;
+    const weakest = Math.min(a("pleasure"), a("selfsustain"), a("absorb"), a("clear")) / 3;
+    let score = 100 * (0.45 * core + 0.3 * weakest + 0.25 * support) * durFactor * (1 - 0.5 * counter);
+    score = Math.round(Math.max(0, Math.min(100, score)));
+    const flags = [];
+    const reasons = [];
+    const foilSum = a("foil_taste") + a("foil_hearing") + a("foil_cold");
+    if (foilSum >= 3) flags.push("response-bias");
+    const allHigh = ITEMS.filter((i) => i.kind !== "foil").every((i) => a(i.id) >= 2);
+    if (allHigh) flags.push("uniform-answers");
+    let label;
+    const equanimous = a("still") >= 2 && a("pleasure") <= 1;
+    if (equanimous && criteria.selfSustaining && criteria.absorbed && criteria.bright && criteria.lasted) {
+      label = "j4";
+      reasons.push("Still, even, self-sustaining and bright, with pleasure faded.");
+    } else if (met === 5) {
+      if (a("calmer") >= 2 || a("still") >= 2) {
+        label = "j2";
+        reasons.push("All five markers present, and the excitement settled into quieter contentment.");
+      } else {
+        label = "j1";
+        reasons.push("All five markers present: strong pleasure, self-sustaining, absorbed, bright, and it lasted.");
+      }
+    } else if (criteria.pleasure && criteria.selfSustaining && criteria.bright && !criteria.lasted && minutes > 0) {
+      label = "glimpse";
+      reasons.push("It took off by itself but did not last a minute.");
+    } else if (criteria.pleasure && (!criteria.selfSustaining || !criteria.absorbed) && a("drowsy") <= 1) {
+      label = "piti";
+      if (!criteria.selfSustaining) reasons.push("Pleasure was strong, but it needed holding in place.");
+      if (!criteria.absorbed) reasons.push("Pleasure was strong, but thinking or distraction carried on alongside it.");
+    } else if (a("drowsy") >= 2 && a("clear") <= 1) {
+      label = "dull";
+      reasons.push("Pleasant, but sleepy rather than bright. Jhana is wakeful.");
+    } else if (a("pleasure") >= 1 && a("drift") <= 1 && a("drowsy") <= 1 && a("absorb") >= 1) {
+      label = a("pleasure") >= 2 ? "piti" : "access";
+      reasons.push("Calm and steady, with the pleasant feeling present but not yet running by itself.");
+    } else if (a("pleasure") >= 1 || a("afterglow") >= 2) {
+      label = "relaxation";
+      reasons.push("Pleasant and calming, without the take-off, absorption or brightness that mark jhana.");
+    } else {
+      label = "ordinary";
+      reasons.push("No sustained pleasant feeling this time.");
+    }
+    let confidence = "medium";
+    if (["j1", "j2", "j4"].includes(label)) {
+      const strong = a("pleasure") === 3 || a("selfsustain") === 3;
+      confidence = strong && a("shift") >= 2 && a("afterglow") >= 1 && minutes >= 3 ? "high" : "medium";
+    } else if (label === "ordinary" || label === "relaxation" || label === "dull") {
+      confidence = met <= 1 ? "high" : "medium";
+    }
+    if (flags.length) {
+      confidence = "low";
+      if (flags.includes("response-bias")) {
+        reasons.push("Several unrelated check items were also endorsed, so expectation may be colouring the answers.");
+      }
+      if (flags.includes("uniform-answers")) {
+        reasons.push("Every item was rated high, including ones that contradict each other.");
+      }
+    }
+    return { label, labelText: LABELS[label], score, confidence, criteria, flags, reasons };
+  }
+  function isJhana(result) {
+    return ["j1", "j2", "j4"].includes(result.label) && result.confidence !== "low";
+  }
+
+  // kb/blockers.json
+  var blockers_default = [
+    {
+      id: "unsettled",
+      name: "Not settled yet",
+      loopTerm: "hindrances",
+      oneLine: "The body and mind had not calmed down enough for anything else to work.",
+      why: "Restlessness and leftover momentum from the day pull attention away faster than it can gather. Nothing downstream can start until this quietens, and it quietens mostly by time and kindness, not by force.",
+      symptoms: { restless: 3, wander: 1, bored: 1, pressure: 1 },
+      rungPrior: { "0": 3, "1": 1 },
+      fix: {
+        planPatch: { settleMin: "+3", pacer: true, prep: "move" },
+        instruction: "Before the next sit, walk or stretch for five minutes and write down anything nagging at you. Then give the first part of the sit entirely to long, slow out-breaths. Nothing else is asked of you until the body feels heavy and at ease.",
+        cue: "There is nothing to get done in this sit. Let the out-breath be long, and let the body be heavy."
+      }
+    },
+    {
+      id: "scattered",
+      name: "Attention keeps wandering",
+      loopTerm: "attention",
+      oneLine: "Attention did not stay put long enough for a pleasant feeling to build.",
+      why: "The loop only amplifies a feeling that attention rests on continuously. Wandering is normal; what matters is a light, friendly return and an anchor that is easy to feel.",
+      symptoms: { wander: 3, bored: 1, restless: 1 },
+      rungPrior: { "0": 1, "1": 3 },
+      fix: {
+        planPatch: { gatherMin: "+4", anchorHelp: "count", totalMin: "+5" },
+        instruction: "Spend longer on the anchor before looking for pleasure, and make it easier to stay: count out-breaths from one to ten and start again. Each time you notice you were away, that noticing is the skill. Come back without scolding.",
+        cue: "Count each out-breath, one to ten. Wandering is fine. Come back gently, as often as it takes."
+      }
+    },
+    {
+      id: "dull",
+      name: "Sinking into drowsiness",
+      loopTerm: "energy",
+      oneLine: "The mind got pleasant but dim. Jhana is bright and awake.",
+      why: "Relaxation without interest slides toward sleep. It can feel nice, which is why it is mistaken for progress. The loop needs alert attention to feed on.",
+      symptoms: { sleepy: 3, bored: 1, numb: 1 },
+      rungPrior: { "1": 1, "2": 1 },
+      fix: {
+        planPatch: { eyes: "soft-open", posture: "upright", prep: "wake", pacer: false },
+        instruction: "Sit upright rather than reclined, keep your eyes slightly open and lowered, and sit at a time of day when you are awake. Take three deep energising breaths at the start. Bring curiosity: what exactly does the feeling feel like right now?",
+        cue: "Sit tall. Let the eyes be a little open. Be curious about exactly how this feels, moment by moment."
+      }
+    },
+    {
+      id: "striving",
+      name: "Trying too hard",
+      loopTerm: "tension",
+      oneLine: "Effort was creating tension faster than the pleasant feeling could grow.",
+      why: "Pleasure amplifies only in a relaxed body. Forceful concentration produces pressure in the head and face and a dry, tight kind of focus. This is the most common reason experienced meditators stall.",
+      symptoms: { tension: 3, forcing: 3, pressure: 1, faint: 1, plateau: 1 },
+      rungPrior: { "2": 1, "3": 2, "4": 1 },
+      fix: {
+        planPatch: { effort: "feather", relaxCues: "+1", attention: "wide" },
+        instruction: "Use about half the effort. Let attention rest on the feeling the way a hand rests on a table, instead of gripping it. Soften the forehead, eyes and jaw whenever you remember. If the head feels tight, widen attention to the whole body.",
+        cue: "Half the effort. Soften the forehead, the eyes, the jaw. Let attention rest; it does not need to grip."
+      }
+    },
+    {
+      id: "no-seed",
+      name: "No pleasant feeling to work with",
+      loopTerm: "seed",
+      oneLine: "There was nothing pleasant to rest attention on, so the loop had nothing to amplify.",
+      why: "The loop needs a starting spark. People differ a lot in what produces one: a smile, warmth toward someone, a memory, tingling in the hands, the ease of breathing out. The bar is low; faintly nice is enough.",
+      symptoms: { noseed: 3, numb: 2, bored: 1, doubt: 1 },
+      rungPrior: { "2": 3 },
+      fix: {
+        planPatch: { seed: "switch", kindleMin: "+2", prep: "prime" },
+        instruction: "Try a different way of sparking the feeling next time, and lower the bar: anything faintly nice counts, even the absence of discomfort in your hands. Before sitting, do something that reliably warms you for a minute, such as a favourite piece of music or thinking of someone who makes you smile.",
+        cue: "Anything faintly pleasant will do. A little warmth, a little ease. Small is fine."
+      }
+    },
+    {
+      id: "plateau",
+      name: "Pleasant but not growing",
+      loopTerm: "loop-gain",
+      oneLine: "The feeling was there and steady but the loop was not quite amplifying it.",
+      why: "The loop is running just below the level where it feeds itself. Small changes tip it over: enjoying the feeling more fully, staying with it longer without stirring, and dropping the last bit of effort.",
+      symptoms: { plateau: 3, faint: 2, bored: 1 },
+      rungPrior: { "3": 3, "4": 1 },
+      fix: {
+        planPatch: { totalMin: "+10", effort: "light", savor: true },
+        instruction: "Stay with it for longer, and enjoy it on purpose. Ask what is nice about it and let yourself like it, the way you would savour warmth from a fire. Do not keep re-sparking the feeling; let attention sink into the middle of it and wait.",
+        cue: "Let yourself enjoy this. What is nice about it? Sink into the middle of it and stay."
+      }
+    },
+    {
+      id: "grasping",
+      name: "Grabbing when it starts",
+      loopTerm: "grasping",
+      oneLine: "The feeling grew, excitement or wanting kicked in, and that collapsed it.",
+      why: "When the feeling first surges, the natural reaction is 'this is it!' followed by trying to hold or increase it. That reaction pulls attention off the feeling and tightens the body, which cuts the loop. Almost everyone does this at first.",
+      symptoms: { vanish: 3, grabbed: 3, pressure: 1, checking: 1 },
+      rungPrior: { "4": 2, "5": 3 },
+      fix: {
+        planPatch: { inoculate: true, effort: "feather", relaxCues: "+1" },
+        instruction: "Expect the surge, and decide now what you will do when it comes: nothing. Breathe out, keep attention on the physical feeling itself rather than on thoughts about it, and let it do whatever it does. Treat it like a shy animal that comes closer only if you stay still.",
+        cue: "If it grows, do nothing. Breathe out. Stay with the feeling itself and let it come to you."
+      }
+    },
+    {
+      id: "checking",
+      name: "Watching for results",
+      loopTerm: "grasping",
+      oneLine: "Part of the mind was monitoring progress instead of feeling the feeling.",
+      why: "Checking 'is it working?' splits attention and carries a quiet demand. Doubt and pressure work the same way. The loop gets only the attention that is left over.",
+      symptoms: { checking: 3, pressure: 2, doubt: 2, dismiss: 1 },
+      rungPrior: { "2": 1, "3": 1 },
+      fix: {
+        planPatch: { framing: "no-goal", guidance: "sparse" },
+        instruction: "Make the next sit a no-goal sit. The only task is to enjoy twenty minutes of resting. When you catch yourself checking, label it 'checking' with a smile and return to what the body feels like. Avoid reading descriptions of jhana beforehand.",
+        cue: "No goal this time. Just rest and enjoy. If you notice checking, smile and come back to the body."
+      }
+    },
+    {
+      id: "fear",
+      name: "Alarm at the threshold",
+      loopTerm: "safety",
+      oneLine: "As it intensified, the body read it as a threat and pulled back.",
+      why: "A surge of energy with the sense of control slipping can trigger alarm: heart pounding, a jolt, backing away. This is common and harmless, but the loop cannot complete while part of you is braced.",
+      symptoms: { heart: 3, fearlose: 3, overwhelm: 1 },
+      rungPrior: { "4": 1, "5": 2 },
+      fix: {
+        planPatch: { eyes: "soft-open", titrate: true, relaxCues: "+1" },
+        instruction: "Go to the edge and stop there. When it starts to build, remind yourself that you can open your eyes and end it at any moment, breathe out slowly, and let it rise only as far as feels safe. A few visits to the edge usually dissolve the alarm.",
+        cue: "You can stop whenever you like. Let it build only as far as feels safe, and breathe out slowly."
+      }
+    },
+    {
+      id: "overwhelm",
+      name: "Too much energy",
+      loopTerm: "refinement",
+      oneLine: "The loop ignited, but the energy was coarse and agitating rather than enjoyable.",
+      why: "The energetic side of the experience can run hot: buzzing, shaking, heat. That is a sign the loop works. The fix is to shift attention from the buzz to the calmer happiness underneath, which is also the move into second jhana.",
+      symptoms: { overwhelm: 3, heart: 1, tension: 1 },
+      rungPrior: { "5": 2, "6": 2 },
+      fix: {
+        planPatch: { attention: "wide", soothe: true, effort: "feather" },
+        instruction: "When the energy gets strong, widen attention to the whole body and look for the quieter happiness or contentment in the background. Let the buzzing be in the foreground of the body but the background of your attention. A long out-breath turns it down.",
+        cue: "Widen out to the whole body. Find the quieter happiness underneath the buzz, and rest there."
+      }
+    },
+    {
+      id: "emotion",
+      name: "Difficult feelings came up",
+      loopTerm: "safety",
+      oneLine: "Sadness, grief or anger surfaced once things got quiet.",
+      why: "When the usual busyness drops, unfelt feelings often come forward. This is not a failure. Pushing past them for a pleasant state does not work; meeting them kindly usually does, and often the pleasant feeling follows.",
+      symptoms: { sad: 3, numb: 1, doubt: 1 },
+      rungPrior: {},
+      fix: {
+        planPatch: { seed: "kindness-self", framing: "no-goal", totalMin: "-5" },
+        instruction: "Make the next sit about kindness rather than jhana. Let whatever is there be there, with a hand on your chest if that helps, and wish yourself well. If heavy feelings persist across sits or feel like too much, stop and talk to someone you trust or a professional.",
+        cue: "Whatever is here is welcome. A hand on the chest if you like. May I be at ease."
+      }
+    },
+    {
+      id: "pain",
+      name: "Uncomfortable posture",
+      loopTerm: "hindrances",
+      oneLine: "Physical discomfort kept winning the competition for attention.",
+      why: "Comfort is a precondition, not a luxury. There is no merit in a hard posture for this practice.",
+      symptoms: { pain: 3, restless: 1 },
+      rungPrior: { "0": 1 },
+      fix: {
+        planPatch: { posture: "supported" },
+        instruction: "Change the posture until it is properly comfortable: a chair with back support, a recliner, or cushions under the knees. Moving slowly to relieve pain during the sit is fine.",
+        cue: "Make yourself completely comfortable. Adjust whenever you need to."
+      }
+    },
+    {
+      id: "breath-control",
+      name: "Fighting the breath",
+      loopTerm: "tension",
+      oneLine: "Watching the breath turned into controlling it, which created strain.",
+      why: "Some people cannot observe their breathing without steering it. That is a form of effort, and it produces the same tension as forcing attention. A different anchor avoids the problem entirely.",
+      symptoms: { breathctl: 3, tension: 1, forcing: 1 },
+      rungPrior: {},
+      fix: {
+        planPatch: { anchor: "hands", pacer: false },
+        instruction: "Drop the breath as an anchor. Rest attention on the feeling in your hands instead, or on the whole body sitting. Let the breath do what it likes in the background.",
+        cue: "Leave the breath alone. Feel your hands resting, the warmth and tingling in them."
+      }
+    },
+    {
+      id: "dismissing",
+      name: "Discounting what happened",
+      loopTerm: "loop-gain",
+      oneLine: "Something real started, and it was waved away for not matching expectations.",
+      why: "Early jhana is often gentle: a warm, steady gladness rather than fireworks. Judging it as 'not it' ends the loop just as it begins. The way it deepens is by being stayed with.",
+      symptoms: { dismiss: 3, doubt: 1, checking: 1 },
+      rungPrior: { "3": 1, "4": 1 },
+      fix: {
+        planPatch: { savor: true, totalMin: "+5" },
+        instruction: "Whatever pleasant thing shows up next time, treat it as the real thing and stay with it for at least five minutes before forming an opinion. Mild counts. Depth comes from staying, not from a stronger start.",
+        cue: "Whatever pleasantness is here is the real thing. Stay with it. Mild is fine."
+      }
+    },
+    {
+      id: "dose",
+      name: "Not enough time yet",
+      loopTerm: "time",
+      oneLine: "Nothing specific went wrong; the loop needs more minutes than it got.",
+      why: "Settling commonly takes ten to twenty minutes before the feeling has anything to grow in. Short sits end just as conditions become workable.",
+      symptoms: {},
+      rungPrior: { "1": 1, "2": 1, "3": 1 },
+      fix: {
+        planPatch: { totalMin: "+10" },
+        instruction: "Give it more room. Add ten minutes, or sit twice in a day. On a free morning, try three sits with a short walk between them.",
+        cue: "There is plenty of time. Nothing needs to happen quickly."
+      }
+    },
+    {
+      id: "stabilise",
+      name: "Learning to stay",
+      loopTerm: "stability",
+      oneLine: "It took off. The work now is letting it last.",
+      why: "The first take-offs are short because surprise and delight interrupt them. Each visit makes the state more familiar and the reaction smaller.",
+      symptoms: {},
+      rungPrior: { "5": 1, "6": 1 },
+      fix: {
+        planPatch: { inoculate: true, totalMin: "+5" },
+        instruction: "Do the same thing again. When it takes off, let it carry you and keep doing nothing. Aim to hang out in it rather than to make it stronger.",
+        cue: "When it comes, let it carry you. Nothing to add. Just stay and enjoy."
+      }
+    },
+    {
+      id: "deepen",
+      name: "Ready to go further",
+      loopTerm: "refinement",
+      oneLine: "First jhana is holding. The next states come from letting the coarser parts go.",
+      why: "Each further jhana is reached by releasing something: first the effort of placing attention, then the excited energy, then pleasure itself.",
+      symptoms: {},
+      rungPrior: { "7": 3 },
+      fix: {
+        planPatch: { deepen: true },
+        instruction: "Once it has been steady for a few minutes, take one long out-breath and let the excited energy settle into the background. Rest on the happiness that remains. Later, let even that calm into contentment, then into stillness.",
+        cue: "Let the excitement settle into the background. Rest on the quieter happiness that remains."
+      }
+    }
+  ];
+
+  // kb/symptoms.json
+  var symptoms_default = [
+    { id: "restless", group: "body", text: "Restless or fidgety; I wanted to get up" },
+    { id: "pain", group: "body", text: "Pain or discomfort kept pulling me away" },
+    { id: "sleepy", group: "body", text: "Sleepy, foggy or nodding off" },
+    { id: "tension", group: "body", text: "Tightness or pressure in my head, face or jaw" },
+    { id: "overwhelm", group: "body", text: "The energy got intense or jittery in an unpleasant way" },
+    { id: "heart", group: "body", text: "Heart pounding, or a jolt of alarm, when it got strong" },
+    { id: "wander", group: "attention", text: "Lost in thought most of the time" },
+    { id: "forcing", group: "attention", text: "I was pushing or forcing my attention" },
+    { id: "checking", group: "attention", text: "I kept checking whether it was working" },
+    { id: "breathctl", group: "attention", text: "I could not stop controlling my breath" },
+    { id: "noseed", group: "feeling", text: "I could not find any pleasant feeling" },
+    { id: "numb", group: "feeling", text: "Flat or numb; hard to feel much at all" },
+    { id: "faint", group: "feeling", text: "A pleasant feeling was there but stayed faint" },
+    { id: "plateau", group: "feeling", text: "Pleasant and steady, but it would not grow" },
+    { id: "vanish", group: "feeling", text: "It grew, then vanished when I noticed it or got excited" },
+    { id: "grabbed", group: "feeling", text: "I tried to make it bigger or hold on to it" },
+    { id: "fearlose", group: "mind", text: "Afraid of losing control, or of what might happen" },
+    { id: "pressure", group: "mind", text: "I felt pressure to make something happen" },
+    { id: "doubt", group: "mind", text: "I doubted that this works, or that I can do it" },
+    { id: "bored", group: "mind", text: "Bored; nothing felt interesting" },
+    { id: "sad", group: "mind", text: "Sadness, grief or anger came up" },
+    { id: "dismiss", group: "mind", text: "Something nice happened, but I assumed it was not the real thing" }
+  ];
+
+  // kb/seeds.json
+  var seeds_default = [
+    {
+      id: "warmth",
+      name: "Warmth for someone",
+      short: "Bring to mind someone easy to love and feel the warmth.",
+      how: "Think of a person or animal who makes you soften the moment you picture them. See their face. Silently wish them well. Notice the warmth or openness that appears, often in the chest.",
+      where: "chest, throat, face",
+      goodFor: "People who feel affection readily. The most commonly taught seed in fast-moving retreats.",
+      onboarding: {
+        q: "warm",
+        weight: 2
+      }
+    },
+    {
+      id: "smile",
+      name: "A small smile",
+      short: "Let a small smile form and feel what it does.",
+      how: "Let the corners of your mouth lift a little, and let the eyes soften as if smiling too. Notice the faint pleasantness this makes in the face, behind the eyes, or in the chest.",
+      where: "face, eyes, chest",
+      goodFor: "People who find feelings hard to summon on demand; it works mechanically.",
+      onboarding: {
+        q: "smile",
+        weight: 1
+      }
+    },
+    {
+      id: "hands",
+      name: "Tingling in the hands",
+      short: "Feel the warmth and tingling already present in your hands.",
+      how: "Rest your hands in your lap, palms up or one in the other. Feel them from the inside: warmth, pulsing, a soft buzz. That aliveness is mildly pleasant. Stay with the pleasant aspect of it.",
+      where: "palms, fingers",
+      goodFor: "People with good body awareness, and anyone who finds emotional seeds forced or who cannot watch the breath without controlling it.",
+      onboarding: {
+        q: "body",
+        weight: 2
+      }
+    },
+    {
+      id: "memory",
+      name: "A good memory",
+      short: "Recall one specific moment of joy, gratitude or awe.",
+      how: "Pick one particular moment when you felt deeply glad, grateful or moved. Go back into it: where you were, what you saw. Let the feeling of it return to the body, then let the story go and keep the feeling.",
+      where: "chest, belly, whole body",
+      goodFor: "Vivid imaginers. Less reliable if you tend to drift into storylines.",
+      onboarding: {
+        q: "imagery",
+        weight: 2
+      }
+    },
+    {
+      id: "breath",
+      name: "The ease of breathing out",
+      short: "Find what feels good about the breath, especially the out-breath.",
+      how: "Let the breath go by itself. Notice the small relief at the end of each out-breath, and the gentle pleasantness of air moving. Let attention rest on whatever is nicest about it.",
+      where: "belly, chest, nostrils",
+      goodFor: "People who already meditate on the breath and find it calming rather than effortful.",
+      onboarding: {
+        q: "breathcalm",
+        weight: 2
+      }
+    },
+    {
+      id: "comfort",
+      name: "Simple comfort",
+      short: "Feel the plain ease of a body at rest.",
+      how: "Notice how it feels to be supported and not needed anywhere. The 'ahh' of sinking into a chair. Find the most comfortable region of the body and let attention soak in it.",
+      where: "wherever feels most at ease",
+      goodFor: "People who feel flat or numb, and days when nothing else lights up. The gentlest seed.",
+      onboarding: {
+        q: "relaxes",
+        weight: 1
+      }
+    },
+    {
+      id: "chills",
+      name: "Music chills",
+      short: "Play music that gives you chills, then sit with what it leaves behind.",
+      how: "Let the music you just heard echo in your mind. Feel what it left in the body: shivers, warmth, a lift in the chest. Let the music fade and keep the feeling.",
+      where: "spine, scalp, chest, arms",
+      goodFor: "People who get shivers from music. Those shivers appear to be close kin to the energetic pleasure of first jhana.",
+      onboarding: {
+        q: "chills",
+        weight: 2
+      },
+      pre: "Before you press begin, play a minute or two of music that gives you chills. Start the sit while the feeling is still in your body."
+    },
+    {
+      id: "kindness-self",
+      name: "Kindness toward yourself",
+      short: "A hand on the chest and a kind wish for yourself.",
+      how: "Place a hand on your chest. Feel its warmth and weight. Silently say: may I be at ease. Let it be simple. If sadness is here, include it in the kindness.",
+      where: "chest, under the hand",
+      goodFor: "Days when difficult feelings are present. Prescribed by the coach rather than chosen at random.",
+      onboarding: null
+    }
+  ];
+
+  // src/kb.js
+  var BLOCKERS = blockers_default;
+  var SYMPTOMS = symptoms_default;
+  var SEEDS = seeds_default;
+  var blockerById = (id) => BLOCKERS.find((b) => b.id === id) ?? null;
+  var seedById = (id) => SEEDS.find((s) => s.id === id) ?? null;
+
+  // src/diagnose.js
+  var RUNG_WEIGHT = 1;
+  var MIN_EVIDENCE = 2.5;
+  function diagnose(report, history = []) {
+    const symptoms = new Set(report.symptoms ?? []);
+    const rung = report.rung ?? 0;
+    const scores = {};
+    const evidenceBy = {};
+    for (const b of BLOCKERS) {
+      let s = 0;
+      const ev = [];
+      for (const [sym, w] of Object.entries(b.symptoms ?? {})) {
+        if (symptoms.has(sym)) {
+          s += w;
+          ev.push(sym);
+        }
+      }
+      const prior = b.rungPrior?.[String(rung)] ?? 0;
+      if (ev.length > 0 || Object.keys(b.symptoms ?? {}).length === 0) s += RUNG_WEIGHT * prior;
+      scores[b.id] = s;
+      evidenceBy[b.id] = ev;
+    }
+    const noComplaints = symptoms.size === 0;
+    if (rung >= 7) scores.deepen += 2;
+    if (rung >= 5 && rung <= 6) scores.stabilise += noComplaints ? 3 : 1;
+    if (rung < 5) {
+      scores.stabilise = 0;
+      scores.deepen = 0;
+    }
+    const minutes = report.minutes ?? 30;
+    if (rung <= 3 && minutes < 20) scores.dose += 2;
+    if (rung <= 3 && minutes < 12) scores.dose += 1.5;
+    if (rung <= 3 && noComplaints) scores.dose += 1.5;
+    const specific = Math.max(0, ...BLOCKERS.filter((b) => evidenceBy[b.id].length).map((b) => scores[b.id]));
+    if (specific >= 3) scores.dose = Math.min(scores.dose, specific - 0.5);
+    const last2 = history.slice(-2);
+    let repeated = 0;
+    if (last2.length === 2 && last2[0].diagnosis?.primary === last2[1].diagnosis?.primary) {
+      const stuckOn = last2[1].diagnosis.primary;
+      const noProgress = rung <= Math.max(last2[0].rung ?? 0, last2[1].rung ?? 0);
+      if (noProgress && scores[stuckOn] !== void 0) {
+        scores[stuckOn] *= 0.55;
+        repeated = 2;
+      }
+    }
+    const ranked = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    let [primary, top] = ranked[0];
+    let secondary = ranked[1] && ranked[1][1] > 0 ? ranked[1][0] : null;
+    if (top < MIN_EVIDENCE) {
+      secondary = top > 0 ? primary : null;
+      primary = rung >= 7 ? "deepen" : rung >= 5 ? "stabilise" : "dose";
+      top = scores[primary];
+    }
+    const runnerUp = ranked.find(([id]) => id !== primary)?.[1] ?? 0;
+    const confidence = top <= 0 ? 0.3 : Math.max(0.2, Math.min(1, (top - runnerUp) / top + 0.25));
+    return {
+      primary,
+      secondary: secondary === primary ? null : secondary,
+      scores,
+      confidence,
+      evidence: evidenceBy[primary] ?? [],
+      blocker: blockerById(primary),
+      repeated
+    };
+  }
+
+  // src/bandit.js
+  function createBandit(armIds, priors = {}) {
+    const arms = {};
+    for (const id of armIds) {
+      const p = priors[id] ?? {};
+      arms[id] = { alpha: p.alpha ?? 1, beta: p.beta ?? 1, pulls: 0 };
+    }
+    return { arms };
+  }
+  function chooseArm(bandit, rng2, { exclude = [] } = {}) {
+    let best = null;
+    let bestDraw = -1;
+    for (const [id, arm] of Object.entries(bandit.arms)) {
+      if (exclude.includes(id)) continue;
+      const draw = rng2.beta(arm.alpha, arm.beta);
+      if (draw > bestDraw) {
+        bestDraw = draw;
+        best = id;
+      }
+    }
+    return best;
+  }
+  function updateArm(bandit, armId, reward) {
+    const r = Math.max(0, Math.min(1, reward));
+    const arm = bandit.arms[armId];
+    if (!arm) throw new Error(`unknown arm: ${armId}`);
+    return {
+      arms: {
+        ...bandit.arms,
+        [armId]: { alpha: arm.alpha + r, beta: arm.beta + (1 - r), pulls: arm.pulls + 1 }
+      }
+    };
+  }
+  function ranking(bandit) {
+    return Object.entries(bandit.arms).map(([id, a]) => ({ id, mean: a.alpha / (a.alpha + a.beta), pulls: a.pulls })).sort((x, y) => y.mean - x.mean);
+  }
+  function rewardFromRung(rung) {
+    if (rung >= 4) return 1;
+    if (rung === 3) return 0.5;
+    return 0;
+  }
+
+  // src/planner.js
+  var BASE_PLAN = Object.freeze({
+    totalMin: 25,
+    settleMin: 4,
+    // arrive: soften, long out-breaths
+    gatherMin: 7,
+    // steady attention on the anchor
+    kindleMin: 3,
+    // evoke the pleasant feeling
+    anchor: "breath",
+    // 'breath' | 'hands' | 'body'
+    anchorHelp: null,
+    // 'count'
+    seed: "smile",
+    effort: "light",
+    // 'feather' | 'light' | 'steady'
+    relaxCues: 1,
+    // 0..3 extra softening reminders
+    attention: "narrow",
+    // 'narrow' | 'wide'
+    inoculate: true,
+    // prepare for the onset: "if it grows, do nothing"
+    framing: "enjoy",
+    // 'enjoy' | 'no-goal'
+    guidance: "full",
+    // 'full' | 'sparse'
+    eyes: "closed",
+    // 'closed' | 'soft-open'
+    posture: "comfortable",
+    // 'comfortable' | 'upright' | 'supported'
+    pacer: true,
+    // slow breathing tone during the arrive phase
+    // one-shot emphases, set only by the most recent diagnosis:
+    prep: null,
+    // 'move' | 'wake' | 'prime'
+    savor: false,
+    soothe: false,
+    titrate: false,
+    deepen: false
+  });
+  var BOUNDS = {
+    totalMin: [12, 60],
+    settleMin: [2, 10],
+    gatherMin: [3, 20],
+    kindleMin: [2, 6],
+    relaxCues: [0, 3]
+  };
+  var ONE_SHOT = ["prep", "savor", "soothe", "titrate", "deepen"];
+  var EFFORT_LEVELS = ["feather", "light", "steady"];
+  var clampTo = (key, v) => BOUNDS[key] ? Math.max(BOUNDS[key][0], Math.min(BOUNDS[key][1], v)) : v;
+  function applyPatch(plan, patch = {}) {
+    const out = { ...plan };
+    for (const [key, val] of Object.entries(patch)) {
+      if (key === "seed" && val === "switch") {
+        out.seedSwitch = true;
+      } else if (typeof val === "string" && /^[+-]\d+$/.test(val)) {
+        out[key] = clampTo(key, (Number(out[key]) || 0) + Number(val));
+      } else if (typeof val === "number") {
+        out[key] = clampTo(key, val);
+      } else {
+        out[key] = val;
+      }
+    }
+    return out;
+  }
+  function seedPriors(profile = {}) {
+    const priors = {};
+    for (const seed of SEEDS) {
+      if (!seed.onboarding) continue;
+      const answer = Number(profile[seed.onboarding.q] ?? 1.5);
+      const strength = seed.onboarding.weight;
+      priors[seed.id] = {
+        alpha: 1 + strength * answer / 3,
+        beta: 1 + strength * (3 - answer) / 3
+      };
+    }
+    return priors;
+  }
+  function newBandit(profile = {}) {
+    const arms = SEEDS.filter((s) => s.onboarding).map((s) => s.id);
+    return createBandit(arms, seedPriors(profile));
+  }
+  function firstPlan(profile = {}, bandit = newBandit(profile)) {
+    let plan = { ...BASE_PLAN };
+    if ((profile.striver ?? 0) >= 2) plan = applyPatch(plan, { effort: "feather", relaxCues: "+1" });
+    if ((profile.sleepy ?? 0) >= 2) plan = applyPatch(plan, { eyes: "soft-open", posture: "upright", pacer: false });
+    if ((profile.breathctl ?? 0) >= 2) plan = applyPatch(plan, { anchor: "hands" });
+    if ((profile.experience ?? 0) === 0) plan = applyPatch(plan, { totalMin: 20, gatherMin: 6 });
+    plan.seed = ranking(bandit)[0].id;
+    return plan;
+  }
+  function nextPlan({ lastPlan = null, diagnosis = null, profile = {}, bandit = null, preflight = null, rng: rng2 }) {
+    const b = bandit ?? newBandit(profile);
+    let plan = lastPlan ? { ...lastPlan } : firstPlan(profile, b);
+    const changes = [];
+    for (const key of ONE_SHOT) plan[key] = BASE_PLAN[key];
+    delete plan.seedSwitch;
+    delete plan.coachCue;
+    delete plan.focus;
+    if (diagnosis?.blocker) {
+      const before = plan;
+      plan = applyPatch(plan, diagnosis.blocker.fix.planPatch);
+      plan.coachCue = diagnosis.blocker.fix.cue;
+      plan.focus = diagnosis.primary;
+      for (const key of Object.keys(diagnosis.blocker.fix.planPatch)) {
+        if (key !== "seed" && before[key] !== plan[key]) changes.push(describeChange(key, before[key], plan[key]));
+      }
+    }
+    const prescribed = diagnosis?.blocker?.fix.planPatch.seed;
+    if (prescribed && prescribed !== "switch") {
+      plan.seed = prescribed;
+      changes.push(`Seed for this sit: ${prescribed}.`);
+    } else if (rng2) {
+      const previous = lastPlan?.seed;
+      const chosen = chooseArm(b, rng2, { exclude: plan.seedSwitch && previous ? [previous] : [] });
+      if (chosen && chosen !== previous) changes.push(`Trying a different spark: ${chosen}.`);
+      plan.seed = chosen ?? plan.seed;
+    }
+    delete plan.seedSwitch;
+    if (preflight) {
+      if ((preflight.energy ?? 2) <= 0) {
+        plan = applyPatch(plan, { eyes: "soft-open", posture: "upright", pacer: false, prep: "wake" });
+        changes.push("You are tired: eyes a little open, upright posture, no slow-breathing tone.");
+      }
+      if ((preflight.agitation ?? 0) >= 2) {
+        plan = applyPatch(plan, { settleMin: "+3", pacer: true, prep: plan.prep ?? "move" });
+        changes.push("You are keyed up: a longer settling phase with slow out-breaths.");
+      }
+      if ((preflight.mood ?? 2) <= 0) {
+        plan = applyPatch(plan, { seed: "comfort", framing: "no-goal" });
+        changes.push("Low mood today: a gentle no-goal sit resting in simple comfort.");
+      }
+      if (preflight.minutes) plan = fitToMinutes(plan, preflight.minutes);
+    }
+    return { plan: normalise(plan), changes };
+  }
+  function fitToMinutes(plan, minutes) {
+    const total = clampTo("totalMin", minutes);
+    const opening = plan.settleMin + plan.gatherMin + plan.kindleMin;
+    const maxOpening = Math.max(7, total * 0.6);
+    if (opening <= maxOpening) return { ...plan, totalMin: total };
+    const k = maxOpening / opening;
+    return {
+      ...plan,
+      totalMin: total,
+      settleMin: clampTo("settleMin", Math.round(plan.settleMin * k)),
+      gatherMin: clampTo("gatherMin", Math.round(plan.gatherMin * k)),
+      kindleMin: clampTo("kindleMin", Math.round(plan.kindleMin * k))
+    };
+  }
+  function normalise(plan) {
+    const p = { ...plan };
+    if (!EFFORT_LEVELS.includes(p.effort)) p.effort = "light";
+    const opening = p.settleMin + p.gatherMin + p.kindleMin;
+    if (p.totalMin < opening + 6) p.totalMin = clampTo("totalMin", opening + 6);
+    return p;
+  }
+  function describeChange(key, from, to) {
+    const names = {
+      settleMin: `Settling phase: ${from} \u2192 ${to} minutes.`,
+      gatherMin: `Time on the anchor: ${from} \u2192 ${to} minutes.`,
+      kindleMin: `Time to find the feeling: ${from} \u2192 ${to} minutes.`,
+      totalMin: `Sit length: ${from} \u2192 ${to} minutes.`,
+      effort: `Effort: ${from} \u2192 ${to}.`,
+      relaxCues: "More reminders to soften.",
+      attention: `Attention: ${to}.`,
+      eyes: to === "soft-open" ? "Eyes slightly open." : "Eyes closed.",
+      posture: `Posture: ${to}.`,
+      pacer: to ? "Slow-breathing tone on while settling." : "Slow-breathing tone off.",
+      anchor: `Anchor: ${to}.`,
+      anchorHelp: to === "count" ? "Counting out-breaths to steady attention." : "No counting.",
+      framing: to === "no-goal" ? "No-goal sit." : "Enjoyment sit.",
+      guidance: `Guidance: ${to}.`,
+      inoculate: "A reminder to do nothing when it starts to grow.",
+      prep: to === "move" ? "Move for five minutes first." : to === "wake" ? "Wake the body up first." : "Warm up the feeling before sitting.",
+      savor: "Emphasis on enjoying the feeling.",
+      soothe: "Emphasis on the calmer happiness under the energy.",
+      titrate: "Approach the edge in small steps.",
+      deepen: "Pointers toward the next jhanas."
+    };
+    return names[key] ?? `${key}: ${to}`;
+  }
+  function planHeadline(plan) {
+    if (plan.focus) {
+      const b = blockerById(plan.focus);
+      if (b) return b.fix.instruction;
+    }
+    return "Settle, steady your attention, spark a pleasant feeling, then rest on it and enjoy. When it grows, do less.";
+  }
+
+  // src/coach.js
+  var STATE_VERSION = 1;
+  function newState(profile = {}) {
+    const bandit = newBandit(profile);
+    return {
+      v: STATE_VERSION,
+      onboarded: false,
+      profile,
+      settings: { voice: "auto", voiceRate: 0.9, soundscape: false, taps: true, sensor: false },
+      bandit,
+      plan: firstPlan(profile, bandit),
+      planChanges: [],
+      sits: []
+    };
+  }
+  function applyProfile(state, profile) {
+    const bandit = newBandit(profile);
+    return { ...state, profile, bandit, plan: firstPlan(profile, bandit), planChanges: [], onboarded: true };
+  }
+  function completeSit(state, report, rng2, now = Date.now()) {
+    const score = scoreReport(report.answers ?? {}, report.duration ?? "none");
+    const jhana = isJhana(score);
+    const history = state.sits.map((s) => ({ rung: s.rung, diagnosis: s.diagnosis }));
+    const diagnosis = diagnose({ rung: report.rung, symptoms: report.symptoms ?? [], minutes: report.minutes, jhana }, history);
+    let bandit = state.bandit;
+    const usedSeed = state.plan.seed;
+    if (bandit.arms[usedSeed] && report.rung >= 2) {
+      bandit = updateArm(bandit, usedSeed, rewardFromRung(report.rung));
+    }
+    const sit = {
+      id: `sit-${now}`,
+      at: now,
+      minutes: report.minutes,
+      plan: state.plan,
+      rung: report.rung,
+      symptoms: report.symptoms ?? [],
+      answers: report.answers ?? {},
+      duration: report.duration ?? "none",
+      note: report.note ?? "",
+      taps: report.taps ?? { here: [], stuck: [] },
+      sensor: report.sensor ?? null,
+      score: { label: score.label, labelText: score.labelText, score: score.score, confidence: score.confidence, flags: score.flags, reasons: score.reasons, criteria: score.criteria },
+      jhana,
+      diagnosis: { primary: diagnosis.primary, secondary: diagnosis.secondary, confidence: diagnosis.confidence, evidence: diagnosis.evidence }
+    };
+    const { plan, changes } = nextPlan({ lastPlan: state.plan, diagnosis, profile: state.profile, bandit, rng: rng2 });
+    return {
+      state: { ...state, bandit, plan, planChanges: changes, sits: [...state.sits, sit].slice(-300) },
+      sit,
+      diagnosis,
+      score
+    };
+  }
+  function planForToday(state, preflight, rng2) {
+    if (!preflight) return { plan: state.plan, changes: [] };
+    const pf = nextPlan({ lastPlan: state.plan, diagnosis: null, profile: state.profile, bandit: state.bandit, preflight, rng: null });
+    const keep = ["focus", "coachCue", "prep", "savor", "soothe", "titrate", "deepen"];
+    const plan = { ...pf.plan };
+    for (const key of keep) if (state.plan[key] !== void 0 && plan[key] === void 0) plan[key] = state.plan[key];
+    for (const key of ["savor", "soothe", "titrate", "deepen"]) plan[key] = state.plan[key] || plan[key];
+    plan.prep = pf.plan.prep ?? state.plan.prep ?? null;
+    if ((preflight.mood ?? 2) > 0) plan.seed = state.plan.seed;
+    return { plan, changes: pf.changes };
+  }
+  function stats(state) {
+    const sits = state.sits;
+    const first = (pred) => {
+      const i = sits.findIndex(pred);
+      return i < 0 ? null : i + 1;
+    };
+    return {
+      sits: sits.length,
+      minutes: Math.round(sits.reduce((s, x) => s + (x.minutes || 0), 0)),
+      bestRung: sits.reduce((m, x) => Math.max(m, x.rung), -1),
+      jhanaSits: sits.filter((x) => x.jhana).length,
+      sitsToFirstTakeoff: first((x) => x.rung >= 5),
+      sitsToFirstJhana: first((x) => x.jhana)
+    };
+  }
+
+  // src/script.js
+  var ANCHOR_LINES = {
+    breath: [
+      "Now let attention rest on the breath in your belly. No need to control it. Feel it come and go.",
+      "Each breath out, let the body sink a little more."
+    ],
+    hands: [
+      "Now let attention rest in your hands. Feel them from the inside: warmth, weight, a soft tingling.",
+      "Leave the breath alone. Just the feeling of the hands."
+    ],
+    body: [
+      "Now feel the whole body sitting, all at once, as one field of sensation.",
+      "Let attention be wide and soft, resting in the body as a whole."
+    ]
+  };
+  var EFFORT_LINES = {
+    feather: "Use very little effort. Attention rests here like a leaf resting on water.",
+    light: "Light, steady attention. Interested, without gripping.",
+    steady: "Keep a steady, friendly attention here. When it slips, bring it back."
+  };
+  var PREP_LINES = {
+    move: "If you have not moved yet, walk or stretch for a few minutes first, then come back and start again.",
+    wake: "Take three deep, quick breaths to wake the body up. Sit tall.",
+    prime: "If you like, first spend a minute with a piece of music or a memory that warms you."
+  };
+  function buildScript(plan) {
+    const total = plan.totalMin * 60;
+    const exit = 75;
+    const tSettle = 0;
+    const tGather = plan.settleMin * 60;
+    const tKindle = tGather + plan.gatherMin * 60;
+    const tRest = tKindle + plan.kindleMin * 60;
+    const tExit = total - exit;
+    const seed = seedById(plan.seed) ?? seedById("smile");
+    const cues = [];
+    const say = (at, phase, text, { optional = false, id = "" } = {}) => {
+      if (at < tExit || phase === "exit") cues.push({ at: Math.round(at), phase, text, optional, id });
+    };
+    const spread = (start2, end, lines, phase, opts = {}) => {
+      const lead = opts.lead ?? 8;
+      const usable = Math.max(20, end - start2 - lead - 15);
+      const gap = Math.max(14, usable / lines.length);
+      lines.forEach((line, i) => say(start2 + lead + i * gap, phase, line.text ?? line, line));
+    };
+    const settle = [];
+    if (plan.prep) settle.push({ text: PREP_LINES[plan.prep], id: "prep" });
+    settle.push({
+      text: plan.posture === "upright" ? "Sit upright and at ease, the spine tall, the rest of you soft." : "Settle into a position you could happily stay in for a while. Comfort matters more than form.",
+      id: "posture"
+    });
+    settle.push({
+      text: plan.eyes === "soft-open" ? "Let your eyes stay a little open, resting on the floor in front of you." : "Let your eyes close.",
+      id: "eyes"
+    });
+    settle.push({
+      text: plan.pacer ? "Breathe in as the tone rises, and out, slowly, as it falls. Let each out-breath be long." : "Take a slow breath in, and let it out longer than it came in. A few more like that, in your own time.",
+      id: "breathe"
+    });
+    settle.push({ text: "Let the forehead smooth out. Let the eyes rest back. Unclench the jaw. Let the shoulders drop.", id: "soften" });
+    settle.push({
+      text: plan.framing === "no-goal" ? "This sit has no goal. Nothing needs to happen. The whole task is to rest and enjoy resting." : "For the next while there is nothing to fix and nowhere to be. This time is for enjoying.",
+      id: "framing"
+    });
+    if (plan.relaxCues >= 2) settle.push({ text: "Let the belly be soft. Let the hands be heavy.", id: "soften2", optional: true });
+    spread(tSettle, tGather, settle, "arrive", { lead: 4 });
+    const gather = [];
+    const anchor = ANCHOR_LINES[plan.anchor] ?? ANCHOR_LINES.breath;
+    gather.push({ text: anchor[0], id: "anchor" });
+    gather.push({ text: EFFORT_LINES[plan.effort] ?? EFFORT_LINES.light, id: "effort" });
+    if (plan.anchorHelp === "count" && plan.anchor === "breath") {
+      gather.push({ text: "If it helps, count each out-breath, one to ten, then begin again.", id: "count" });
+    }
+    gather.push({ text: "When you notice you have wandered, that noticing is the skill. Come back kindly.", id: "return" });
+    gather.push({ text: anchor[1], id: "anchor2", optional: true });
+    if (plan.relaxCues >= 1) gather.push({ text: "Check the face and shoulders. Soften anything that has tightened.", id: "soften3", optional: true });
+    gather.push({ text: "A quieter mind is the sign that this is working. No hurry.", id: "quiet", optional: true });
+    spread(tGather, tKindle, gather, "gather");
+    const kindle = [
+      { text: seed.how, id: "seed" },
+      { text: "Find where you feel it in the body. It may be faint. Faint is fine.", id: "locate" }
+    ];
+    if (plan.focus === "no-seed") {
+      kindle.push({ text: "Anything faintly pleasant will do. Even a place that is simply comfortable.", id: "lowbar" });
+    }
+    spread(tKindle, tRest, kindle, "kindle", { lead: 5 });
+    let t = tRest + 5;
+    const rest = (text, gap, opts = {}) => {
+      say(t, "rest", text, opts);
+      t += gap;
+    };
+    rest("Now let attention rest on that pleasant feeling. Just the feeling itself, in the body.", 22, { id: "rest" });
+    rest("There is nothing to do to it. Enjoy it, the way you would enjoy warm sun on your skin.", 24, { id: "enjoy" });
+    if (plan.inoculate) {
+      rest("If it grows, do nothing. No need to help it or hold it. Breathe out, and let it come to you.", 24, { id: "inoculate" });
+    }
+    if (plan.savor) rest("What is nice about it? Let yourself like it.", 20, { id: "savor" });
+    if (plan.attention === "wide" || plan.soothe) {
+      rest("Let it spread as wide as it wants. Rest in the whole of it.", 20, { id: "wide" });
+    }
+    if (plan.soothe) {
+      rest("If the energy runs strong, find the quieter happiness underneath it, and rest there.", 22, { id: "soothe" });
+    }
+    if (plan.titrate) {
+      rest("You can stop at any moment. Let it build only as far as feels safe.", 22, { id: "titrate" });
+    }
+    if (plan.coachCue) rest(plan.coachCue, 24, { id: "coach" });
+    rest("If it fades, no problem. Spark it again, gently, and rest.", 22, { id: "fade" });
+    rest("As it gets easier to stay, do less. Let the feeling hold your attention for you.", 20, { id: "ease" });
+    rest("I will be quiet now. Stay with the enjoyment.", 0, { id: "quiet-now" });
+    const afterIntro = t;
+    const reminders = [
+      { dt: 240, text: "Still nothing to do. Enjoying is the whole practice.", id: "rem1" },
+      { dt: 540, text: "If you have drifted, spark the feeling again and rest on it.", id: "rem2" },
+      { dt: 960, text: "Soften, enjoy, and do less.", id: "rem3" },
+      { dt: 1500, text: "Nothing to do. Rest in whatever is pleasant.", id: "rem4" }
+    ];
+    for (const r of reminders) say(afterIntro + r.dt, "rest", r.text, { optional: true, id: r.id });
+    if (plan.deepen) {
+      say(afterIntro + 360, "rest", "If the pleasure has been steady for a while, take a long breath out and let the excitement settle into the background. Rest on the quieter happiness that remains.", { id: "deepen1" });
+      say(afterIntro + 720, "rest", "If that happiness feels like more than you need, let it calm into simple contentment.", { id: "deepen2", optional: true });
+      say(afterIntro + 1080, "rest", "And if contentment itself begins to feel coarse, let it go, into stillness.", { id: "deepen3", optional: true });
+    }
+    say(tExit, "exit", "The sit is coming to an end. Let go of any effort. Notice how body and mind feel right now.", { id: "exit1" });
+    say(tExit + 28, "exit", "Take a fuller breath. Open your eyes when you are ready, and move slowly.", { id: "exit2" });
+    let list = cues.sort((x, y) => x.at - y.at);
+    if (plan.guidance === "sparse") list = list.filter((c) => !c.optional);
+    const phases = [
+      { id: "arrive", name: "Arrive", start: tSettle, end: tGather },
+      { id: "gather", name: "Gather", start: tGather, end: tKindle },
+      { id: "kindle", name: "Kindle", start: tKindle, end: tRest },
+      { id: "rest", name: "Rest", start: tRest, end: tExit },
+      { id: "exit", name: "Return", start: tExit, end: total }
+    ];
+    return { cues: list, phases, totalSeconds: total };
+  }
+  function phaseAt(script, seconds) {
+    return script.phases.find((p) => seconds >= p.start && seconds < p.end) ?? script.phases[script.phases.length - 1];
+  }
+  function rescueLine(phaseId, plan, count = 0) {
+    const lines = {
+      arrive: [
+        "Nothing is required of you yet. One long breath out, and let the body be heavy.",
+        "Restless is fine. Let the restlessness be there, and soften around it."
+      ],
+      gather: [
+        "Wandering is normal. Come back to the anchor, kindly, as many times as it takes.",
+        "Ease off a little. Let the attention be lighter.",
+        "Feel one whole breath out, all the way to its end."
+      ],
+      kindle: [
+        "Try a small smile, and feel what it does around the eyes.",
+        "Anything faintly pleasant will do. Even a place that simply feels comfortable.",
+        "Feel your hands. Warmth and tingling count."
+      ],
+      rest: [
+        "Breathe out, and soften the face. Then find the pleasant feeling again, however faint.",
+        "Do less. Let the feeling be there without managing it.",
+        "If you were checking whether it is working, smile at that, and come back to the body.",
+        "Spark it again with a small smile, then rest."
+      ],
+      exit: ["Let everything go. Just sit."]
+    };
+    const pool = [...lines[phaseId] ?? lines.rest];
+    if (plan?.coachCue && (phaseId === "rest" || phaseId === "kindle")) pool.unshift(plan.coachCue);
+    return pool[count % pool.length];
+  }
+
+  // src/rng.js
+  function makeRng(seed = 1) {
+    let a = seed >>> 0;
+    const next = () => {
+      a = a + 1831565813 >>> 0;
+      let t = a;
+      t = Math.imul(t ^ t >>> 15, t | 1);
+      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+    next.normal = () => {
+      let u = 0;
+      while (u === 0) u = next();
+      const v = next();
+      return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+    };
+    next.int = (n) => Math.floor(next() * n);
+    next.pick = (arr) => arr[Math.floor(next() * arr.length)];
+    next.gamma = (k) => {
+      if (k < 1) return next.gamma(k + 1) * Math.pow(next() || 1e-12, 1 / k);
+      const d = k - 1 / 3;
+      const c = 1 / Math.sqrt(9 * d);
+      for (; ; ) {
+        let x, v;
+        do {
+          x = next.normal();
+          v = 1 + c * x;
+        } while (v <= 0);
+        v = v * v * v;
+        const u = next();
+        if (u < 1 - 0.0331 * x * x * x * x) return d * v;
+        if (Math.log(u || 1e-12) < 0.5 * x * x + d * (1 - v + Math.log(v))) return d * v;
+      }
+    };
+    next.beta = (alpha, beta) => {
+      const x = next.gamma(alpha);
+      const y = next.gamma(beta);
+      return x / (x + y);
+    };
+    return next;
+  }
+  var clamp01 = (x) => x < 0 ? 0 : x > 1 ? 1 : x;
+
+  // src/session.js
+  var LATE_LIMIT = 25;
+  var KEEP_AFTER_HERE = /* @__PURE__ */ new Set(["deepen1", "deepen2", "deepen3", "exit1", "exit2"]);
+  function createSession(plan, io = {}) {
+    const script = buildScript(plan);
+    const fired = /* @__PURE__ */ new Set();
+    const log = { here: [], stuck: [], cues: [], phases: [] };
+    let elapsed = 0;
+    let phaseId = null;
+    let quiet = false;
+    let hereAt = null;
+    let stuckCount = 0;
+    let ended = false;
+    let started = false;
+    let lastSpokenAt = -999;
+    const say = (text, cue) => {
+      lastSpokenAt = elapsed;
+      io.speak?.(text, cue);
+      io.onCue?.({ ...cue, text });
+    };
+    function tick(seconds) {
+      if (ended) return;
+      elapsed = seconds;
+      if (!started) {
+        started = true;
+        io.bell?.("start");
+      }
+      const phase = phaseAt(script, elapsed);
+      if (phase.id !== phaseId) {
+        phaseId = phase.id;
+        log.phases.push({ id: phaseId, at: Math.round(elapsed) });
+        io.onPhase?.(phase);
+      }
+      script.cues.forEach((cue, i) => {
+        if (fired.has(i) || elapsed < cue.at) return;
+        fired.add(i);
+        if (elapsed - cue.at > LATE_LIMIT && cue.phase !== "exit") return;
+        if (quiet && cue.phase === "rest") {
+          if (!KEEP_AFTER_HERE.has(cue.id)) return;
+          if (cue.id.startsWith("deepen") && elapsed - hereAt < 240) return;
+        }
+        if (elapsed - lastSpokenAt < 6) return;
+        log.cues.push({ id: cue.id, at: Math.round(elapsed) });
+        say(cue.text, cue);
+      });
+      if (elapsed >= script.totalSeconds) end("complete");
+    }
+    function here() {
+      if (ended) return;
+      log.here.push(Math.round(elapsed));
+      if (!quiet) {
+        quiet = true;
+        hereAt = elapsed;
+      }
+      io.bell?.("tick");
+    }
+    function stuck() {
+      if (ended) return;
+      log.stuck.push(Math.round(elapsed));
+      quiet = false;
+      hereAt = null;
+      io.bell?.("tick2");
+      const text = rescueLine(phaseId ?? "arrive", plan, stuckCount++);
+      say(text, { id: "rescue", phase: phaseId, at: Math.round(elapsed) });
+    }
+    function end(reason = "stopped") {
+      if (ended) return;
+      ended = true;
+      io.bell?.("end");
+      io.onEnd?.(summary(reason));
+    }
+    function summary(reason = "running") {
+      const rest = script.phases.find((p) => p.id === "rest");
+      return {
+        reason,
+        seconds: Math.round(elapsed),
+        minutes: Math.round(elapsed / 60 * 10) / 10,
+        planned: plan.totalMin,
+        taps: { here: [...log.here], stuck: [...log.stuck] },
+        cuesSpoken: log.cues.length,
+        // objective-ish process measures for the record
+        firstHereAfterRest: log.here.length && rest ? Math.max(0, log.here[0] - rest.start) : null,
+        secondsAfterHere: log.here.length ? Math.round(elapsed - log.here[0]) : 0,
+        reachedRest: elapsed >= (rest?.start ?? Infinity)
+      };
+    }
+    return {
+      script,
+      tick,
+      here,
+      stuck,
+      end,
+      summary,
+      get elapsed() {
+        return elapsed;
+      },
+      get phase() {
+        return phaseId;
+      },
+      get quiet() {
+        return quiet;
+      },
+      get ended() {
+        return ended;
+      }
+    };
+  }
+
+  // src/breath.js
+  function resample(samples, fs = 10) {
+    if (samples.length < 2) return { fs, x: [], y: [], z: [] };
+    const t0 = samples[0].t;
+    const t1 = samples[samples.length - 1].t;
+    const n = Math.floor((t1 - t0) / 1e3 * fs) + 1;
+    const out = { fs, x: new Array(n), y: new Array(n), z: new Array(n) };
+    let j = 0;
+    for (let i = 0; i < n; i++) {
+      const t = t0 + i * 1e3 / fs;
+      while (j < samples.length - 2 && samples[j + 1].t < t) j++;
+      const a = samples[j];
+      const b = samples[j + 1];
+      const span = b.t - a.t || 1;
+      const w = Math.min(1, Math.max(0, (t - a.t) / span));
+      out.x[i] = a.x + (b.x - a.x) * w;
+      out.y[i] = a.y + (b.y - a.y) * w;
+      out.z[i] = a.z + (b.z - a.z) * w;
+    }
+    return out;
+  }
+  var mean = (v) => v.reduce((s, x) => s + x, 0) / (v.length || 1);
+  function movingAverage(v, w) {
+    const n = v.length;
+    const out = new Array(n);
+    const half = Math.floor(w / 2);
+    const prefix = new Array(n + 1);
+    prefix[0] = 0;
+    for (let i = 0; i < n; i++) prefix[i + 1] = prefix[i] + v[i];
+    for (let i = 0; i < n; i++) {
+      const lo = Math.max(0, i - half);
+      const hi = Math.min(n, i + half + 1);
+      out[i] = (prefix[hi] - prefix[lo]) / (hi - lo);
+    }
+    return out;
+  }
+  function breathBand(v, fs) {
+    const smooth = movingAverage(v, Math.max(1, Math.round(fs * 0.7)));
+    const trend = movingAverage(smooth, Math.round(fs * 14));
+    return smooth.map((x, i) => x - trend[i]);
+  }
+  function principalAxis(x, y, z) {
+    const n = x.length;
+    const mx = mean(x);
+    const my = mean(y);
+    const mz = mean(z);
+    let cxx = 0, cxy = 0, cxz = 0, cyy = 0, cyz = 0, czz = 0;
+    for (let i = 0; i < n; i++) {
+      const a = x[i] - mx;
+      const b = y[i] - my;
+      const c = z[i] - mz;
+      cxx += a * a;
+      cxy += a * b;
+      cxz += a * c;
+      cyy += b * b;
+      cyz += b * c;
+      czz += c * c;
+    }
+    let v = [1, 1, 1];
+    for (let it = 0; it < 50; it++) {
+      const w = [
+        cxx * v[0] + cxy * v[1] + cxz * v[2],
+        cxy * v[0] + cyy * v[1] + cyz * v[2],
+        cxz * v[0] + cyz * v[1] + czz * v[2]
+      ];
+      const norm = Math.hypot(w[0], w[1], w[2]) || 1;
+      v = [w[0] / norm, w[1] / norm, w[2] / norm];
+    }
+    return v;
+  }
+  function autocorr(v, lag) {
+    const n = v.length - lag;
+    if (n <= 1) return 0;
+    let num = 0, d0 = 0, d1 = 0;
+    for (let i = 0; i < n; i++) {
+      num += v[i] * v[i + lag];
+      d0 += v[i] * v[i];
+      d1 += v[i + lag] * v[i + lag];
+    }
+    const den = Math.sqrt(d0 * d1);
+    return den > 0 ? num / den : 0;
+  }
+  function analyzeWindow(samples, { fs = 10, minBpm = 3, maxBpm = 30 } = {}) {
+    const r = resample(samples, fs);
+    const n = r.x.length;
+    const seconds = n / fs;
+    if (seconds < 20) return { bpm: null, regularity: 0, amplitude: 0, stillness: 0, quality: "none", seconds };
+    const bx = breathBand(r.x, fs);
+    const by = breathBand(r.y, fs);
+    const bz = breathBand(r.z, fs);
+    const axis = principalAxis(bx, by, bz);
+    const sig = bx.map((_, i) => bx[i] * axis[0] + by[i] * axis[1] + bz[i] * axis[2]);
+    const amplitude = Math.sqrt(mean(sig.map((s) => s * s)));
+    const minLag = Math.round(60 / maxBpm * fs);
+    const maxLag = Math.min(Math.round(60 / minBpm * fs), Math.floor(n / 2));
+    const ac = [];
+    for (let lag = minLag - 1; lag <= maxLag + 1; lag++) ac.push(autocorr(sig, lag));
+    const peaks = [];
+    for (let i = 1; i < ac.length - 1; i++) {
+      if (ac[i] >= ac[i - 1] && ac[i] >= ac[i + 1]) peaks.push({ lag: minLag - 1 + i, val: ac[i] });
+    }
+    const top = peaks.reduce((m, p) => Math.max(m, p.val), -1);
+    const first = peaks.find((p) => p.val >= 0.9 * top);
+    const bestLag = first ? first.lag : 0;
+    const bestVal = first ? first.val : -1;
+    const regularity = Math.max(0, bestVal);
+    const AMP_FLOOR = 3e-3;
+    const bpm = bestLag > 0 && regularity > 0.3 && amplitude > AMP_FLOOR ? 60 / (bestLag / fs) : null;
+    const fast = (v) => {
+      const slow = movingAverage(v, Math.round(fs * 1.5));
+      return v.map((s, i) => s - slow[i]);
+    };
+    const fx = fast(r.x), fy = fast(r.y), fz = fast(r.z);
+    const fastRms = Math.sqrt(mean(fx.map((_, i) => fx[i] * fx[i] + fy[i] * fy[i] + fz[i] * fz[i])));
+    const stillness = 1 / (1 + Math.pow(fastRms / 0.06, 2));
+    const quality = bpm === null ? "none" : regularity > 0.5 && amplitude > 2e-3 ? "good" : "weak";
+    return { bpm, regularity, amplitude, stillness, quality, seconds };
+  }
+  function settlingIndex(window2, baseline) {
+    if (!window2 || window2.bpm === null) return window2 ? 0.5 * window2.stillness : 0;
+    const slow = baseline?.bpm ? Math.max(0, Math.min(1, (baseline.bpm - window2.bpm) / (0.4 * baseline.bpm) + 0.5)) : 0.5;
+    return Math.max(0, Math.min(1, 0.4 * window2.stillness + 0.3 * window2.regularity + 0.3 * slow));
+  }
+
+  // app/sitview.js
+  var GLOW = { arrive: 0.16, gather: 0.3, kindle: 0.48, rest: 0.66, exit: 0.4 };
+  function openSit(app2, plan, onDone) {
+    const settings = app2.state.settings;
+    const voices = voiceOptions();
+    const voice = settings.voice === "auto" ? voices[0].id : settings.voice;
+    const speed = Number(window.__emberSpeed) || 1;
+    const cueEl = h("p", { class: "cue", "aria-live": "polite" });
+    const phaseEl = h("span", { class: "phase" }, "Arrive");
+    const clockEl = h("span", { class: "clock" }, fmtClock(plan.totalMin * 60));
+    const canvas = h("canvas", { width: "480", height: "480", "aria-hidden": "true" });
+    const pauseBtn = h("button", { type: "button" }, "Pause");
+    const endBtn = h("button", { type: "button" }, "End");
+    const pad = h("button", { class: "pad", type: "button", "aria-label": "Tap once when the pleasant feeling is clearly here. Tap twice if you are stuck." }, canvas, cueEl);
+    const stage = h(
+      "div",
+      { class: "stage", role: "dialog", "aria-label": "Sit in progress" },
+      h("div", { class: "top" }, phaseEl, clockEl),
+      pad,
+      h(
+        "div",
+        { class: "bottom" },
+        h("p", { class: "hint" }, "Tap once when the pleasant feeling is clearly here. Tap twice if you are stuck."),
+        h("div", { class: "ctrl" }, pauseBtn, endBtn)
+      )
+    );
+    openLayer(stage);
+    let glowTarget = GLOW.arrive;
+    let cueTimer = null;
+    let finished = false;
+    const session = createSession(plan, {
+      speak: (text) => {
+        speak(text, voice, settings.voiceRate);
+      },
+      onCue: (cue) => {
+        cueEl.textContent = cue.text;
+        cueEl.classList.add("on");
+        clearTimeout(cueTimer);
+        const hold = Math.max(9e3, cue.text.split(/\s+/).length * 600);
+        cueTimer = setTimeout(() => cueEl.classList.remove("on"), hold);
+      },
+      onPhase: (phase) => {
+        phaseEl.textContent = phase.name;
+        glowTarget = GLOW[phase.id] ?? 0.4;
+        setPacer(phase.id === "arrive" && !!plan.pacer);
+        if (phase.id === "rest") stage.classList.add("dim");
+        if (phase.id === "exit") stage.classList.remove("dim");
+      },
+      bell: (kind) => {
+        if (kind === "start" || kind === "end") bell();
+        else if (kind === "tick") chime(660, 0.16, 0.05);
+        else if (kind === "tick2") {
+          chime(520, 0.14, 0.05);
+          setTimeout(() => chime(520, 0.14, 0.05), 170);
+        }
+      },
+      onEnd: (summary) => finish(summary)
+    });
+    let base = 0;
+    let runStart = performance.now();
+    let paused = false;
+    const elapsed = () => base + (paused ? 0 : (performance.now() - runStart) / 1e3 * speed);
+    const timer = setInterval(() => {
+      if (paused || finished) return;
+      const t = elapsed();
+      session.tick(t);
+      clockEl.textContent = fmtClock(session.script.totalSeconds - t);
+    }, 250);
+    pauseBtn.addEventListener("click", () => {
+      if (paused) {
+        runStart = performance.now();
+        paused = false;
+        pauseBtn.textContent = "Pause";
+        setPacer(session.phase === "arrive" && !!plan.pacer);
+      } else {
+        base = elapsed();
+        paused = true;
+        pauseBtn.textContent = "Resume";
+        stopSpeaking();
+        setPacer(false);
+      }
+    });
+    endBtn.addEventListener("click", () => session.end("stopped"));
+    let tapTimer = null;
+    pad.addEventListener("click", () => {
+      if (paused || finished) return;
+      if (tapTimer) {
+        clearTimeout(tapTimer);
+        tapTimer = null;
+        session.stuck();
+      } else {
+        tapTimer = setTimeout(() => {
+          tapTimer = null;
+          session.here();
+          glowTarget = Math.min(1, glowTarget + 0.22);
+        }, 330);
+      }
+    });
+    const samples = [];
+    const sensorLog = [];
+    let baseline = null;
+    let sensorTimer = null;
+    if (settings.sensor) {
+      startMotion((s) => {
+        samples.push(s);
+        if (samples.length > 20 * 75) samples.splice(0, samples.length - 20 * 60);
+      });
+      sensorTimer = setInterval(() => {
+        if (paused || samples.length < 20 * 30) return;
+        const w = analyzeWindow(samples);
+        if (!baseline && w.bpm) baseline = w;
+        sensorLog.push({ t: Math.round(elapsed()), bpm: w.bpm ? Math.round(w.bpm * 10) / 10 : null, stillness: Math.round(w.stillness * 100) / 100, settle: Math.round(settlingIndex(w, baseline) * 100) / 100, phase: session.phase });
+      }, 15e3 / speed);
+    }
+    const g = canvas.getContext("2d");
+    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    let glow = glowTarget;
+    let raf = 0;
+    const draw = (now) => {
+      glow += (glowTarget - glow) * 0.02;
+      const W = canvas.width;
+      const c = W / 2;
+      let breath;
+      const pp = pacerPhase();
+      if (pp !== null) {
+        const inFrac = PACER.inSec / (PACER.inSec + PACER.outSec);
+        breath = pp < inFrac ? pp / inFrac : 1 - (pp - inFrac) / (1 - inFrac);
+      } else {
+        breath = reduce ? 0.5 : 0.5 + 0.5 * Math.sin(now / 2600);
+      }
+      const r = W * (0.13 + 0.05 * breath + 0.1 * glow);
+      g.clearRect(0, 0, W, W);
+      const halo = g.createRadialGradient(c, c, r * 0.2, c, c, Math.min(r * 2.9, c * 0.98));
+      halo.addColorStop(0, `rgba(255, 150, 80, ${0.16 + 0.3 * glow})`);
+      halo.addColorStop(0.5, `rgba(226, 85, 61, ${0.05 + 0.12 * glow})`);
+      halo.addColorStop(1, "rgba(226, 85, 61, 0)");
+      g.fillStyle = halo;
+      g.fillRect(0, 0, W, W);
+      const core = g.createRadialGradient(c - r * 0.2, c - r * 0.25, r * 0.05, c, c, r);
+      core.addColorStop(0, `rgba(255, 226, 170, ${0.55 + 0.4 * glow})`);
+      core.addColorStop(0.45, `rgba(255, 143, 82, ${0.5 + 0.4 * glow})`);
+      core.addColorStop(1, "rgba(160, 52, 30, 0.05)");
+      g.fillStyle = core;
+      g.beginPath();
+      g.arc(c, c, r, 0, Math.PI * 2);
+      g.fill();
+      if (!finished) raf = requestAnimationFrame(draw);
+    };
+    raf = requestAnimationFrame(draw);
+    keepAwake(true);
+    if (settings.soundscape) setSoundscape(true);
+    const onVisible = () => {
+      if (document.visibilityState === "visible" && !finished) keepAwake(true);
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    function finish(summary) {
+      if (finished) return;
+      finished = true;
+      clearInterval(timer);
+      clearInterval(sensorTimer);
+      clearTimeout(tapTimer);
+      cancelAnimationFrame(raf);
+      document.removeEventListener("visibilitychange", onVisible);
+      setPacer(false);
+      setSoundscape(false);
+      stopMotion();
+      keepAwake(false);
+      const sensor = sensorLog.length ? summariseSensor(sensorLog) : null;
+      setTimeout(() => {
+        stopSpeaking();
+        closeLayer(stage);
+        onDone({ ...summary, sensor });
+      }, summary.reason === "complete" ? 2500 : 300);
+    }
+  }
+  function summariseSensor(log) {
+    const withRate = log.filter((x) => x.bpm);
+    const avg = (v) => v.length ? Math.round(v.reduce((a, b) => a + b, 0) / v.length * 10) / 10 : null;
+    const first = withRate.slice(0, 4).map((x) => x.bpm);
+    const last = withRate.slice(-4).map((x) => x.bpm);
+    const rest = log.filter((x) => x.phase === "rest");
+    return {
+      windows: log.length,
+      bpmStart: avg(first),
+      bpmEnd: avg(last),
+      stillnessRest: avg(rest.map((x) => x.stillness)),
+      settleRest: avg(rest.map((x) => x.settle)),
+      series: log.filter((_, i) => i % 2 === 0).slice(0, 120)
+    };
+  }
+
+  // src/ladder.js
+  var RUNGS = Object.freeze([
+    {
+      rung: 0,
+      id: "unsettled",
+      name: "Did not settle",
+      ask: "I never really settled. Restless, uncomfortable or caught up the whole time.",
+      link: "hindrances"
+    },
+    {
+      rung: 1,
+      id: "settled",
+      name: "Settled",
+      ask: "Body relaxed and mind calmer than when I started.",
+      link: "relaxation"
+    },
+    {
+      rung: 2,
+      id: "steady",
+      name: "Steady",
+      ask: "Attention stayed with the anchor for a minute or more without being carried off.",
+      link: "attention"
+    },
+    {
+      rung: 3,
+      id: "found",
+      name: "Found the pleasant feeling",
+      ask: "A clear pleasant feeling was there: warmth, glow, tingling, gladness.",
+      link: "seed"
+    },
+    {
+      rung: 4,
+      id: "grew",
+      name: "It grew",
+      ask: "The feeling got stronger or spread when I rested on it.",
+      link: "loop-gain"
+    },
+    {
+      rung: 5,
+      id: "takeoff",
+      name: "Take-off",
+      ask: "It surged or started running by itself, at least for some seconds.",
+      link: "ignition"
+    },
+    {
+      rung: 6,
+      id: "stayed",
+      name: "It stayed",
+      ask: "It held by itself for a minute or more while I simply enjoyed it.",
+      link: "stability"
+    },
+    {
+      rung: 7,
+      id: "deepened",
+      name: "It deepened",
+      ask: "It changed character: quieter joy, deep contentment, or still, even peace.",
+      link: "refinement"
+    }
+  ]);
+  var MAX_RUNG = RUNGS.length - 1;
+
+  // src/coachPrompt.js
+  var THEORY_BRIEF = `Working theory used by this app:
+- First jhana is the ignition of a feedback loop: relaxed, steady attention on a pleasant bodily feeling makes the feeling grow, and the growing feeling holds attention.
+- It ignites when (attention on the feeling \xD7 bodily ease \xD7 sensitivity) outweighs (natural fading + grasping).
+- The usual breakers: straining, grabbing at the feeling or getting excited when it starts, checking whether it is working, drowsiness, fear at the threshold, having no pleasant feeling to start from.
+- Effort should fall as the feeling grows. The single most useful instruction is to do nothing when it starts.
+- Jhana is bright and awake, self-sustaining, absorbed and pleasant, and lasts. Pleasant drowsiness and pleasure held in place by effort are not jhana.`;
+  function blockerList() {
+    return BLOCKERS.map((b) => `- ${b.id}: ${b.name}. ${b.oneLine} Fix: ${b.fix.instruction}`).join("\n");
+  }
+  function sitSummary(sit) {
+    const symptoms = sit.symptoms.map((id) => SYMPTOMS.find((s) => s.id === id)?.text ?? id);
+    return [
+      `Length: ${sit.minutes} minutes. Spark used: ${seedById(sit.plan.seed)?.name ?? sit.plan.seed}. Effort cue: ${sit.plan.effort}.`,
+      `Furthest rung: ${sit.rung} (${RUNGS[sit.rung].name}).`,
+      `Ticked difficulties: ${symptoms.length ? symptoms.join("; ") : "none"}.`,
+      `App's reading: ${sit.score.labelText} (confidence ${sit.score.confidence}).`,
+      `Taps during the sit: "feeling is here" ${sit.taps?.here?.length ?? 0} time(s), "stuck" ${sit.taps?.stuck?.length ?? 0} time(s).`,
+      sit.note ? `Their own words: "${sit.note.slice(0, 1200)}"` : "They wrote no free description."
+    ].join("\n");
+  }
+  function coachInstructions(sit, diagnosis, history = []) {
+    const past = history.slice(-5).map((s, i) => `  ${i + 1}. rung ${s.rung} (${RUNGS[s.rung].name}); coach focus: ${s.diagnosis.primary}`).join("\n");
+    return `You are a meditation coach helping a beginner learn the first jhana with a gentle, pleasure-based method (in the style taught by Leigh Brasington, Rob Burbea and Jhourney). You are talking with them just after a sit.
+
+${THEORY_BRIEF}
+
+Patterns you can diagnose, with their fixes:
+${blockerList()}
+
+This sit:
+${sitSummary(sit)}
+The app's rule-based diagnosis: ${diagnosis.primary}${diagnosis.secondary ? ` (runner-up: ${diagnosis.secondary})` : ""}.
+${past ? `Earlier sits, oldest first:
+${past}` : "This was one of their first sits."}
+
+How to coach:
+- Ask ONE short question at a time about what actually happened: what they were doing just before anything changed, what they did the moment it changed, where in the body, how much effort. Prefer concrete moments over general impressions.
+- After at most three questions, give your reading: the single most likely thing to change, and exactly what to do differently next sit, in two or three sentences.
+- You may disagree with the app's diagnosis if their answers point elsewhere. Say so plainly.
+- Do not tell them they reached jhana unless their description clearly shows strong pleasure that ran by itself, with a quiet, bright mind, for a minute or more. If it is unclear, say it is unclear and what would settle it.
+- Never raise the stakes. No talk of attainments or of falling behind. Wanting it badly is one of the things that blocks it.
+- If they describe distress, panic, lasting agitation, insomnia, or destabilisation, stop coaching toward jhana, suggest they pause the practice, and suggest speaking to a clinician or an experienced teacher. You are not a therapist and do not give medical advice.
+- Plain, warm, brief. Under 110 words per reply. No lists, no headings.
+
+Begin by reflecting in one sentence what you understood, then ask your first question.`;
+  }
+  function noteReadingPrompt(note) {
+    const rungs = RUNGS.map((r) => `${r.rung}: ${r.name}. ${r.ask}`).join("\n");
+    const symptoms = SYMPTOMS.map((s) => `${s.id}: ${s.text}`).join("\n");
+    return `A beginner has just finished a meditation aimed at the first jhana and wrote this description:
+
+"""${note.slice(0, 2e3)}"""
+
+Map it onto the two lists below. Be conservative: choose only what the description clearly supports, and do not credit a higher rung than the words justify.
+
+Rungs (pick the single furthest one clearly reached):
+${rungs}
+
+Difficulties (pick any that clearly apply, possibly none):
+${symptoms}
+
+Reply with only a JSON object of the form {"rung": 3, "symptoms": ["tension", "vanish"]}.`;
+  }
+
+  // app/claude.js
+  async function readNote(note) {
+    const sample = await caps.sample;
+    if (!sample) return null;
+    try {
+      const out = await sample.json(noteReadingPrompt(note), { modelTier: "quick" });
+      if (!out || typeof out !== "object") return null;
+      return { rung: Number.isInteger(out.rung) ? out.rung : null, symptoms: Array.isArray(out.symptoms) ? out.symptoms.map(String) : [] };
+    } catch {
+      return null;
+    }
+  }
+  async function openChat(app2, sit, diagnosis) {
+    const sample = await caps.sample;
+    if (!sample) return toast("The Claude coach is not available in this view.");
+    const rules = coachInstructions(sit, diagnosis, app2.state.sits.slice(0, -1));
+    const turns = [];
+    let busy = false;
+    let ctl = null;
+    const log = h("div", { class: "chat", "aria-live": "polite" });
+    const box = h("textarea", { id: "chat-input", placeholder: "Your answer\u2026", "aria-label": "Your answer" });
+    const send = h("button", { class: "btn primary", type: "button" }, "Send");
+    const sheet = h("div", { class: "sheet", role: "dialog", "aria-label": "Coach conversation" });
+    const close = () => {
+      ctl?.abort();
+      closeLayer(sheet);
+    };
+    sheet.append(h(
+      "div",
+      { class: "page" },
+      h("div", { class: "row between" }, h("h2", {}, "Talk it through"), h("button", { class: "btn", type: "button", onClick: close }, "Close")),
+      h("p", { class: "muted small" }, "Claude sees this sit\u2019s report and your last few sits. It asks a few questions, then suggests one change. It is not a teacher or a clinician."),
+      log,
+      h("div", { class: "chatbox" }, box, send)
+    ));
+    openLayer(sheet);
+    const bubble = (who, text) => {
+      const el = h("div", { class: `bubble ${who}` }, text);
+      log.append(el);
+      el.scrollIntoView({ block: "end" });
+      return el;
+    };
+    async function ask() {
+      if (busy) return;
+      busy = true;
+      send.disabled = true;
+      const out = bubble("coach", "Thinking\u2026");
+      ctl = new AbortController();
+      try {
+        const input = [{ role: "user", content: rules }, ...turns];
+        const { text } = await sample(input, { cache: false, signal: ctl.signal, onText: ({ text: t }) => {
+          out.textContent = t;
+        } });
+        out.textContent = text;
+        turns.push({ role: "assistant", content: text });
+      } catch (e) {
+        out.textContent = e?.text || "";
+        if (e?.code === "not_granted") {
+          out.textContent = "The coach is switched off for this page.";
+        } else if (e?.code !== "cancelled") {
+          out.textContent = (e?.text ? `${e.text}
+
+` : "") + (e?.code === "rate_limited" ? "Too many requests just now. Wait a moment and send again." : "The reply was interrupted. Send again to retry.");
+        }
+      }
+      busy = false;
+      send.disabled = false;
+      box.focus();
+    }
+    send.addEventListener("click", () => {
+      const text = box.value.trim();
+      if (!text || busy) return;
+      box.value = "";
+      bubble("me", text);
+      turns.push({ role: "user", content: text });
+      ask();
+    });
+    turns.push({ role: "user", content: "I have just finished the sit described above." });
+    ask();
+  }
+
+  // app/debrief.js
+  var GROUPS = [
+    ["body", "Body"],
+    ["attention", "Attention"],
+    ["feeling", "The pleasant feeling"],
+    ["mind", "Mind and mood"]
+  ];
+  function openDebrief(app2, plan, summary) {
+    const draft = { note: "", rung: null, symptoms: /* @__PURE__ */ new Set(), answers: {}, duration: null };
+    let step2 = 0;
+    let result = null;
+    const sheet = h("div", { class: "sheet", role: "dialog", "aria-label": "After the sit" });
+    const page = h("div", { class: "page" });
+    sheet.append(page);
+    openLayer(sheet);
+    const needsDetail = () => (draft.rung ?? 0) >= 3;
+    const totalSteps = () => needsDetail() ? 4 : 3;
+    function go(n) {
+      step2 = n;
+      draw();
+      window.scrollTo(0, 0);
+    }
+    function draw() {
+      clear(page);
+      if (result) return drawResult();
+      const bar = h("div", { class: "steps", "aria-hidden": "true" }, Array.from({ length: totalSteps() }, (_, i) => h("i", { class: i <= step2 ? "on" : "" })));
+      add(page, h("span", { class: "eyebrow" }, `After the sit \xB7 ${summary.minutes} minutes`), bar);
+      if (step2 === 0) {
+        const area = h("textarea", { id: "note", placeholder: "What happened, in your own words? What were you doing just before anything changed?", value: draft.note, onInput: (e) => {
+          draft.note = e.target.value;
+        } });
+        const fill = h("button", { class: "btn", type: "button", hidden: true, onClick: async () => {
+          if (draft.note.trim().length < 20) return toast("Write a sentence or two first.");
+          fill.disabled = true;
+          fill.textContent = "Reading\u2026";
+          const read = await readNote(draft.note);
+          fill.disabled = false;
+          fill.textContent = "Let Claude pre-fill the next steps from this";
+          if (!read) return toast("Could not read the note. Carry on by hand.");
+          if (Number.isInteger(read.rung)) draft.rung = Math.max(0, Math.min(7, read.rung));
+          for (const s of read.symptoms ?? []) if (SYMPTOMS.some((x) => x.id === s)) draft.symptoms.add(s);
+          toast("Pre-filled. Check each step and correct anything that is off.");
+          go(1);
+        } }, "Let Claude pre-fill the next steps from this");
+        caps.sample.then((s) => {
+          fill.hidden = !s;
+        });
+        add(
+          page,
+          h("h1", {}, "First, in your own words"),
+          h("p", { class: "muted" }, "Before any checklists. A sentence or two is plenty; skipping is fine."),
+          h("div", { class: "field" }, h("label", { for: "note" }, "What happened?"), area),
+          summary.sensor ? sensorNote(summary.sensor) : null,
+          h("div", { class: "actions" }, fill, h("button", { class: "btn primary", type: "button", onClick: () => go(1) }, "Continue"))
+        );
+      } else if (step2 === 1) {
+        add(
+          page,
+          h("h1", {}, "How far did it go?"),
+          h("p", { class: "muted" }, "Pick the furthest point you reached, even briefly."),
+          h(
+            "div",
+            { class: "rungs", role: "radiogroup", "aria-label": "Furthest point reached" },
+            RUNGS.map((r) => h(
+              "button",
+              { class: "rung", type: "button", role: "radio", "aria-checked": String(draft.rung === r.rung), onClick: () => {
+                draft.rung = r.rung;
+                draw();
+              } },
+              h("span", { class: "n" }, String(r.rung)),
+              h("div", {}, h("b", {}, r.name), h("span", {}, r.ask))
+            ))
+          ),
+          nav(draft.rung === null)
+        );
+      } else if (step2 === 2) {
+        add(
+          page,
+          h("h1", {}, "Did anything get in the way?"),
+          h("p", { class: "muted" }, "Tick whatever applies. None is a fine answer."),
+          GROUPS.map(([id, name]) => h(
+            "div",
+            { class: "field" },
+            h("span", { class: "label" }, name),
+            h("div", { class: "chips" }, SYMPTOMS.filter((s) => s.group === id).map((s) => h("button", { class: "chip", type: "button", "aria-pressed": String(draft.symptoms.has(s.id)), onClick: (e) => {
+              if (draft.symptoms.has(s.id)) draft.symptoms.delete(s.id);
+              else draft.symptoms.add(s.id);
+              e.currentTarget.setAttribute("aria-pressed", String(draft.symptoms.has(s.id)));
+            } }, s.text)))
+          )),
+          nav(false, needsDetail() ? "Continue" : "See the reading")
+        );
+      } else {
+        add(
+          page,
+          h("h1", {}, "A closer look"),
+          h("p", { class: "muted" }, "Answer for the strongest stretch of the sit. Go with your first impression."),
+          h(
+            "div",
+            { class: "field" },
+            h("span", { class: "label" }, "How long did the strongest stretch last?"),
+            h("div", { class: "chips", role: "radiogroup" }, DURATIONS.map((d) => h("button", { class: "chip", type: "button", role: "radio", "aria-checked": String(draft.duration === d.id), onClick: () => {
+              draft.duration = d.id;
+              const y = window.scrollY;
+              draw();
+              window.scrollTo(0, y);
+            } }, d.label)))
+          ),
+          h("div", {}, ITEMS.map((item) => h(
+            "div",
+            { class: "item" },
+            h("span", {}, item.text),
+            scale(draft.answers[item.id], (v) => {
+              draft.answers[item.id] = v;
+              const y = window.scrollY;
+              draw();
+              window.scrollTo(0, y);
+            }, void 0, item.text)
+          ))),
+          nav(draft.duration === null, "See the reading")
+        );
+      }
+    }
+    function nav(disabled, label = "Continue") {
+      return h(
+        "div",
+        { class: "actions" },
+        h("button", { class: "btn", type: "button", onClick: () => go(step2 - 1) }, "Back"),
+        h("button", { class: "btn primary", type: "button", disabled, onClick: () => step2 + 1 >= totalSteps() ? finish() : go(step2 + 1) }, label)
+      );
+    }
+    function finish() {
+      const report = {
+        minutes: summary.minutes,
+        rung: draft.rung ?? 0,
+        symptoms: [...draft.symptoms],
+        answers: needsDetail() ? draft.answers : {},
+        duration: needsDetail() ? draft.duration ?? "none" : "none",
+        note: draft.note.trim(),
+        taps: summary.taps,
+        sensor: summary.sensor ? { ...summary.sensor, series: void 0 } : null
+      };
+      const basis = { ...app2.state, plan: { ...app2.state.plan, seed: plan.seed } };
+      result = completeSit(basis, report, rng);
+      app2.state = result.state;
+      save(app2.state);
+      draw();
+      window.scrollTo(0, 0);
+    }
+    function drawResult() {
+      const { score, diagnosis, sit } = result;
+      const b = diagnosis.blocker;
+      const nextPlan2 = app2.state.plan;
+      const crit = [["pleasure", "Strong pleasure"], ["selfSustaining", "Ran by itself"], ["absorbed", "Absorbed"], ["bright", "Bright and awake"], ["lasted", "Lasted a minute"]];
+      const chatBtn = h("button", { class: "btn", type: "button", hidden: true, onClick: () => openChat(app2, sit, diagnosis) }, "Talk it through with Claude");
+      caps.sample.then((s) => {
+        chatBtn.hidden = !s;
+      });
+      add(
+        page,
+        h("span", { class: "eyebrow" }, "The reading"),
+        h(
+          "div",
+          { class: "verdict" },
+          h("span", { class: "label" }, score.labelText),
+          h(
+            "div",
+            { class: "row" },
+            h("span", { class: `pill ${sit.jhana ? "good" : ""}` }, `Ladder: ${RUNGS[sit.rung].name}`),
+            sit.rung >= 3 ? h("span", { class: `pill ${score.confidence === "low" ? "warn" : ""}` }, `Confidence: ${score.confidence}`) : null
+          )
+        ),
+        h("div", { class: "stack", style: { gap: "6px" } }, score.reasons.map((r) => h("p", {}, r))),
+        sit.rung >= 3 ? h("div", { class: "crit" }, crit.map(([k, label]) => h("span", { class: score.criteria[k] ? "met" : "" }, label))) : null,
+        h("p", { class: "note" }, "This reading rests on your own answers. It is a hypothesis to test over several sits, not a certificate."),
+        h("hr", { class: "divider" }),
+        h(
+          "section",
+          { class: "stack" },
+          h("span", { class: "eyebrow" }, ["stabilise", "deepen"].includes(b.id) ? "Where you are" : "What most likely held it back"),
+          h("h2", {}, b.name),
+          h("p", {}, b.oneLine),
+          h("p", { class: "muted" }, b.why)
+        ),
+        h(
+          "section",
+          { class: "card plan" },
+          h("span", { class: "eyebrow" }, "Next sit"),
+          h("p", { class: "lede" }, planHeadline(nextPlan2)),
+          app2.state.planChanges.length ? h("ul", { class: "plain small" }, app2.state.planChanges.map((c) => h("li", {}, c))) : null,
+          h("p", { class: "muted small" }, `Spark: ${seedById(nextPlan2.seed).name}. Length: ${nextPlan2.totalMin} minutes.`)
+        ),
+        h("div", { class: "actions" }, chatBtn, h("button", { class: "btn primary", type: "button", onClick: () => {
+          render();
+          closeLayer(sheet);
+          window.scrollTo(0, 0);
+        } }, "Done"))
+      );
+    }
+    draw();
+  }
+  function sensorNote(s) {
+    if (!s.bpmStart || !s.bpmEnd) return h("p", { class: "note" }, "Breath sensing ran, but the signal was too weak to read a breathing rate.");
+    return h("p", { class: "note" }, `Breath sensing: about ${s.bpmStart} breaths a minute at the start and ${s.bpmEnd} at the end. Stillness while resting: ${Math.round((s.stillnessRest ?? 0) * 100)}%.`);
+  }
+
+  // app/progress.js
+  function renderProgress(page, app2) {
+    const { state } = app2;
+    const sits = state.sits;
+    const st = stats(state);
+    add(page, h("header", { class: "stack", style: { gap: "4px" } }, h("h1", {}, "Progress"), h("p", { class: "muted" }, "Jhana sits at the top of a ladder. Most of the learning happens on the rungs below it.")));
+    if (!sits.length) {
+      add(
+        page,
+        h(
+          "section",
+          { class: "card" },
+          h("h3", {}, "Your sits will appear here"),
+          h("p", { class: "muted" }, "After each sit you mark the furthest rung you reached. The rung where you stall tells the coach which part of the loop to work on.")
+        ),
+        ladderKey()
+      );
+      return;
+    }
+    add(
+      page,
+      h(
+        "div",
+        { class: "tiles" },
+        tile(st.sits, st.sits === 1 ? "sit" : "sits"),
+        tile(st.minutes, "minutes"),
+        tile(RUNGS[st.bestRung].name, "furthest rung", true),
+        tile(st.jhanaSits, st.jhanaSits === 1 ? "sit read as jhana" : "sits read as jhana")
+      ),
+      h("section", { class: "card" }, h("h3", {}, "Furthest rung reached, sit by sit"), ladderChart(sits), ladderTable(sits)),
+      seedCard(state),
+      h(
+        "section",
+        { class: "stack" },
+        h("h2", {}, "Sit log"),
+        h("div", { class: "hist" }, [...sits].reverse().slice(0, 40).map((s) => {
+          const b = blockerById(s.diagnosis.primary);
+          return h("div", {}, h("time", {}, fmtDate(s.at)), h(
+            "div",
+            {},
+            h("b", {}, `${RUNGS[s.rung].name} \xB7 ${s.score.labelText}`),
+            h("div", { class: "muted small" }, `${Math.round(s.minutes)} min \xB7 ${seedById(s.plan.seed)?.name ?? s.plan.seed} \xB7 ${b?.name ?? ""}`),
+            s.note ? h("div", { class: "small" }, s.note.length > 180 ? `${s.note.slice(0, 180)}\u2026` : s.note) : null
+          ));
+        }))
+      ),
+      ladderKey(),
+      dataCard(app2)
+    );
+  }
+  function tile(value, label, text = false) {
+    return h("div", { class: "tile" }, h("b", { style: text ? { fontSize: "1.02rem", lineHeight: "1.3", paddingBlock: "4px" } : null }, String(value)), h("span", {}, label));
+  }
+  function ladderKey() {
+    return h(
+      "section",
+      { class: "card" },
+      h("h3", {}, "The ladder"),
+      h("div", { class: "rungs" }, [...RUNGS].reverse().map((r) => h("div", { class: "rung" }, h("span", { class: "n" }, String(r.rung)), h("div", {}, h("b", {}, r.name), h("span", {}, r.ask)))))
+    );
+  }
+  function ladderChart(sits) {
+    const W = 520, H = 230, L = 96, R = 14, T = 12, B = 26;
+    const n = sits.length;
+    const x = (i) => n === 1 ? (L + W - R) / 2 : L + (W - L - R) * i / (n - 1);
+    const y = (rung) => T + (H - T - B) * (7 - rung) / 7;
+    const wrap = h("div", { class: "chart" });
+    const tip = h("div", { class: "tip", hidden: true });
+    const root2 = svg("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `Furthest rung reached in each of ${n} sits. Latest: ${RUNGS[sits[n - 1].rung].name}.` });
+    for (const r of RUNGS) {
+      root2.append(
+        svg("line", { class: "grid", x1: L, x2: W - R, y1: y(r.rung), y2: y(r.rung) }),
+        svg("text", { x: L - 8, y: y(r.rung) + 4, "text-anchor": "end" }, r.name.replace("Found the pleasant feeling", "Found it"))
+      );
+    }
+    const ticks = n <= 8 ? sits.map((_, i) => i) : [0, Math.floor((n - 1) / 2), n - 1];
+    for (const i of ticks) root2.append(svg("text", { x: x(i), y: H - 6, "text-anchor": "middle" }, String(i + 1)));
+    if (n > 1) root2.append(svg("polyline", { fill: "none", stroke: "var(--s-pleasure)", "stroke-width": 2, "stroke-linejoin": "round", points: sits.map((s, i) => `${x(i)},${y(s.rung)}`).join(" ") }));
+    sits.forEach((s, i) => {
+      const show = () => {
+        tip.hidden = false;
+        tip.replaceChildren(h("b", {}, `Sit ${i + 1} \xB7 ${fmtDate(s.at)}`), `${RUNGS[s.rung].name}. ${s.score.labelText}. ${blockerById(s.diagnosis.primary)?.name ?? ""}`);
+        const px = x(i) / W * wrap.clientWidth;
+        tip.style.left = `${Math.min(Math.max(0, px - 90), Math.max(0, wrap.clientWidth - 200))}px`;
+        tip.style.top = `${y(s.rung) / H * wrap.clientHeight + 14}px`;
+      };
+      const hide = () => {
+        tip.hidden = true;
+      };
+      if (s.jhana) root2.append(svg("circle", { cx: x(i), cy: y(s.rung), r: 9, fill: "none", stroke: "var(--good)", "stroke-width": 2 }));
+      root2.append(
+        svg("circle", { cx: x(i), cy: y(s.rung), r: 5, fill: "var(--s-pleasure)", stroke: "var(--surface)", "stroke-width": 2 }),
+        svg("circle", { cx: x(i), cy: y(s.rung), r: 16, fill: "transparent", tabindex: 0, onMouseenter: show, onMouseleave: hide, onFocus: show, onBlur: hide, onClick: show })
+      );
+    });
+    add(wrap, root2, tip);
+    if (sits.some((s) => s.jhana)) wrap.append(h("p", { class: "muted small" }, "A green ring marks a sit read as jhana."));
+    return wrap;
+  }
+  function ladderTable(sits) {
+    return h(
+      "details",
+      {},
+      h("summary", {}, "Show as a table"),
+      h("div", { class: "tablewrap" }, h(
+        "table",
+        {},
+        h("thead", {}, h("tr", {}, ["Sit", "Date", "Rung", "Reading", "Coach focus"].map((t) => h("th", {}, t)))),
+        h("tbody", {}, sits.map((s, i) => h("tr", {}, h("td", {}, String(i + 1)), h("td", {}, fmtDate(s.at)), h("td", {}, RUNGS[s.rung].name), h("td", {}, s.score.labelText), h("td", {}, blockerById(s.diagnosis.primary)?.name ?? ""))))
+      ))
+    );
+  }
+  function seedCard(state) {
+    const rows = ranking(state.bandit).filter((r) => r.pulls > 0);
+    if (!rows.length) return null;
+    return h(
+      "section",
+      { class: "card" },
+      h("h3", {}, "What sparks it for you"),
+      h("p", { class: "muted small" }, "Estimated chance that each spark gives you a feeling that grows when you rest on it, from your own sits so far."),
+      h("div", { class: "bars" }, rows.map((r) => h(
+        "div",
+        { class: "bar" },
+        h("span", {}, seedById(r.id)?.name ?? r.id),
+        h("div", { class: "track", title: `${Math.round(r.mean * 100)}% after ${r.pulls} sits` }, h("div", { class: "fill", style: { width: `${Math.round(r.mean * 100)}%` } })),
+        h("span", { class: "val" }, `${Math.round(r.mean * 100)}%`)
+      ))),
+      h("p", { class: "muted small" }, rows.map((r) => `${seedById(r.id)?.name ?? r.id}: ${r.pulls} ${r.pulls === 1 ? "sit" : "sits"}`).join(" \xB7 "))
+    );
+  }
+  function dataCard(app2) {
+    let confirming = false;
+    const card = h("section", { class: "card" });
+    const draw = () => {
+      card.replaceChildren(
+        h("h3", {}, "Your data"),
+        h("p", { class: "muted small" }, "Everything is stored on this device. Nothing is sent anywhere unless you use the optional Claude features."),
+        confirming ? h(
+          "div",
+          { class: "stack" },
+          h("p", {}, "Erase all sits and start over? This cannot be undone."),
+          h(
+            "div",
+            { class: "actions" },
+            h("button", { class: "btn", type: "button", onClick: () => {
+              confirming = false;
+              draw();
+            } }, "Keep my data"),
+            h("button", { class: "btn primary", type: "button", onClick: () => {
+              app2.set(newState());
+              location.hash = "#home";
+            } }, "Erase everything")
+          )
+        ) : h(
+          "div",
+          { class: "actions" },
+          h("button", { class: "btn", type: "button", onClick: async () => {
+            const ok = await exportData("ember-sits.json", JSON.stringify(app2.state, null, 2));
+            toast(ok ? "Export started." : "Export is not available in this view.");
+          } }, "Export as JSON"),
+          h("button", { class: "btn ghost", type: "button", onClick: () => {
+            confirming = true;
+            draw();
+          } }, "Erase and start over")
+        )
+      );
+    };
+    draw();
+    return card;
+  }
+
+  // src/loopModel.js
+  var K = Object.freeze({
+    effortGain: 0.12,
+    // attention gained per second per unit skilled effort
+    capture: 0.15,
+    // reward capture: pleasure holding attention by itself
+    hPull: 0.05,
+    // hindrances pulling attention away
+    gPull: 0.05,
+    // grasping / checking diverting attention to the meta level
+    dullPull: 0.03,
+    // dullness dissolving attention
+    settle: 4e-3,
+    // hindrances quieten while attention stays put
+    hNoise: 6e-4,
+    // spontaneous intrusions
+    strain: 0.03,
+    // tension produced by effort (scaled by effort squared)
+    gTension: 0.02,
+    // tension produced by grasping
+    relaxBase: 8e-3,
+    // tension released passively
+    relaxAct: 0.04,
+    // tension released by a deliberate relax act (scaled by letGo)
+    seedGain: 0.012,
+    // pleasure added per second of seeding
+    amp: 0.055,
+    // loop amplification of attended pleasure
+    attnPower: 3,
+    // only continuous attention amplifies: amplification ∝ (attention on pleasure)^3
+    tensionPower: 2,
+    // pleasure amplification is multiplied by (1 - t)^tensionPower
+    pRelax: 0.03,
+    // pleasure melts tension
+    pSettle: 0.01,
+    // pleasure quietens hindrances
+    decay: 0.01,
+    // pleasure fades at this rate when nothing feeds it
+    gKill: 0.04,
+    // grasping squashes pleasure
+    excite: 2,
+    // rising pleasure → excitement
+    onsetJolt: 0.45,
+    // one-off "it's happening!" jolt when pleasure first becomes obvious
+    onsetLevel: 0.35,
+    // pleasure level at which the onset is noticed
+    frustrate: 4e-4,
+    // slow build-up of wanting when nothing happens
+    gRelease: 0.012,
+    // grasping released per second (scaled by letGo and relax)
+    eUp: 0.01,
+    // pleasure and engagement raise energy
+    eDown: 6e-3
+    // low effort + no interest → sinking
+  });
+  var DEFAULT_TRAITS = Object.freeze({
+    attnSkill: 0.5,
+    openness: 0.5,
+    seedPower: 0.5,
+    wanting: 0.5,
+    letGo: 0.4,
+    strain: 0.5,
+    drowsy: 0.3,
+    hindrance0: 0.5,
+    inoculated: 0
+  });
+  function initialState(traits = DEFAULT_TRAITS) {
+    return { a: 0.1, p: 0.02, t: 0.3, g: 0.1, h: traits.hindrance0, e: 0.7, onsetSeen: false };
+  }
+  function attentionOnPleasure(state, action) {
+    return state.a * (action.target === "pleasure" ? 1 : 0.15);
+  }
+  function loopGain(state, action, traits, k = K) {
+    return amplification(state, action, traits, k) / (k.decay + k.gKill * state.g);
+  }
+  function amplification(state, action, traits, k = K) {
+    const ap = attentionOnPleasure(state, action);
+    return k.amp * (0.3 + 1.4 * traits.openness) * Math.pow(ap, k.attnPower) * Math.pow(1 - state.t, k.tensionPower);
+  }
+  function step(state, action, traits = DEFAULT_TRAITS, dt = 1, rng2 = null, k = K) {
+    const { a, p, t, g, h: h2, e } = state;
+    const effort = clamp01(action.effort ?? 0);
+    const seed = clamp01(action.seed ?? 0);
+    const relax = clamp01(action.relax ?? 0);
+    const noise = rng2 ? rng2.normal() : 0;
+    const amp = amplification(state, action, traits, k);
+    const dp = k.seedGain * seed * traits.seedPower * (0.4 + 0.6 * a) * (1 - p) + amp * p * (1 - p * p) - (k.decay + k.gKill * g) * p;
+    const capture = action.target === "pleasure" ? k.capture * p : 0;
+    const da = (k.effortGain * traits.attnSkill * effort + capture) * (1 - a) - (k.hPull * h2 + k.gPull * g + k.dullPull * (1 - e)) * a;
+    const dT = (k.strain * traits.strain * effort * effort + k.gTension * g) * (1 - t) - (k.relaxBase + k.relaxAct * relax * (0.3 + traits.letGo) + k.pRelax * p) * t;
+    let dg = k.excite * traits.wanting * (1 - 0.7 * traits.inoculated) * Math.max(0, dp) * (1 - g) + k.frustrate * traits.wanting * (1 - p) * (1 - g) - k.gRelease * (0.2 + traits.letGo) * (1 + relax) * g;
+    const dh = -(k.settle * a + k.pSettle * p) * h2 + k.hNoise * (1 + noise) * (1 - h2);
+    const de = k.eUp * (0.5 * effort + p) * (1 - e) - k.eDown * traits.drowsy * (1 - effort) * (1 - p) * e * 2;
+    const next = {
+      a: clamp01(a + da * dt + (rng2 ? 4e-3 * noise * Math.sqrt(dt) : 0)),
+      p: clamp01(p + dp * dt),
+      t: clamp01(t + dT * dt),
+      g: clamp01(g + dg * dt),
+      h: clamp01(h2 + dh * dt),
+      e: clamp01(e + de * dt),
+      onsetSeen: state.onsetSeen
+    };
+    if (!state.onsetSeen && next.p >= k.onsetLevel) {
+      next.onsetSeen = true;
+      next.g = clamp01(next.g + k.onsetJolt * traits.wanting * (1 - traits.inoculated));
+    }
+    return next;
+  }
+  function classify(state) {
+    if (state.p > 0.65 && state.a > 0.8) return "jhana1";
+    if (state.e < 0.3) return "dull";
+    if (state.p > 0.3) return "pleasure-building";
+    if (state.a > 0.55 && state.h < 0.3) return "access";
+    return "ordinary";
+  }
+  function runSit(traits, policy, opts = {}) {
+    const seconds = opts.seconds ?? 1800;
+    const dt = opts.dt ?? 1;
+    const rng2 = opts.rng ?? null;
+    const k = opts.k ?? K;
+    const record = opts.record ?? 0;
+    let state = opts.initial ?? initialState(traits);
+    const trace = [];
+    let jhanaRun = 0;
+    let jhanaSeconds = 0;
+    let ignitionTime = null;
+    let maxP = 0;
+    let onsetCollapses = 0;
+    let wasBuilding = false;
+    let sumT = 0;
+    let sumG = 0;
+    let sumA = 0;
+    let minE = 1;
+    let accessTime = null;
+    let pAtEnd = 0;
+    let memory = {};
+    for (let s = 0; s < seconds; s += dt) {
+      const ctx2 = { t: s, state, traits, memory, seconds };
+      const action = policy(ctx2);
+      state = step(state, action, traits, dt, rng2, k);
+      maxP = Math.max(maxP, state.p);
+      sumT += state.t;
+      sumG += state.g;
+      sumA += state.a;
+      minE = Math.min(minE, state.e);
+      if (accessTime === null && state.a > 0.55 && state.h < 0.3) accessTime = s;
+      if (state.p > k.onsetLevel) wasBuilding = true;
+      if (wasBuilding && state.p < k.onsetLevel * 0.5) {
+        onsetCollapses += 1;
+        wasBuilding = false;
+        state.onsetSeen = false;
+      }
+      if (classify(state) === "jhana1") {
+        jhanaRun += dt;
+        jhanaSeconds += dt;
+        if (jhanaRun >= 30 && ignitionTime === null) ignitionTime = s - 30;
+      } else {
+        jhanaRun = 0;
+      }
+      if (record && s % record === 0) trace.push({ s, ...state, L: loopGain(state, action, traits, k), ...action });
+      pAtEnd = state.p;
+    }
+    const n = seconds / dt;
+    return {
+      ignited: ignitionTime !== null,
+      ignitionTime,
+      jhanaSeconds,
+      trace,
+      summary: {
+        maxP,
+        pAtEnd,
+        meanTension: sumT / n,
+        meanGrasp: sumG / n,
+        meanAttention: sumA / n,
+        minEnergy: minE,
+        accessTime,
+        onsetCollapses,
+        finalState: state
+      }
+    };
+  }
+  var DEFAULT_HABITS = Object.freeze({
+    settleSeconds: 240,
+    // time spent relaxing and gathering before looking for pleasure
+    effortAnchor: 0.6,
+    // effort while on the anchor
+    effortPleasure: 0.5,
+    // effort while resting on pleasure, before it grows
+    easeOff: 0,
+    // 0..1 how much effort is dropped as pleasure rises ("do less as it grows")
+    relaxDrive: 0.2,
+    // how much deliberate softening is mixed in
+    reseedBelow: 0.08,
+    // re-evoke the feeling when it falls below this
+    switchAt: 0.5,
+    // attention stability required before turning to the pleasure
+    wakeUp: 0
+    // 0..1 counter-dullness measures (eyes open, posture, brighter interest)
+  });
+  function habitPolicy(habits = DEFAULT_HABITS) {
+    const hb = { ...DEFAULT_HABITS, ...habits };
+    return ({ t, state }) => {
+      if (t < hb.settleSeconds) {
+        return { effort: hb.effortAnchor, target: "anchor", seed: 0, relax: Math.max(hb.relaxDrive, 0.3) };
+      }
+      if (state.a < hb.switchAt && state.p < 0.2) {
+        return { effort: hb.effortAnchor, target: "anchor", seed: 0.2, relax: hb.relaxDrive };
+      }
+      const ease = 1 - hb.easeOff * Math.min(1, state.p / 0.6);
+      const effort = Math.max(hb.wakeUp * 0.25, hb.effortPleasure * ease);
+      return {
+        effort,
+        target: "pleasure",
+        seed: state.p < hb.reseedBelow ? 1 : state.p < 0.25 ? 0.4 : 0,
+        relax: hb.relaxDrive
+      };
+    };
+  }
+  var STRIVE_HABITS = Object.freeze({
+    ...DEFAULT_HABITS,
+    settleSeconds: 60,
+    effortAnchor: 0.95,
+    effortPleasure: 0.95,
+    easeOff: 0,
+    relaxDrive: 0,
+    switchAt: 0.6
+  });
+  var DRIFT_HABITS = Object.freeze({
+    ...DEFAULT_HABITS,
+    settleSeconds: 1e9,
+    effortAnchor: 0.1,
+    relaxDrive: 0.8
+  });
+
+  // app/learn.js
+  var PRESETS = {
+    balanced: { label: "Balanced", effort: 0.55, soften: 0.5, grab: 0.4, ease: true },
+    striving: { label: "Trying hard", effort: 0.95, soften: 0, grab: 0.4, ease: false },
+    drifting: { label: "Drifting", effort: 0.1, soften: 0.8, grab: 0.4, ease: false },
+    grabbing: { label: "Grabbing at it", effort: 0.55, soften: 0.2, grab: 0.95, ease: false }
+  };
+  var sim = { ...PRESETS.balanced, preset: "balanced" };
+  function renderLearn(page) {
+    add(
+      page,
+      h("header", { class: "stack", style: { gap: "4px" } }, h("h1", {}, "How jhana starts"), h("p", { class: "muted" }, "A working theory, shown as a model you can play with.")),
+      h(
+        "section",
+        { class: "stack" },
+        h("p", { class: "lede" }, "Jhana behaves like a fire catching. Attention resting on a pleasant feeling makes the feeling stronger; a stronger feeling holds attention more easily. Below a threshold it fades. Above it, it feeds itself."),
+        h("p", {}, "Three things decide which side of the threshold you are on: how steadily attention rests on the feeling, how relaxed the body is, and whether you grab at the feeling when it starts to grow.")
+      ),
+      simulator(),
+      h(
+        "section",
+        { class: "card" },
+        h("h3", {}, "How the app reads a sit"),
+        h("p", {}, "A sit is read as first jhana only when five things were all present at once:"),
+        h(
+          "ul",
+          { class: "plain" },
+          h("li", {}, "strong pleasant feeling in the body, or strong joy"),
+          h("li", {}, "it ran by itself, without being held in place"),
+          h("li", {}, "absorption: thought sparse, sounds not pulling"),
+          h("li", {}, "a bright, awake mind (sleepy and pleasant is something else)"),
+          h("li", {}, "it lasted at least about a minute")
+        ),
+        h("p", { class: "muted small" }, "Strong relaxation misses the second and fourth. Pleasure you have to hold in place misses the second. A few check questions that have nothing to do with jhana catch answers driven by expectation. All of this rests on self-report and has not been validated against expert interview.")
+      ),
+      h(
+        "section",
+        { class: "stack" },
+        h("h2", {}, "When it goes wrong"),
+        h("p", { class: "muted" }, "The patterns the coach looks for, and what it changes."),
+        h("div", {}, BLOCKERS.filter((b) => !["stabilise", "deepen", "dose"].includes(b.id)).map((b) => h("details", {}, h("summary", {}, b.name), h("div", { class: "stack" }, h("p", {}, b.oneLine), h("p", { class: "muted" }, b.why), h("p", {}, b.fix.instruction)))))
+      ),
+      h(
+        "section",
+        { class: "card" },
+        h("h3", {}, "Safety"),
+        h("p", {}, "Most people find this practice gentle. Intense energy, strong emotion or a sense of losing control can occur. If a sit feels like too much, open your eyes, move, and stop for the day."),
+        h("p", {}, "If you have a history of psychosis, mania or severe trauma, get advice from a clinician or an experienced teacher before practising toward strong states. Stop and seek support if you notice lasting agitation, insomnia or low mood.")
+      ),
+      h(
+        "section",
+        { class: "card" },
+        h("h3", {}, "What this is"),
+        h("p", {}, "Ember is a research prototype. Its theory, sources and study design are in the project repository. It has not yet been tested on people, and it is no substitute for a teacher.")
+      )
+    );
+  }
+  function simulator() {
+    const card = h("section", { class: "card" });
+    const draw = () => {
+      const habits = {
+        effortAnchor: Math.max(sim.effort, 0.05),
+        effortPleasure: sim.effort,
+        relaxDrive: sim.soften,
+        easeOff: sim.ease ? 0.8 : 0,
+        settleSeconds: 180
+      };
+      const traits = { ...DEFAULT_TRAITS, wanting: sim.grab, inoculated: 0 };
+      const run = runSit(traits, habitPolicy(habits), { seconds: 1800, record: 15 });
+      const slider = (key, label, lo, hi) => h(
+        "label",
+        {},
+        h("span", {}, label, " ", h("output", {}, lo && hi ? sim[key] < 0.34 ? lo : sim[key] > 0.66 ? hi : "medium" : "")),
+        h("input", { id: `sim-${key}`, type: "range", min: "0", max: "1", step: "0.05", value: String(sim[key]), onChange: (e) => {
+          sim = { ...sim, [key]: Number(e.target.value), preset: null };
+          draw();
+        } })
+      );
+      card.replaceChildren(
+        h("h3", {}, "Try it: thirty minutes in a simulated mind"),
+        h("div", { class: "chips", role: "radiogroup", "aria-label": "Preset" }, Object.entries(PRESETS).map(([id, p]) => h("button", { class: "chip", type: "button", role: "radio", "aria-checked": String(sim.preset === id), onClick: () => {
+          sim = { ...p, preset: id };
+          draw();
+        } }, p.label))),
+        simChart(run),
+        h(
+          "div",
+          { class: "legend" },
+          h("span", {}, h("i", { style: { background: "var(--s-pleasure)" } }), "Pleasant feeling"),
+          h("span", {}, h("i", { style: { background: "var(--s-attn)" } }), "Steadiness of attention"),
+          h("span", {}, h("i", { style: { background: "var(--s-tension)" } }), "Tension")
+        ),
+        h("p", { class: "simverdict" }, verdict(run)),
+        h(
+          "div",
+          { class: "sim-controls" },
+          slider("effort", "Effort:", "light", "hard"),
+          slider("soften", "Softening:", "little", "a lot"),
+          slider("grab", "Urge to grab:", "low", "high"),
+          h(
+            "label",
+            {},
+            h("span", {}, "Ease off as it grows"),
+            h("button", { class: "chip", type: "button", "aria-pressed": String(sim.ease), onClick: () => {
+              sim = { ...sim, ease: !sim.ease, preset: null };
+              draw();
+            } }, sim.ease ? "Yes" : "No")
+          )
+        ),
+        h("p", { class: "muted small" }, "This is a model of the theory, with made-up constants chosen to resemble reports. It shows what the theory predicts. It is not data from people.")
+      );
+    };
+    draw();
+    return card;
+  }
+  function verdict(run) {
+    const s = run.summary;
+    if (run.ignited) return `Catches at about minute ${Math.round(run.ignitionTime / 60)} and then sustains itself.`;
+    if (s.onsetCollapses > 0) return `Starts ${s.onsetCollapses === 1 ? "once" : `${s.onsetCollapses} times`}, then collapses: excitement and grabbing cut the loop.`;
+    if (s.minEnergy < 0.35) return "Never catches: attention is too slack and the mind sinks toward drowsiness.";
+    if (s.meanTension > 0.35) return "Never catches: attention is steady, but tension keeps the feeling from growing.";
+    if (s.meanAttention < 0.4) return "Never catches: attention does not stay long enough for the feeling to build.";
+    return "Hovers just under the threshold: pleasant, but it does not take off in thirty minutes.";
+  }
+  function simChart(run) {
+    const W = 520, H = 210, L = 30, R = 86, T = 10, B = 26;
+    const pts = run.trace;
+    const x = (s) => L + (W - L - R) * s / 1800;
+    const y = (v) => T + (H - T - B) * (1 - v);
+    const series = [
+      { key: "p", name: "Pleasant feeling", color: "var(--s-pleasure)" },
+      { key: "a", name: "Attention", color: "var(--s-attn)" },
+      { key: "t", name: "Tension", color: "var(--s-tension)" }
+    ];
+    const wrap = h("div", { class: "chart" });
+    const tip = h("div", { class: "tip", hidden: true });
+    const root2 = svg("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `Simulated thirty-minute sit. ${verdict(run)}` });
+    for (const v of [0, 0.5, 1]) {
+      root2.append(svg("line", { class: "grid", x1: L, x2: W - R, y1: y(v), y2: y(v) }), svg("text", { x: L - 6, y: y(v) + 4, "text-anchor": "end" }, v === 0 ? "0" : v === 1 ? "max" : ""));
+    }
+    for (const m of [0, 10, 20, 30]) root2.append(svg("text", { x: x(m * 60), y: H - 6, "text-anchor": "middle" }, `${m} min`));
+    if (run.ignited) {
+      root2.append(
+        svg("line", { x1: x(run.ignitionTime), x2: x(run.ignitionTime), y1: T, y2: H - B, stroke: "var(--muted)", "stroke-width": 1, "stroke-dasharray": "3 4" }),
+        svg("text", { x: x(run.ignitionTime) + 5, y: T + 10 }, "catches")
+      );
+    }
+    const ends = series.map((s) => ({ ...s, v: pts[pts.length - 1][s.key] })).sort((a, b) => b.v - a.v);
+    let lastY = -99;
+    for (const e of ends) {
+      e.ly = Math.max(y(e.v) + 4, lastY + 13);
+      lastY = e.ly;
+    }
+    for (const s of series) {
+      root2.append(svg("polyline", { fill: "none", stroke: s.color, "stroke-width": 2, "stroke-linejoin": "round", "stroke-linecap": "round", points: pts.map((p) => `${x(p.s).toFixed(1)},${y(p[s.key]).toFixed(1)}`).join(" ") }));
+    }
+    for (const e of ends) root2.append(svg("text", { x: W - R + 6, y: e.ly }, e.name));
+    const cross = svg("line", { y1: T, y2: H - B, stroke: "var(--muted)", "stroke-width": 1, visibility: "hidden" });
+    root2.append(cross);
+    const hit = svg("rect", { x: L, y: T, width: W - L - R, height: H - T - B, fill: "transparent" });
+    const move = (ev) => {
+      const box = root2.getBoundingClientRect();
+      const px = ((ev.touches?.[0]?.clientX ?? ev.clientX) - box.left) * (W / box.width);
+      const sec = Math.max(0, Math.min(1800, (px - L) / (W - L - R) * 1800));
+      const p = pts.reduce((best, q) => Math.abs(q.s - sec) < Math.abs(best.s - sec) ? q : best, pts[0]);
+      cross.setAttribute("x1", x(p.s));
+      cross.setAttribute("x2", x(p.s));
+      cross.setAttribute("visibility", "visible");
+      tip.hidden = false;
+      tip.replaceChildren(h("b", {}, `Minute ${Math.round(p.s / 60)}`), ...series.map((s) => h("div", {}, `${s.name}: ${Math.round(p[s.key] * 100)}%`)));
+      const left = x(p.s) / W * wrap.clientWidth;
+      tip.style.left = `${Math.min(Math.max(0, left + 10), Math.max(0, wrap.clientWidth - 170))}px`;
+      tip.style.top = "8px";
+    };
+    const leave = () => {
+      tip.hidden = true;
+      cross.setAttribute("visibility", "hidden");
+    };
+    hit.addEventListener("mousemove", move);
+    hit.addEventListener("touchstart", move, { passive: true });
+    hit.addEventListener("touchmove", move, { passive: true });
+    hit.addEventListener("mouseleave", leave);
+    root2.append(hit);
+    wrap.append(root2, tip);
+    return wrap;
+  }
+
+  // app/main.js
+  var root = document.getElementById("app");
+  var rng = makeRng((Date.now() ^ 2654435769) >>> 0);
+  var app = {
+    state: migrate(loadLocal()) ?? newState(),
+    preflight: { energy: 2, agitation: 0, mood: 2, minutes: null },
+    route: "home",
+    set(next) {
+      app.state = next;
+      save(next);
+      render();
+    }
+  };
+  function migrate(s) {
+    if (!s || s.v !== STATE_VERSION || !s.plan || !s.bandit) return null;
+    return s;
+  }
+  var ROUTES = ["home", "progress", "learn"];
+  function readRoute() {
+    const name = (location.hash || "").replace("#", "");
+    app.route = ROUTES.includes(name) ? name : "home";
+  }
+  window.addEventListener("hashchange", () => {
+    readRoute();
+    render();
+    window.scrollTo(0, 0);
+  });
+  function render() {
+    clear(root);
+    if (!app.state.onboarded) {
+      root.append(onboarding());
+      return;
+    }
+    const page = h("main", { class: "page" });
+    if (app.route === "progress") renderProgress(page, app);
+    else if (app.route === "learn") renderLearn(page, app);
+    else renderHome(page);
+    root.append(page, tabs());
+  }
+  function tabs() {
+    const tab = (id, label) => h("a", { href: `#${id}`, "aria-current": app.route === id ? "page" : null }, label);
+    return h("div", { class: "tabs" }, h("nav", { "aria-label": "Sections" }, tab("home", "Sit"), tab("progress", "Progress"), tab("learn", "Learn")));
+  }
+  function brand(sub) {
+    return h("header", { class: "brand" }, h("span", { class: "mark", html: "Ember<i>.</i>" }), h("span", { class: "muted small" }, sub));
+  }
+  function renderHome(page) {
+    const { state } = app;
+    const today = planForToday(state, app.preflight, rng);
+    const plan = today.plan;
+    const script = buildScript(plan);
+    const seed = seedById(plan.seed);
+    const focus = plan.focus ? blockerById(plan.focus) : null;
+    const n = state.sits.length;
+    const phaseBar = h(
+      "div",
+      { class: "stack", style: { gap: "8px" } },
+      h(
+        "div",
+        { class: "phasebar", role: "img", "aria-label": script.phases.map((p) => `${p.name} ${Math.round((p.end - p.start) / 60)} min`).join(", ") },
+        script.phases.map((p, i) => h("i", { style: { flex: String(p.end - p.start), "--k": String(28 + i * 18) } }))
+      ),
+      h("div", { class: "phasekey" }, script.phases.map((p) => h("span", {}, `${p.name} ${fmtMin((p.end - p.start) / 60)}`)))
+    );
+    const changes = [.../* @__PURE__ */ new Set([...state.planChanges ?? [], ...today.changes])];
+    add(
+      page,
+      brand(n === 0 ? "A trainer for first jhana" : `Sit ${n + 1}`),
+      h(
+        "section",
+        { class: "card plan" },
+        h(
+          "div",
+          { class: "stack", style: { gap: "6px" } },
+          h("span", { class: "eyebrow" }, focus ? `This sit: ${focus.name.toLowerCase()}` : "This sit"),
+          h("p", { class: "lede" }, planHeadline(plan))
+        ),
+        phaseBar,
+        h(
+          "dl",
+          { class: "kv" },
+          h("dt", {}, "Length"),
+          h("dd", {}, `${plan.totalMin} minutes`),
+          h("dt", {}, "Spark"),
+          h("dd", {}, seed.name, " ", h("button", { class: "btn link", type: "button", onClick: pickSeed }, "change")),
+          h("dt", {}, "Effort"),
+          h("dd", {}, { feather: "Very light", light: "Light", steady: "Steady" }[plan.effort]),
+          h("dt", {}, "Anchor"),
+          h("dd", {}, { breath: "Breath in the belly", hands: "Feeling in the hands", body: "Whole body" }[plan.anchor])
+        ),
+        seed.pre ? h("p", { class: "note" }, seed.pre) : null,
+        changes.length ? h("div", { class: "stack", style: { gap: "6px" } }, h("span", { class: "eyebrow" }, "Changed since last time"), h("ul", { class: "plain small" }, changes.map((c) => h("li", {}, c)))) : null,
+        h("button", { class: "btn primary big", type: "button", onClick: () => start(plan) }, `Begin ${plan.totalMin}-minute sit`),
+        h("p", { class: "muted small" }, "During the sit: tap once when the pleasant feeling is clearly there, and the guide goes quiet. Tap twice if you are stuck.")
+      ),
+      h(
+        "section",
+        { class: "stack" },
+        h("h2", {}, "How are you right now?"),
+        h("p", { class: "muted small" }, "Today\u2019s state changes today\u2019s sit."),
+        pre("Energy", "energy", [["Tired", 0], ["Fine", 2], ["Bright", 3]]),
+        pre("Body", "agitation", [["Calm", 0], ["A bit keyed up", 2], ["Agitated", 3]]),
+        pre("Mood", "mood", [["Low", 0], ["Fine", 2], ["Good", 3]]),
+        pre("Time", "minutes", [["As planned", null], ["15 min", 15], ["25 min", 25], ["40 min", 40]])
+      ),
+      soundSettings()
+    );
+  }
+  var fmtMin = (m) => m < 1 ? `${Math.round(m * 60)} s` : `${Math.round(m)} min`;
+  function pre(label, key, options) {
+    return h(
+      "div",
+      { class: "field" },
+      h("span", { class: "label" }, label),
+      choice(options.map(([l, v]) => ({ label: l, value: v })), app.preflight[key], (v) => {
+        app.preflight[key] = v;
+        render();
+      }, { label })
+    );
+  }
+  function pickSeed() {
+    const sheet = h("div", { class: "sheet", role: "dialog", "aria-label": "Choose a spark" });
+    const close = () => closeLayer(sheet);
+    const page = h(
+      "div",
+      { class: "page" },
+      h("h2", {}, "Choose a spark"),
+      h("p", { class: "muted" }, "The spark is how you bring up a pleasant feeling to rest on. People differ a lot in which one works. The app tries a few and keeps what works for you; you can also choose."),
+      SEEDS.map(
+        (s) => h("button", { class: "rung", type: "button", role: "radio", "aria-checked": String(s.id === app.state.plan.seed), onClick: () => {
+          app.set({ ...app.state, plan: { ...app.state.plan, seed: s.id } });
+          close();
+        } }, h("span", { class: "n" }, ""), h("div", {}, h("b", {}, s.name), h("span", {}, `${s.short} ${s.goodFor}`)))
+      ),
+      h("button", { class: "btn", type: "button", onClick: close }, "Cancel")
+    );
+    sheet.append(page);
+    openLayer(sheet);
+  }
+  function soundSettings() {
+    const s = app.state.settings;
+    const setS = (patch) => app.set({ ...app.state, settings: { ...s, ...patch } });
+    const voices = voiceOptions();
+    const current = s.voice === "auto" ? voices[0].id : s.voice;
+    return h(
+      "section",
+      { class: "card" },
+      h("h3", {}, "Sound and voice"),
+      h("div", { class: "field" }, h("span", { class: "label" }, "Guide"), choice(voices.map((v) => ({ label: v.label, value: v.id })), current, (v) => setS({ voice: v }), { label: "Guide voice" })),
+      h(
+        "div",
+        { class: "field" },
+        h("label", { for: "rate" }, `Speaking pace: ${s.voiceRate < 0.85 ? "slow" : s.voiceRate > 1 ? "brisk" : "calm"}`),
+        h("input", { id: "rate", type: "range", min: "0.7", max: "1.15", step: "0.05", value: String(s.voiceRate), onChange: (e) => setS({ voiceRate: Number(e.target.value) }) })
+      ),
+      h(
+        "div",
+        { class: "row" },
+        h("button", { class: "chip", type: "button", "aria-pressed": String(!!s.soundscape), onClick: () => setS({ soundscape: !s.soundscape }) }, "Soft noise bed"),
+        h("button", { class: "chip", type: "button", "aria-pressed": String(!!s.sensor), onClick: toggleSensor }, "Breath sensing (phone on belly)"),
+        h("button", { class: "btn link", type: "button", onClick: () => {
+          unlockVoice();
+          audio();
+          speak("This is how the guide will sound. Let the out-breath be long.", current, s.voiceRate);
+        } }, "Test the voice")
+      )
+    );
+  }
+  async function toggleSensor() {
+    const s = app.state.settings;
+    if (s.sensor) {
+      app.set({ ...app.state, settings: { ...s, sensor: false } });
+      return;
+    }
+    const ok = await requestMotion();
+    if (!ok) {
+      toast("Motion sensing is not available in this view. Open the standalone file on your phone to use it.");
+      return;
+    }
+    app.set({ ...app.state, settings: { ...s, sensor: true } });
+    toast("On. Lie back and rest the phone on your belly during the sit.");
+  }
+  function start(plan) {
+    unlockVoice();
+    audio();
+    openSit(app, plan, (summary) => {
+      openDebrief(app, plan, summary);
+    });
+  }
+  var QUESTIONS = [
+    { id: "experience", text: "How much have you meditated?", labels: ["Never", "A little", "Regularly", "For years"] },
+    { id: "warm", text: "When I think of someone I love, I quickly feel warmth in my body." },
+    { id: "chills", text: "Music gives me chills or goosebumps." },
+    { id: "imagery", text: "I can vividly re-live a good memory." },
+    { id: "body", text: "If I pay attention to my hands, I can feel them tingle or pulse." },
+    { id: "breathcalm", text: "Watching my breath calms me." },
+    { id: "breathctl", text: "When I watch my breath, I end up controlling it." },
+    { id: "striver", text: "When something matters to me, I try harder rather than ease off." },
+    { id: "sleepy", text: "I get drowsy when I close my eyes and relax." }
+  ];
+  var obStep = 0;
+  var obProfile = { smile: 2, relaxes: 2 };
+  function onboarding() {
+    const page = h("main", { class: "page" });
+    const steps = h("div", { class: "steps", "aria-hidden": "true" }, [0, 1, 2, 3].map((i) => h("i", { class: i <= obStep ? "on" : "" })));
+    const next = (label = "Continue", disabled = false) => h(
+      "div",
+      { class: "actions" },
+      obStep > 0 ? h("button", { class: "btn", type: "button", onClick: () => {
+        obStep -= 1;
+        render();
+        window.scrollTo(0, 0);
+      } }, "Back") : null,
+      h("button", { class: "btn primary", type: "button", disabled, onClick: () => {
+        obStep += 1;
+        render();
+        window.scrollTo(0, 0);
+      } }, label)
+    );
+    if (obStep === 0) {
+      add(
+        page,
+        brand("A trainer for first jhana"),
+        steps,
+        h("h1", {}, "Learn to light the first jhana."),
+        h("p", { class: "lede" }, "Jhana is a state of deep, wakeful absorption in a pleasant feeling. It is a learnable skill, and for most people it starts by accident the first time."),
+        h("p", {}, "Ember guides a sit, asks afterwards where you got stuck, and changes the next sit to fit. Different people stall at different steps, and the fixes are often opposites, so one script cannot suit everyone."),
+        h("p", { class: "note" }, "This is an experimental prototype. The coaching logic comes from a synthesis of teachers\u2019 instructions and first-person reports. It has not yet been tested on people."),
+        next("How it works")
+      );
+    } else if (obStep === 1) {
+      add(
+        page,
+        brand("How it works"),
+        steps,
+        h("h1", {}, "It is a loop, and you only tend it."),
+        h(
+          "div",
+          { class: "stack-lg" },
+          point("Spark", "You bring up a small pleasant feeling: a smile, warmth for someone, tingling in the hands."),
+          point("Rest", "You rest attention on that feeling, lightly, and enjoy it. Attention makes it a little stronger. Stronger, it holds attention more easily."),
+          point("Do less", "When it starts to grow by itself, you stop helping. Grabbing at it, or checking whether it is working, puts it out. This is the whole difficulty.")
+        ),
+        h("p", { class: "muted" }, "Think of tending a small fire: tinder, a little air, and the patience not to smother it."),
+        next()
+      );
+    } else if (obStep === 2) {
+      const answered = QUESTIONS.every((q) => obProfile[q.id] !== void 0);
+      add(
+        page,
+        brand("About you"),
+        steps,
+        h("h1", {}, "Nine quick questions"),
+        h("p", { class: "muted" }, "These choose your first spark and anticipate where you are likely to get stuck."),
+        h("div", {}, QUESTIONS.map(
+          (q) => h(
+            "div",
+            { class: "item" },
+            h("span", {}, q.text),
+            scale(obProfile[q.id], (v) => {
+              obProfile[q.id] = v;
+              const y = window.scrollY;
+              render();
+              window.scrollTo(0, y);
+            }, q.labels ?? ["No", "A little", "Yes", "Very much"], q.text)
+          )
+        )),
+        next("Continue", !answered)
+      );
+    } else {
+      add(
+        page,
+        brand("Before you start"),
+        steps,
+        h("h1", {}, "Two things to know"),
+        h(
+          "div",
+          { class: "stack-lg" },
+          point("Go gently", "This practice is usually mild and pleasant. Strong states can be unsettling for some people. If you have a history of psychosis, mania or severe trauma, talk to a clinician or an experienced teacher first. Stop any sit that feels like too much. This app is not medical advice."),
+          point("It usually takes a while", "On retreats with hours of practice a day and personal coaching, many people get there within a week. At home with one sit a day, expect weeks. The ladder on the Progress tab shows the steps before jhana, so you can see movement long before the big moment.")
+        ),
+        h(
+          "div",
+          { class: "actions" },
+          h("button", { class: "btn", type: "button", onClick: () => {
+            obStep -= 1;
+            render();
+          } }, "Back"),
+          h("button", { class: "btn primary", type: "button", onClick: () => {
+            app.set(applyProfile(app.state, { ...obProfile }));
+            window.scrollTo(0, 0);
+          } }, "Set up my first sit")
+        )
+      );
+    }
+    return page;
+  }
+  function point(title, text) {
+    return h("div", { class: "stack", style: { gap: "4px" } }, h("h3", {}, title), h("p", {}, text));
+  }
+  function boot() {
+    readRoute();
+    render();
+    try {
+      window.speechSynthesis?.addEventListener?.("voiceschanged", () => {
+        if (app.route === "home" && !document.querySelector(".stage, .sheet")) render();
+      });
+    } catch {
+    }
+    caps.tts.then((t) => {
+      if (t && app.route === "home" && !document.querySelector(".stage, .sheet")) render();
+    });
+    connectRemote(app.state).then((remote) => {
+      const newer = migrate(remote);
+      if (newer) {
+        app.state = newer;
+        save(newer);
+        if (!document.querySelector(".stage, .sheet")) render();
+      }
+    });
+  }
+  if (window.claude?.hot?.ready) window.claude.hot.ready(boot);
+  else boot();
+})();
+
+</script>
+</body>
+</html>

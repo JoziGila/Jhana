@@ -1,0 +1,19 @@
+{
+  "name": "jhana-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A working theory of jhana and software prototypes that help beginners reach it.",
+  "scripts": {
+    "test": "node --test \"tests/*.test.js\"",
+    "build": "node scripts/build.mjs",
+    "sim": "node sim/run_policies.mjs",
+    "all": "make all"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}

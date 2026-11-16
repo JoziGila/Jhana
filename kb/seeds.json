@@ -1,0 +1,96 @@
+[
+  {
+    "id": "warmth",
+    "name": "Warmth for someone",
+    "short": "Bring to mind someone easy to love and feel the warmth.",
+    "how": "Think of a person or animal who makes you soften the moment you picture them. See their face. Silently wish them well. Notice the warmth or openness that appears, often in the chest.",
+    "where": "chest, throat, face",
+    "goodFor": "People who feel affection readily. The most commonly taught seed in fast-moving retreats.",
+    "onboarding": {
+      "q": "warm",
+      "weight": 2
+    }
+  },
+  {
+    "id": "smile",
+    "name": "A small smile",
+    "short": "Let a small smile form and feel what it does.",
+    "how": "Let the corners of your mouth lift a little, and let the eyes soften as if smiling too. Notice the faint pleasantness this makes in the face, behind the eyes, or in the chest.",
+    "where": "face, eyes, chest",
+    "goodFor": "People who find feelings hard to summon on demand; it works mechanically.",
+    "onboarding": {
+      "q": "smile",
+      "weight": 1
+    }
+  },
+  {
+    "id": "hands",
+    "name": "Tingling in the hands",
+    "short": "Feel the warmth and tingling already present in your hands.",
+    "how": "Rest your hands in your lap, palms up or one in the other. Feel them from the inside: warmth, pulsing, a soft buzz. That aliveness is mildly pleasant. Stay with the pleasant aspect of it.",
+    "where": "palms, fingers",
+    "goodFor": "People with good body awareness, and anyone who finds emotional seeds forced or who cannot watch the breath without controlling it.",
+    "onboarding": {
+      "q": "body",
+      "weight": 2
+    }
+  },
+  {
+    "id": "memory",
+    "name": "A good memory",
+    "short": "Recall one specific moment of joy, gratitude or awe.",
+    "how": "Pick one particular moment when you felt deeply glad, grateful or moved. Go back into it: where you were, what you saw. Let the feeling of it return to the body, then let the story go and keep the feeling.",
+    "where": "chest, belly, whole body",
+    "goodFor": "Vivid imaginers. Less reliable if you tend to drift into storylines.",
+    "onboarding": {
+      "q": "imagery",
+      "weight": 2
+    }
+  },
+  {
+    "id": "breath",
+    "name": "The ease of breathing out",
+    "short": "Find what feels good about the breath, especially the out-breath.",
+    "how": "Let the breath go by itself. Notice the small relief at the end of each out-breath, and the gentle pleasantness of air moving. Let attention rest on whatever is nicest about it.",
+    "where": "belly, chest, nostrils",
+    "goodFor": "People who already meditate on the breath and find it calming rather than effortful.",
+    "onboarding": {
+      "q": "breathcalm",
+      "weight": 2
+    }
+  },
+  {
+    "id": "comfort",
+    "name": "Simple comfort",
+    "short": "Feel the plain ease of a body at rest.",
+    "how": "Notice how it feels to be supported and not needed anywhere. The 'ahh' of sinking into a chair. Find the most comfortable region of the body and let attention soak in it.",
+    "where": "wherever feels most at ease",
+    "goodFor": "People who feel flat or numb, and days when nothing else lights up. The gentlest seed.",
+    "onboarding": {
+      "q": "relaxes",
+      "weight": 1
+    }
+  },
+  {
+    "id": "chills",
+    "name": "Music chills",
+    "short": "Play music that gives you chills, then sit with what it leaves behind.",
+    "how": "Let the music you just heard echo in your mind. Feel what it left in the body: shivers, warmth, a lift in the chest. Let the music fade and keep the feeling.",
+    "where": "spine, scalp, chest, arms",
+    "goodFor": "People who get shivers from music. Those shivers appear to be close kin to the energetic pleasure of first jhana.",
+    "onboarding": {
+      "q": "chills",
+      "weight": 2
+    },
+    "pre": "Before you press begin, play a minute or two of music that gives you chills. Start the sit while the feeling is still in your body."
+  },
+  {
+    "id": "kindness-self",
+    "name": "Kindness toward yourself",
+    "short": "A hand on the chest and a kind wish for yourself.",
+    "how": "Place a hand on your chest. Feel its warmth and weight. Silently say: may I be at ease. Let it be simple. If sadness is here, include it in the kindness.",
+    "where": "chest, under the hand",
+    "goodFor": "Days when difficult feelings are present. Prescribed by the coach rather than chosen at random.",
+    "onboarding": null
+  }
+]
